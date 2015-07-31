@@ -7,6 +7,20 @@
   display: inline;
 }
 
+.row-top {
+  .space {
+    width: 58px;
+    height: 87px;
+  }
+}
+
+.row-bottom {
+  .space {
+    width: 58px;
+    height: 87px;
+  }
+}
+
 .row-center {
   height: 570px;
   background-color: orange;
@@ -22,9 +36,11 @@
 .col-left {
   // float: left;
   display: inline-block;
-  width: 63px;
+  width: 87px;
   background-color: pink;
   .space {
+    width: 87px;
+    height: 58px;
     background-color: blue;
   }
 
@@ -32,9 +48,11 @@
 .col-right {
   display: inline-block;
   // float: right;
-  width: 63px;
+  width: 87px;
   background-color: pink;
   .space {
+    width: 87px;
+    height: 58px;
     background-color: red;
   }
 }
@@ -42,20 +60,26 @@
 .col-center {
   display: inline-block;
   border: 1px solid black;
-  width: 567px;
+  width: 522px;
   background-color: green;
-  height: 567px;
+  height: 522px;
   vertical-align: top;
 }
 
-.space {
+.space, .corner {
   vertical-align: top;
   margin: 0;
   padding: 0;
   font-size: 0em;
   display: inline-block;
-  width: 63px;
-  height: 63px;
+  // width: 63px;
+  // height: 63px;
   border: 1px solid black;
   border-collapse: collapse;
+}
+
+.corner {
+  height: 87px;
+  width: 87px;
+  background-color: pink;
 }

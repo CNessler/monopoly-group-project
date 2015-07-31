@@ -48,14 +48,48 @@ table {
 * {
   box-sizing: border-box; }
 
+.row-top, .row-center, .row-bottom {
+  width: 700px;
+  display: inline; }
+
+.row-center {
+  height: 570px;
+  background-color: orange; }
+
 .board {
   width: 700px;
   height: 700px;
+  margin: 0 auto; }
+
+.col-left {
+  display: inline-block;
+  width: 63px;
+  background-color: pink; }
+  .col-left .space {
+    background-color: blue; }
+
+.col-right {
+  display: inline-block;
+  width: 63px;
+  background-color: pink; }
+  .col-right .space {
+    background-color: red; }
+
+.col-center {
+  display: inline-block;
   border: 1px solid black;
-  margin-left: auto;
-  margin-right: auto; }
+  width: 567px;
+  background-color: green;
+  height: 567px;
+  vertical-align: top; }
 
 .space {
-  width: 0px;
-  height: 0px;
-  border: 1px solid black; }
+  vertical-align: top;
+  margin: 0;
+  padding: 0;
+  font-size: 0em;
+  display: inline-block;
+  width: 63px;
+  height: 63px;
+  border: 1px solid black;
+  border-collapse: collapse; }

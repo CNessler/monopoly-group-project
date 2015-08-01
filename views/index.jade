@@ -1,5 +1,16 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  h1= mOnopolize
+  form(action="/", method="post")
+    .input_name
+      label What's your name:
+        input(type="text" name="playername")
+    .input_token
+      label Choose your token:
+        select(name="chosentoken")
+          each val in availableTokens
+            option(value=val) 
+              =val
+    .join_game
+      input(type="submit" value="Join Game")

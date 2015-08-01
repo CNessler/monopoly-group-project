@@ -1,18 +1,12 @@
-var a = function(b, c) {
-  this.b = b;
-  this.c = c;
+var Team = function(name) {
+  this.name = name;
+  this.bool = false;
 }
 
-var allbc =
+var output =
 [
-  {
-    a: 1,
-    b: 2
-  },
-  {
-    a: 5,
-    b: 6
-  }
- ]
+  a = new Team("a"),
+  b = new Team('b')
+]
 
-allbc.forEach()
+console.log(a);

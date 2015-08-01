@@ -18,7 +18,229 @@ module.exports = {
       src: "data:image/jpeg;base64,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"
     }
   ],
-  
+
+  deeds:
+  [
+    {
+      name: "cooley",
+      price: 60,
+      color: "brown",
+      rent: 2,
+      owner: null,
+      houses: 0,
+      hotels: 0,
+      mortgage: 30
+    },
+    {
+      name: "svb",
+      price: 60,
+      color: "brown",
+      rent: 4,
+      owner: null,
+      houses: 0,
+      hotels: 0,
+      mortgage: 30
+    },
+    {
+      name: "glc",
+      price: 100,
+      color: "yellow",
+      rent: 6,
+      owner: null,
+      houses: 0,
+      hotels: 0,
+      mortgage: 50
+    },
+    {
+      name: "bowtie",
+      price: 100,
+      color: "yellow",
+      rent: 6,
+      owner: null,
+      houses: 0,
+      hotels: 0,
+      mortgage: 50
+    },
+    {
+      name: "quickleft",
+      price: 120,
+      color: "yellow",
+      rent: 8,
+      owner: null,
+      houses: 0,
+      hotels: 0,
+      mortgage: 50
+    },
+    {
+      name: "jeff",
+      price: 140,
+      color: "green",
+      rent: 10,
+      owner: null,
+      houses: 0,
+      hotels: 0,
+      mortgage: 70
+    },
+    {
+      name: "zach",
+      price: 140,
+      color: "green",
+      rent: 10,
+      owner: null,
+      houses: 0,
+      hotels: 0,
+      mortgage: 70
+    },
+    {
+      name: "claire",
+      price: 160,
+      color: "green",
+      rent: 12,
+      owner: null,
+      houses: 0,
+      hotels: 0,
+      mortgage: 80
+    },
+    {
+      name: "akhil",
+      price: 180,
+      color: "gray",
+      rent: 14,
+      owner: null,
+      houses: 0,
+      hotels: 0,
+      mortgage: 90
+    },
+      name: "jaylyn",
+      price: 180,
+      color: "gray",
+      rent: 14,
+      owner: null,
+      houses: 0,
+      hotels: 0,
+      mortgage: 90
+    },
+      name: "jeff",
+      price: 200,
+      color: "gray",
+      rent: 16,
+      owner: null,
+      houses: 0,
+      hotels: 0,
+      mortgage: 100
+    },
+      name: "mattias",
+      price: 220,
+      color: "red",
+      rent: 18,
+      owner: null,
+      houses: 0,
+      hotels: 0,
+      mortgage: 110
+    },
+      name: "martha",
+      price: 220,
+      color: "red",
+      rent: 18,
+      owner: null,
+      houses: 0,
+      hotels: 0,
+      mortgage: 110
+    },
+      name: "derek",
+      price: 240,
+      color: "red",
+      rent: 20,
+      owner: null,
+      houses: 0,
+      hotels: 0,
+      mortgage: 120
+    },
+      name: "amanda",
+      price: 260,
+      color: "blue",
+      rent: 22,
+      owner: null,
+      houses: 0,
+      hotels: 0,
+      mortgage: 130
+    },
+      name: "sam",
+      price: 260,
+      color: "blue",
+      rent: 22,
+      owner: null,
+      houses: 0,
+      hotels: 0,
+      mortgage: 130
+    },
+      name: "vish",
+      price: 260,
+      color: "blue",
+      rent: 24,
+      owner: null,
+      houses: 0,
+      hotels: 0,
+      mortgage: 140
+    },
+      name: "ashley",
+      price: 300,
+      color: "navy",
+      rent: 26,
+      owner: null,
+      houses: 0,
+      hotels: 0,
+      mortgage: 150
+    },
+      name: "barry",
+      price: 300,
+      color: "navy",
+      rent: 26,
+      owner: null,
+      houses: 0,
+      hotels: 0,
+      mortgage: 150
+    },
+      name: "judy",
+      price: 320,
+      color: "navy",
+      rent: 28,
+      owner: null,
+      houses: 0,
+      hotels: 0,
+      mortgage: 160
+    },
+      name: "jared",
+      price: 350,
+      color: "purple",
+      rent: 35,
+      owner: null,
+      houses: 0,
+      hotels: 0,
+      mortgage: 175
+    },
+    {
+      name: "anna",
+      price: 400,
+      color: "purple",
+      rent: 50,
+      owner: null,
+      houses: 0,
+      hotels: 0,
+      mortgage: 200
+    }
+  ],
+
+  Deed: function(name, price, rent, owner, houses, hotels, ) {
+    this.name = name;
+    this.price = price;
+    this.rent = rent;
+    this.owner = owner;
+    this.houses = houses;
+    this.hotels = hotels;
+    this.mortgage = mortgage;
+  }
+
   Player: function(name, token) {
     this.name = name;
     this.token = token;

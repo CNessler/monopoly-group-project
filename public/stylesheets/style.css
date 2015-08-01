@@ -48,6 +48,9 @@ table {
 * {
   box-sizing: border-box; }
 
+p {
+  padding: 5px; }
+
 .row-top, .row-center, .row-bottom {
   width: 700px;
   display: inline; }
@@ -56,42 +59,59 @@ table {
   width: 58px;
   height: 87px; }
 
+.row-top .bar {
+  position: relative;
+  top: 80%;
+  width: 100%;
+  height: 20%; }
+
 .row-bottom .space {
   width: 58px;
   height: 87px; }
 
+.row-bottom .bar {
+  width: 100%;
+  height: 20%; }
+
 .row-center {
-  height: 570px;
-  background-color: orange; }
+  height: 570px; }
+  .row-center .bar-left {
+    width: 20%;
+    height: 100%;
+    float: right; }
+  .row-center .bar-right {
+    width: 20%;
+    height: 100%; }
 
 .board {
   width: 700px;
   height: 700px;
-  margin: 0 auto; }
+  border: 2px solid black;
+  margin: 0 auto;
+  margin-top: 40px;
+  box-shadow: 5px 5px 5px gray; }
+
+.col-left, .col-right, .col-center {
+  display: inline-block; }
 
 .col-left {
-  display: inline-block;
-  width: 87px;
-  background-color: pink; }
+  width: 87px; }
   .col-left .space {
     width: 87px;
-    height: 58px;
-    background-color: blue; }
+    height: 58px; }
 
 .col-right {
-  display: inline-block;
-  width: 87px;
-  background-color: pink; }
+  width: 87px; }
   .col-right .space {
     width: 87px;
-    height: 58px;
-    background-color: red; }
+    height: 58px; }
 
 .col-center {
-  display: inline-block;
   border: 1px solid black;
   width: 522px;
-  background-color: green;
+  background-image: url("./images/galvanizelogo.png");
+  background-repeat: no-repeat;
+  background-size: contain;
   height: 522px;
   vertical-align: top; }
 
@@ -99,12 +119,131 @@ table {
   vertical-align: top;
   margin: 0;
   padding: 0;
-  font-size: 0em;
   display: inline-block;
   border: 1px solid black;
   border-collapse: collapse; }
 
 .corner {
   height: 87px;
-  width: 87px;
-  background-color: pink; }
+  width: 87px; }
+
+#chance, #community {
+  margin: 20px;
+  position: relative;
+  text-align: center;
+  padding: 10px; }
+
+#chance {
+  font-size: 18px;
+  height: 200px;
+  width: 100px;
+  top: 10px;
+  left: 50px;
+  transform: rotate(45deg); }
+
+#community {
+  font-size: 25px;
+  height: 100px;
+  width: 200px;
+  top: 110px;
+  left: 280px;
+  transform: rotate(-45deg); }
+
+.rotateLeft {
+  transform: rotate(-90deg); }
+
+.questionMark, .questionMarkSmall {
+  padding-top: 10px; }
+
+.questionMark {
+  font-size: 120px; }
+
+.questionMarkSmall {
+  font-size: 50px; }
+
+#chest1, #chest2, #chest3 {
+  background-image: url("http://www.worldofmonopoly.com/fansite/images/icons/monopoly_icon_chest_col.gif");
+  background-repeat: no-repeat;
+  background-position: center; }
+
+#chest1, #chest2 {
+  background-size: 70%; }
+
+#chest3 {
+  background-size: 100%; }
+
+#elevator {
+  height: 70%;
+  width: 80%;
+  padding: 3px;
+  float: left;
+  border-top: 1px solid black;
+  border-right: 1px solid black;
+  position: relative;
+  top: 10px; }
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+
+.space, .corner {
+  font-size: 14px;
+  text-align: center; }
+
+.rotateLeft {
+  position: relative;
+  top: -5px;
+  padding: 0px; }
+
+#chillin {
+  padding-top: 5px;
+  padding-left: 0px; }
+
+#elevator {
+  font-weight: normal; }
+
+.questionMark, .questionMarkSmall {
+  color: #FFa500; }
+
+#f1, #f2, #f3 {
+  background-color: #EE6352; }
+
+#s1, #s2, #s3 {
+  background-color: #08B2E3; }
+
+#t1, #t2, #t3 {
+  background-color: #EfE9F4; }
+
+#fo1, #fo2, #fo3 {
+  background-color: #57A773; }
+
+#fi1, #fi2, #fi3 {
+  background-color: #484D6D; }
+
+#si1, #si2 {
+  background-color: #7441A5; }
+
+#sv1, #sv2, #sv3 {
+  background-color: #FFD63D; }
+
+#e1, #e2 {
+  background-color: #9A7470; }
+
+#chillin {
+  background-color: #FFa500;
+  color: #FFFFFF; }
+
+#chance, #community, #elevator {
+  background-color: #FFFFFF;
+  color: #000; }
+
+#wifi, #keg {
+  background-color: #FFa500;
+  color: #FFFFFF; }
+
+#chance, #community {
+  border: 10px solid #a19a9a;
+  box-shadow: 4px 4px 4px #a19a9a; }
+
+#nattygro, #pingpong, #cornhole, #couch {
+  background-color: #a19a9a;
+  color: #FFFFFF; }

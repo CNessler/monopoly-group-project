@@ -26,7 +26,6 @@ router.get('/', function(req, res, next) {
   });
 });
 
-
 router.post('/', function(req, res, next) {
 
   var name = req.body.playername;
@@ -37,7 +36,6 @@ router.post('/', function(req, res, next) {
   .then(function() {
     res.send('success!')
   });
-
 });
 
 module.exports = router;

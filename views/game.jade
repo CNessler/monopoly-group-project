@@ -1,0 +1,100 @@
+extends layout
+
+block content
+  .board
+    .row-top
+      .corner#go
+       p Go!
+      .space
+        .bar#f1
+      .space#chance1
+        .questionMarkSmall ?
+      .space
+        .bar#f2
+      .space
+        .bar#f3
+      .space#pingpong
+        p Ping Pong Table
+        p $200
+      .space
+        .bar#s1
+      .space
+        .bar#s2
+      .space#keg
+        p Keg
+      .space
+        .bar#s3
+      .corner#chillin Just chillin'
+        #elevator Stuck in the Elevator!
+    .row-center
+      .col-left
+        .space
+          .bar-left#t1
+        .space
+          .bar-left#t2
+        .space#chest1
+        .space
+          .bar-left#t3
+        .space#nattygro
+          p Natural Grocers
+          span $200
+        .space
+          .bar-left#fo1
+        .space
+          .bar-left#fo2
+        .space#wifi
+          p Wi-Fi
+          span $150
+        .space
+          .bar-left#fo3
+      .col-center
+        .center-space#chance Chance
+          .questionMark ?
+        .center-space#community
+          p Community Chest
+        .center-space#logo
+      .col-right
+        .space
+          .bar-right#fi1
+        .space
+          .bar-right#fi2
+        .space#chest2
+        .space
+          .bar-right#fi3
+        .space#cornhole 
+          p Cornhole
+          p $200
+        .space#chance2
+          .rotateLeft
+            .questionMarkSmall ?
+        .space
+          .bar-right#si1
+        .space#ticket
+          p PARKING TICKET
+          span $75
+        .space
+          .bar-right#si2
+    .row-bottom
+      .corner#goTo
+        p Take the Elevator
+      .space
+        .bar#sv1
+      .space
+        .bar#sv2
+      .space#chance3
+        .questionMarkSmall ?
+      .space
+        .bar#sv3
+      .space#couch
+        p Couch
+        p $200
+      .space#keyCard
+        p LOST KEY CARD
+        p $30
+      .space
+        .bar#e1
+      .space#chest3
+      .space
+        .bar#e2
+      .corner#free
+        p Free Parking

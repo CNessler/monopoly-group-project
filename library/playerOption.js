@@ -9,5 +9,8 @@ module.exports = {
       }
     }
   },
+  payRent: function (player, owner  ) {
+
+  }
 
 }

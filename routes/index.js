@@ -13,29 +13,47 @@ var library = require('../library/constructors.js')
   var Player = library.Player;
 
 router.get('/', function(req, res, next) {
-  playersCollection.find({})
-
-  .then(function (allPlayers) {
-    if(allPlayers.length < 4) {
-      var availableTokens = getAvailableTokens(allPlayers, tokens);
-      res.render('index', {availableTokens: availableTokens});
+  if(req.cookies.name) {
+      res.redirect('/game');
     }
-    else {
-      res.send("4 player max has been reached!")
-    }
-  });
+  else {
+    playersCollection.find({})
+    .then(function (allPlayers) {
+        var availableTokens = getAvailableTokens(allPlayers, tokens);
+        res.render('index', {availableTokens: availableTokens});
+    });
+  }
 });
 
 router.post('/', function(req, res, next) {
 
   var name = req.body.playername;
   var token = req.body.chosentoken;
-  var player = new Player(name, token);
+  res.cookie('name', name);
 
-  playersCollection.insert(player)
-  .then(function() {
-    res.send('success!')
+  playersCollection.findOne({name: name})
+  .then(function (foundPlayer) {
+    if(foundPlayer) {
+      res.redirect('/game');
+    }
+    else {
+      var player = new Player(name, token);
+      playersCollection.insert(player)
+      .then(function() {
+        res.redirect('/game');
+      });
+    }
   });
 });
+
+router.get('/game', function(req, res, next) {
+  playerName = req.cookies.name
+  res.render('game', {playerName: playerName})
+})
+
+router.get('/logout', function (req, res, next) {
+  res.clearCookie('name');
+  res.redirect('/');
+})
 
 module.exports = router;

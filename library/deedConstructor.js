@@ -46,7 +46,6 @@ module.exports = function () {
   sp37= new Deed('Evergreen', 350, 'purple', 35, null, 0, 0, 175, 37),
   sp37 = new Deed('Winter Park', 400, 'purple', 50, null, 0, 0, 200, 39)
   ]
-  console.log(allDeeds);
   return allDeeds
 
 }

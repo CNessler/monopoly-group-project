@@ -8,7 +8,7 @@ banksCollection = monopolyDB.get('banks');
 gamesCollection = monopolyDB.get('games');
 
 var getAvailableTokens = require('../library/availableTokens.js');
-var library = require('../library/constructors.js')
+var library = require('../library/playerConstructor.js')
   var tokens = library.tokens;
   var Player = library.Player;
 var getAllDeeds = require('../library/deedConstructor.js')

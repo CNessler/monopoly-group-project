@@ -12,7 +12,7 @@ var getAvailableTokens = require('../library/availableTokens.js');
 var library = require('../library/playerConstructor.js')
   var tokens = library.tokens;
   var Player = library.Player;
-var getAllDeeds = require('../library/deedConstructor.js')
+var getAllDeeds = require('../public/javascripts/deedConstructor.js')
 
 router.get('/', function(req, res, next) {
   if(req.cookies.name) {
@@ -50,7 +50,7 @@ router.post('/', function(req, res, next) {
 
 router.get('/game', function(req, res, next) {
   playerName = req.cookies.name
-  getAllDeeds();
+  // getAllDeeds();
 
   playersCollection.find({})
   .then(function (allPlayers) {

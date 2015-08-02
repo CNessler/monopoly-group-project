@@ -1,5 +1,6 @@
 // var playerData = document.getElementById('playerData');
 // console.log(playerData);
+console.log(allDeeds);
 
 var rollButton = document.getElementById('roll');
 var index = 0
@@ -25,7 +26,6 @@ function nextPlayer() {
   } else if (index === 3) {
     index = 0
   }
-  return index
 }
 
 rollButton.addEventListener("click", function() {

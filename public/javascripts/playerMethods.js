@@ -8,6 +8,7 @@ Player.prototype.buyDeed= function (location, bank) {
   this.deeds.push(deed);
   this.balance -= deed.price;
   bank.balance += deed.price;
+  deed.owner += this.name;
   for (var i = 0; i < bank.deeds.length; i++) {
     if(bank.deeds[i].boardIndex === deed.boardIndex){
       bank.deeds.splice(i, 1)
@@ -15,7 +16,15 @@ Player.prototype.buyDeed= function (location, bank) {
   }
 }
 
-Player.prototype.payRent = function(owner, deed, dieRoll) {
+Player.prototype.payRent = function(ownerName, deed, dieRoll, allPlayers) {
+  var owner;
+  allPlayers.forEach(function (player) {
+    player.deeds.forEach(function (checkedDeed) {
+      if(checkedDeed.owner === ownerName){
+        owner = player;
+      }
+    })
+  })
 
   var rentDue;
 

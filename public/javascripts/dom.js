@@ -46,7 +46,7 @@ rollButton.addEventListener("click", function() {
   moveTo.style.background = player.token
   //player options function
 
-  selectPlayerFunction(player.location, player, bank);
+  selectPlayerFunction(player.location, player, bank, dieRoll, players);
 
 
   nextPlayer()

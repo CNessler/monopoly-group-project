@@ -1,14 +1,22 @@
 // var playerData = document.getElementById('playerData');
 // console.log(playerData);
-console.log(allDeeds);
+// console.log(allDeeds);
 
 var rollButton = document.getElementById('roll');
 var index = 0
-var players = [
-  {name: "Akhil", token: "red", location: 0},
-  {name: "Claire", token: "blue", location: 0},
-  {name: "Derek", token: "yellow", location: 0},
-  {name: "Jaylyn", token: "green", location: 0}
+// var players = [
+//   {name: "Akhil", token: "red", location: 0},
+//   {name: "Claire", token: "blue", location: 0},
+//   {name: "Derek", token: "yellow", location: 0},
+//   {name: "Jaylyn", token: "green", location: 0}
+// ]
+
+var players =
+[
+  new Player("Akhil","red"),
+  new Player("Claire","blue"),
+  new Player("Derek", "yellow"),
+  new Player("Jaylyn", "green")
 ]
 
 function getMove(player) {
@@ -18,6 +26,7 @@ function getMove(player) {
   } else {
     player.location = player.location + move - 40;
   }
+  return move;
 }
 
 function nextPlayer() {
@@ -29,12 +38,16 @@ function nextPlayer() {
 }
 
 rollButton.addEventListener("click", function() {
-  console.log(index)
   var player = players[index]
   var current = document.getElementById('sp' + player.location)
   current.style.background = "white";
-  getMove(player)
+  var dieRoll = getMove(player);
   var moveTo = document.getElementById('sp' + player.location)
   moveTo.style.background = player.token
+  //player options function
+
+  selectPlayerFunction(player.location, player, bank);
+
+
   nextPlayer()
 });

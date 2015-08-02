@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var monopolyDB = require('monk')(process.env.MONGOLAB_URI);
+
 playersCollection = monopolyDB.get('players');
 deedsCollection = monopolyDB.get('deeds');
 banksCollection = monopolyDB.get('banks');
@@ -50,7 +51,12 @@ router.post('/', function(req, res, next) {
 router.get('/game', function(req, res, next) {
   playerName = req.cookies.name
   getAllDeeds();
-  res.render('game', {playerName: playerName})
+  playersCollection.find({})
+  .then(function (allPlayers) {
+    console.log(allPlayers, "ALL PLAYERS");
+    res.cookie("alldata", allPlayers)
+    res.render('game', {playerName: playerName, allPlayers: allPlayers})
+  })
 })
 
 router.get('/logout', function (req, res, next) {

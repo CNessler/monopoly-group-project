@@ -1,4 +1,7 @@
-module.exports = {
-  a: "a",
-  b: "b"
+var myObj = {
+  a: function () {
+    this.b = "b"
+  },
+
+  
 }

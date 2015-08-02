@@ -27,5 +27,6 @@ module.exports = {
     this.active = true;
     this.turn = false;
     this.deeds = [];
+    this.location = 0;
   }
 }

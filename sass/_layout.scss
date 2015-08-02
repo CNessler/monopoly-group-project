@@ -112,6 +112,12 @@ p {
   // background-color: pink;
 }
 
+.corner .space {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
 #chance, #community {
   margin: 20px;
   position: relative;
@@ -153,17 +159,17 @@ p {
   font-size: 50px;
 }
 
-#chest1, #chest2, #chest3 {
+#sp17, #sp33, #sp2 {
   background-image: url("http://www.worldofmonopoly.com/fansite/images/icons/monopoly_icon_chest_col.gif");
   background-repeat: no-repeat;
   background-position: center;
 }
 
-#chest1, #chest2 {
+#sp17, #sp33 {
   background-size: 70%;
 }
 
-#chest3 {
+#sp2 {
   background-size: 100%;
 }
 

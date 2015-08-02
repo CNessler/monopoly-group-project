@@ -3,52 +3,55 @@ extends layout
 block content
   h1 Hey, 
     = playerName
+  button(id="roll") Roll Dice
   a(href="/logout") Logout
   .board
     .row-top
-      .corner#go
-       p Free Parking
-      .space
+      .corner
+        .space#sp20
+          p Free Parking
+      .space#sp21
         .bar#f1
-      .space#chance1
+      .space#sp22
         .questionMarkSmall ?
-      .space
+      .space#sp23
         .bar#f2
-      .space
+      .space#sp24
         .bar#f3
-      .space#pingpong
+      .space#sp25
         p Ping Pong Table
         p $200
-      .space
+      .space#sp26
         .bar#s1
-      .space
+      .space#sp27
         .bar#s2
-      .space#keg
+      .space#sp28
         p Keg
-      .space
+      .space#sp29
         .bar#s3
-      .corner#chillin Just chillin'
-        #elevator Stuck in the Elevator!
+      .corner
+        .space#sp30 Just chillin'
+          #elevator Stuck in the Elevator!
     .row-center
       .col-left
-        .space
+        .space#sp19
           .bar-left#t1
-        .space
+        .space#sp18
           .bar-left#t2
-        .space#chest1
-        .space
+        .space#sp17
+        .space#sp16
           .bar-left#t3
-        .space#nattygro
+        .space#sp15
           p Natural Grocers
           span $200
-        .space
+        .space#sp14
           .bar-left#fo1
-        .space
+        .space#sp13
           .bar-left#fo2
-        .space#wifi
+        .space#sp12
           p Wi-Fi
           span $150
-        .space
+        .space#sp11
           .bar-left#fo3
       .col-center
         .center-space#chance Chance
@@ -57,48 +60,51 @@ block content
           p Community Chest
         .center-space#logo
       .col-right
-        .space
+        .space#sp31
           .bar-right#fi1
-        .space
+        .space#sp32
           .bar-right#fi2
-        .space#chest2
-        .space
+        .space#sp33
+        .space#sp34
           .bar-right#fi3
-        .space#cornhole 
+        .space#sp35
           p Cornhole
           p $200
-        .space#chance2
+        .space#sp36
           .rotateLeft
             .questionMarkSmall ?
-        .space
+        .space#sp37
           .bar-right#si1
-        .space#ticket
+        .space#sp38
           p PARKING TICKET
           span $75
-        .space
+        .space#sp39
           .bar-right#si2
     .row-bottom
-      .corner#goTo
-        p Take the Elevator
-      .space
+      .corner
+        .space#sp10
+          p Take the Elevator
+      .space#sp9
         .bar#sv1
-      .space
+      .space#sp8
         .bar#sv2
-      .space#chance3
+      .space#sp7
         .questionMarkSmall ?
-      .space
+      .space#sp6
         .bar#sv3
-      .space#couch
+      .space#sp5
         p Couch
         p $200
-      .space#keyCard
+      .space#sp4
         p LOST KEY CARD
         p $30
-      .space
+      .space#sp3
         .bar#e1
-      .space#chest3
-      .space
+      .space#sp2
+      .space#sp1
         .bar#e2
-      .corner#free
-        p Go
+      .corner
+        .space#sp0
+          p Go
+  p(id='playerData' style='visibility: hidden;') #{player1}
   script(src='/javascripts/dom.js')      

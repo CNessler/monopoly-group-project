@@ -1,5 +1,5 @@
 var rollButton = document.getElementById('roll');
-var index = 0
+var index = 0;
 
 var tokens = [
   {name: "hat", url: 'http://www.worldofmonopoly.com/fansite/images/tokens/monopoly_token_hat.png'},
@@ -26,8 +26,6 @@ for (var i = 0; i < data.length; i++) {
   player.location = 0;
   players.push(player);
 }
-console.log(player);
-console.log(players[0].name);
 
 function getMove(player) {
   var move = Math.floor(Math.random()*10) + 2;
@@ -51,11 +49,12 @@ function nextPlayer() {
 
 rollButton.addEventListener("click", function() {
   var player = players[index]
-  console.log(player, "INDEX");
+  console.log(player.name, player.location);
   var current = document.getElementById('sp' + player.location)
   current.style.backgroundImage = null;
   var dieRoll = getMove(player);
   var moveTo = document.getElementById('sp' + player.location)
+  console.log(moveTo);
   moveTo.style.backgroundImage = "url('" + player.tokensrc + "')";
 
   selectPlayerFunction(player.location, player, bank, dieRoll, players, chanceDeck);

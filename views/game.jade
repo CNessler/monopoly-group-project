@@ -110,10 +110,12 @@ block content
           p Go
   .dash
     .name
-      h1 Player name
-    div balance
-    div Deeds 
-    div get out of jail free card 
+      h1#name 
+    #balance 
+    div#dollarSign
+    #deedContainer 
+    if getOut 
+      #getOut 
       
       
   dialog#myDialog 
@@ -126,3 +128,4 @@ block content
   script(src="/javascripts/playerMethods.js")
   script(src="/javascripts/selectingPlayerFunction.js")
   script(src='/javascripts/dom.js')      
+  script(src='/javascripts/dash.js')      

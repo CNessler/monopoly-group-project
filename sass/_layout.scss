@@ -87,6 +87,38 @@ div {
   border: 2px solid black;
   margin-top: 40px;
 }
+
+#balance {
+  height: 100px;
+  width: 100px;
+  border: 1px solid red;
+  display: inline-block;
+}
+
+.property {
+  width: 25%;
+  height: 150px;
+  border: 1px solid black;
+  display: inline-block;
+  margin-left: 7.5%;
+  margin-bottom: 7.5%;
+}
+
+
+.header {
+  margin: 4px;
+}
+
+// #dollarSign {
+//   border: 1px solid black;
+//   background: url('/stylesheets/images/dollarSign.png');
+//   height: 100px;
+//   width: 50px;
+//   display: inline-block;
+//   float: left;
+// }
+
+
 .board {
   width: 700px;
   height: 700px;

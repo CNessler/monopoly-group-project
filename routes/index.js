@@ -54,7 +54,7 @@ router.get('/game', function(req, res, next) {
 
   playersCollection.find({})
   .then(function (allPlayers) {
-    res.render('game', {playerName: playerName, allPlayers: allPlayers})
+    res.render('game', {playerName:playerName, allPlayers: allPlayers})
   })
 })
 

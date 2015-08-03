@@ -1,27 +1,33 @@
-// var playerData = document.getElementById('playerData');
-// console.log(playerData);
-// console.log(allDeeds);
-
 var rollButton = document.getElementById('roll');
 var index = 0
-// var players = [
-//   {name: "Akhil", token: "red", location: 0},
-//   {name: "Claire", token: "blue", location: 0},
-//   {name: "Derek", token: "yellow", location: 0},
-//   {name: "Jaylyn", token: "green", location: 0}
-// ]
 
-var players =
-[
-  new Player("Akhil","red"),
-  new Player("Claire","blue"),
-  new Player("Derek", "yellow"),
-  new Player("Jaylyn", "green")
+var tokens = [
+  {name: "hat", url: 'http://www.worldofmonopoly.com/fansite/images/tokens/monopoly_token_hat.png'},
+  {name: "ship", url: 'http://www.worldofmonopoly.com/fansite/images/tokens/monopoly_token_ship.png'},
+  {name: "dog", url: 'https://gobeyondphotography.files.wordpress.com/2013/01/monopoly_token_dog.png'},
+  {name: "car", url: 'http://4.bp.blogspot.com/-ogjy-t9xq1E/UQGnaJbui8I/AAAAAAAAB-k/OPDG4YAI2Yk/s1600/monopoly_token_car.png'}
 ]
+
+var atts = ["name", "token", "balance", "inJail", "getOut", "active", "turn", "deeds", "location"]
+var players = [];
+var data = document.getElementById('playerData').childNodes;
+for (var i = 0; i < data.length; i++) {
+  var info = data[i].innerHTML.split(";");
+  var player = {};
+  for (var j = 0; j < info.length; j++) {
+    player[atts[j]] = info[j];
+  }
+  player.location = 0;
+  for (var k = 0; k < tokens.length; k++) {
+    if (player.token === tokens[k].name) {
+      player.tokensrc = tokens[k].url;
+    }
+  }
+  players.push(player)
+}
 
 function getMove(player) {
   var move = Math.floor(Math.random()*10) + 2;
-  // var move = 7;
   if (player.location + move < 40) {
     player.location += move;
   } else {
@@ -40,12 +46,13 @@ function nextPlayer() {
 
 rollButton.addEventListener("click", function() {
   var player = players[index]
+  console.log(player.name);
+  console.log(player.tokensrc);
   var current = document.getElementById('sp' + player.location)
-  current.style.background = "white";
+  current.style.backgroundImage = null;
   var dieRoll = getMove(player);
   var moveTo = document.getElementById('sp' + player.location)
-  moveTo.style.background = player.token
-  //player options function
+  moveTo.style.backgroundImage = "url('" + player.tokensrc + "')";
 
   selectPlayerFunction(player.location, player, bank, dieRoll, players, chanceDeck);
 

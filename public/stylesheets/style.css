@@ -51,6 +51,10 @@ table {
 p {
   padding: 5px; }
 
+div {
+  background-size: contain;
+  background-repeat: no-repeat; }
+
 .row-top, .row-center, .row-bottom {
   width: 700px;
   display: inline; }

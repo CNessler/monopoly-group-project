@@ -10,7 +10,15 @@ function Deed(name, price, color,  rent, owner, houses, hotels, mortgage, boardI
   this.boardIndex = boardIndex;
 }
 
-allDeeds = [
+function Bank() {
+  this.deeds = allDeeds;
+  this.balance = 15140;
+  this.houses = 32;
+  this.hotels = 12;
+  this.freeParking = 0;
+}
+
+var allDeeds = [
   sp1  = new Deed('Colfax'         , 60 , 'brown'  , 2 , "", 0, 0, 30 , 1 ),
   sp3  = new Deed('38th'           , 60 , 'brown'  , 4 , "", 0, 0, 30 , 3 ),
   sp5  = new Deed('Couch'          , 200, 'black'  , 25, "", 0, 0, 100, 5 ),
@@ -41,32 +49,38 @@ allDeeds = [
   sp37 = new Deed('Winter Park'    , 400, 'purple' , 50, "", 0, 0, 200, 39)
 ]
 
-function Bank() {
-  this.deeds = allDeeds;
-  this.balance = 15140;
-  this.houses = 32;
-  this.hotels = 12;
-  this.freeParking = 0;
-}
-
 var bank = new Bank();
 
 var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers, chanceDeck) {
 
+  var getOwner = function (allPlayers) {
+    var owner;
+    allPlayers.forEach(function (player) {
+      player.deeds.forEach(function (checkedDeed) {
+        if(checkedDeed.owner === ownerName){
+          owner = player;
+        }
+      })
+    })
+    return owner;
+  }
+
+  getOwner(allPlayers);
+
   if(player.inJail === false) {
 
     var myDialog = document.getElementById('myDialog');
-    var caption = document.createElement('p')
-    var closeModal = document.createElement('button');
-    var closeModal2 = document.createElement('button');
+      var caption = document.createElement('p')
+      var closeModal = document.createElement('button');
+      var closeModal2 = document.createElement('button');
 
     var deed;
-
     bank.deeds.forEach(function (checkedDeed) {
       if(checkedDeed.boardIndex === location) {
         deed = checkedDeed;
       }
     })
+
 
     if(location === 4 || location === 38) {
       console.log("tax");
@@ -84,8 +98,21 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
 
     else if( location === 2  || location === 7  || location === 17 || location === 22 || location === 33 || location === 36){
       if(location === 7 || location === 22 || location === 36) {
-        var outputCard = chanceDeck.drawCard();
-        console.log(outputCard);
+        var outputCard = chanceDeck.drawCard()[0];
+        var amount = outputCard.amount;
+        var spaces = 3;
+
+        myDialog.appendChild(caption).innerHTML = outputCard.caption;
+        myDialog.appendChild(closeModal).innerHTML = 'Ok';
+
+        myDialog.showModal();
+
+        closeModal.addEventListener('click', function () {
+          outputCard.cardAction(player, allPlayers, amount, location, spaces, bank, allDeeds);
+          console.log(player.balance, "after paying 15");
+          myDialog.close();
+          myDialog.innerHTML = '';
+        })
 
         if (typeof outputCard[1] === "object") {
           chanceDeck.counter = 0;
@@ -125,6 +152,7 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
         myDialog.appendChild(closeModal2).innerHTML = 'Buy Property'
 
         myDialog.showModal();
+
 
         closeModal.addEventListener('click', function () {
           myDialog.close();

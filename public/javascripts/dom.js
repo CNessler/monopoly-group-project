@@ -1,5 +1,5 @@
 var rollButton = document.getElementById('roll');
-var index = 0
+var index = 0;
 
 var tokens = [
   {name: "hat", url: 'http://www.worldofmonopoly.com/fansite/images/tokens/monopoly_token_hat.png'},
@@ -8,12 +8,32 @@ var tokens = [
   {name: "car", url: 'http://4.bp.blogspot.com/-ogjy-t9xq1E/UQGnaJbui8I/AAAAAAAAB-k/OPDG4YAI2Yk/s1600/monopoly_token_car.png'}
 ]
 
+<<<<<<< HEAD
 var players = [];
 var data = document.getElementById('playerData').childNodes;
 for (var i = 0; i < data.length; i++) {
  var singlePlayer = data[i].innerHTML.split(';');
  var player = new Player(singlePlayer[0], singlePlayer[1])
  players.push(player);
+=======
+function getToken(player) {
+  for (var i = 0; i < tokens.length; i++) {
+    if (player.token === tokens[i].name) {
+      player.tokensrc = tokens[i].url
+    }
+  }
+  return player
+}
+
+var players = [];
+var data = document.getElementById('playerData').childNodes;
+for (var i = 0; i < data.length; i++) {
+  var singlePlayer = data[i].innerHTML.split(';');
+  var player = new Player(singlePlayer[0], singlePlayer[1])
+  getToken(player);
+  player.location = 0;
+  players.push(player);
+>>>>>>> a0ef7a68442b1787dd8bdd4a061ad798c63e9a14
 }
 
 console.log(players);
@@ -40,11 +60,14 @@ console.log(players);
 // console.log(players, "players");
 
 function getMove(player) {
-  var move = Math.floor(Math.random()*10) + 2;
+  //var move = Math.floor(Math.random()*10) + 2;
+  var move = 7;
   if (player.location + move < 40) {
     player.location += move;
   } else {
     player.location = player.location + move - 40;
+    player.balance += 200;
+    bank.balance -= 200;
   }
   return move;
 }
@@ -60,12 +83,11 @@ function nextPlayer() {
 rollButton.addEventListener("click", function() {
   console.log("event listener fires");
   var player = players[index]
-  console.log(player.name);
-  console.log(player.tokensrc, "TOKEN SOURCE");
   var current = document.getElementById('sp' + player.location)
   current.style.backgroundImage = null;
   var dieRoll = getMove(player);
   var moveTo = document.getElementById('sp' + player.location)
+  console.log(moveTo);
   moveTo.style.backgroundImage = "url('" + player.tokensrc + "')";
 
   selectPlayerFunction(player.location, player, bank, dieRoll, players, chanceDeck);

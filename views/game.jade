@@ -1,10 +1,11 @@
 extends layout
 
 block content
+  .nav 
+    a(href="/logout") Logout
   h1 Hey, 
     = playerName
-  button(id="roll") Roll Dice
-  a(href="/logout") Logout
+
   .board
     .row-top
       .corner
@@ -54,6 +55,7 @@ block content
         .space#sp11
           .bar-left#fo3
       .col-center
+        .dice#roll
         .center-space#chance Chance
           .questionMark ?
         .center-space#community
@@ -106,13 +108,24 @@ block content
       .corner
         .space#sp0
           p Go
+  .dash
+    .name
+      h1#name 
+    #balance 
+    div#dollarSign
+    #deedContainer 
+    if getOut 
+      #getOut 
+      
+      
   dialog#myDialog 
   div(id='playerData' style='visibility: hidden;')
     for player in allPlayers
-      p #{player.name};#{player.token};
+      p #{player.name};#{player.token}
   script(src="/javascripts/deedConstructor.js")
   script(src="/javascripts/playerConstructor.js")
   script(src="/javascripts/cardsConstructor.js")
   script(src="/javascripts/playerMethods.js")
   script(src="/javascripts/selectingPlayerFunction.js")
   script(src='/javascripts/dom.js')      
+  script(src='/javascripts/dash.js')      

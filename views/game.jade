@@ -1,10 +1,11 @@
 extends layout
 
 block content
+  .nav 
+    a(href="/logout") Logout
   h1 Hey, 
     = playerName
-  button(id="roll") Roll Dice
-  a(href="/logout") Logout
+
   .board
     .row-top
       .corner
@@ -54,6 +55,7 @@ block content
         .space#sp11
           .bar-left#fo3
       .col-center
+        .dice#roll
         .center-space#chance Chance
           .questionMark ?
         .center-space#community
@@ -106,6 +108,14 @@ block content
       .corner
         .space#sp0
           p Go
+  .dash
+    .name
+      h1 Player name
+    div balance
+    div Deeds 
+    div get out of jail free card 
+      
+      
   dialog#myDialog 
   div(id='playerData' style='visibility: hidden;')
     for player in allPlayers

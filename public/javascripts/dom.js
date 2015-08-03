@@ -35,6 +35,8 @@ function getMove(player) {
     player.location += move;
   } else {
     player.location = player.location + move - 40;
+    player.balance += 200;
+    bank.balance -= 200;
   }
   return move;
 }

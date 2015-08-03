@@ -1,37 +1,48 @@
-var deeds = require('./library/deedConstructor.js')()
-var playerFunctions = require('./library/playerMethods.js')()
-var bank = require('./library/bankConstructor.js')()
 
-console.log(playerFunctions.buyDeed);
+var sampleDeck = ["a", "b", "c", "d"];
+var counter = 0;
 
-function Deed(name, price, color,  rent, owner, houses, hotels, mortgage, boardIndex) {
-  this.name = name;
-  this.price = price;
-  this.color = color;
-  this.rent = rent;
-  this.owner = owner;
-  this.houses = houses;
-  this.hotels = hotels;
-  this.mortgage = mortgage;
-  this.boardIndex = boardIndex;
+var shuffleDeck = function (deck) {
+
+  var shuffledDeck = [];
+
+  while(shuffledDeck.length < deck.length) {
+    var randomIndex = Math.floor(Math.random()*deck.length);
+    if(shuffledDeck.indexOf(deck[randomIndex]) === -1) {
+      shuffledDeck.push(deck[randomIndex]);
+    }
+  }
+  deck = shuffledDeck;
+  console.log(shuffledDeck);
+  console.log(deck);
+  return deck;
 }
-var sp1 = new Deed('Colfax', 60 , 'brown', 2, null, 0, 0, 30, 1)
 
-// var player = new Player('you', 'ship')
-// // console.log(bank, 'HHHHHHH');
-// var buyDeed = playerFunctions.buyDeed(player, sp1, bank);
-// console.log(buyDeed);
+var drawCard = function (deck) {
+  if(counter < deck.length - 1) {
+    outputCard = deck[counter];
+    counter+=1;
+    console.log(outputCard);
+    return [outputCard, counter]
+  }
+  else {
+    outputCard = deck[counter];
+    counter = 0;
+    console.log(outputCard);
+    return [outputCard, counter]
+  }
+}
 
-
-// var myObj = {
-//   a: function () {
-//   this.b = "hi"
-//   },
-//
-//   a.prototype.logger: function () {
-//     console.log(this.b);
-//   }
-// }
-//
-// var instance = new a();
-// instance.logger()
+var newDeck;
+// looping through the deck and draw a card. Once it gets to the last index, it shuffles the deck.
+for (var i = 0; i < sampleDeck.length; i++) {
+  if (i < sampleDeck.length - 1){
+    drawCard(sampleDeck);
+    console.log("IF:", sampleDeck);
+  } else {
+    drawCard(sampleDeck)
+    newDeck = shuffleDeck(sampleDeck);
+    sampleDeck = newDeck;
+    console.log("ELSE:", newDeck, sampleDeck);
+  }
+}

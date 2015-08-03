@@ -120,3 +120,33 @@ Card.prototype.goTo = function (player, allDeeds, deedName) {
 Card.prototype.getOutOfJail = function(player) {
   player.getOutOfJailFree = true;
 }
+
+var shuffleDeck = function (deck) {
+
+  var shuffledDeck = [];
+
+  while(shuffledDeck.length < deck.length) {
+    var randomIndex = Math.floor(Math.random()*deck.length);
+    if(shuffledDeck.indexOf(deck[randomIndex]) === -1) {
+      shuffledDeck.push(deck[randomIndex]);
+    }
+  }
+  return shuffledDeck;
+}
+
+var drawCard = function (deck, discardedCardDeck) {
+  if(deck.length > 0) {
+    topCard = deck[0]
+    outputCard = topCard;
+    discardedCard = topCard;
+    deck.splice(0,1);
+  }
+  else {
+    deck = shuffleDeck(discardedCards);
+    topCard = deck[0];
+    outputCard = topCard;
+    discardedCard = topCard;
+    deck.splice(0,1);
+  }
+  return (outputCard, discardedCard);
+}

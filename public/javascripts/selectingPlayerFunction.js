@@ -132,3 +132,4 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
   else {
     console.log("youre in jail, suckaa");
   }
+}

@@ -9,11 +9,6 @@ Player.prototype.buyDeed= function (location, bank) {
   this.balance -= deed.price;
   bank.balance += deed.price;
   deed.owner += this.name;
-  for (var i = 0; i < bank.deeds.length; i++) {
-    if(bank.deeds[i].boardIndex === deed.boardIndex){
-      bank.deeds.splice(i, 1)
-    }
-  }
 }
 
 Player.prototype.payRent = function(ownerName, deed, dieRoll, allPlayers) {
@@ -67,7 +62,3 @@ Player.prototype.payTax = function (bank) {
     this.balance -= 75;
   }
 }
-
-// Player.prototype.addHouseHotel = function () {
-//
-// }

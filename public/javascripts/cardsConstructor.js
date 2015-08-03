@@ -4,7 +4,11 @@ var Card = function (name, type, caption) {
   this.caption = caption;
 }
 
-communityChestDeck =
+var Deck = function () {
+  this.counter = 0;
+}
+
+communityChestArray =
   [
     new Card("pay15", "cc", "pay 15"),
     new Card("get50", "cc", "get 50"),
@@ -18,8 +22,7 @@ communityChestDeck =
     new Card("getoutofjail", "cc", "Get out jail free"),
     new Card("gotojail", "cc", "Go directly to Jail")
   ],
-
-chanceDeck =
+chanceArray =
   [
     new Card("pay15", "chance", "pay 15"),
     new Card("get50", "chance", "get 50"),
@@ -33,6 +36,12 @@ chanceDeck =
     new Card("getoutofjail", "chance", "Get out jail free"),
     new Card("gotojail", "chance", "Go directly to Jail")
   ]
+
+var communityChestDeck = new Deck();
+communityChestDeck.cards = communityChestArray;
+
+var chanceDeck = new Deck();
+chanceDeck.cards = chanceArray;
 
 Card.prototype.addMoney = function (player, bank, amount) {
   player.balance += amount;
@@ -68,9 +77,11 @@ Card.prototype.payPerHouseHotel = function (player, bank) {
 Card.prototype.advanceToNearestUtility = function (location, allPlayers, player, bank) {
   if( 12 < player.location < 28){
     player.location = 28;
-  } else if (0 <player.location < 12){
+  }
+  else if (0 <player.location < 12){
     player.location = 12;
-  } else {
+  }
+  else {
     player.location = 12;
     player.balance +=  200;
     bank.balance -= 200;
@@ -102,6 +113,7 @@ Card.prototype.advanceToCorner = function (player, bank, corner) {
     player.location = 10;
     player.inJail = true;
   }
+}
 
 Card.prototype.goTo = function (player, allDeeds, deedName) {
   var deedLocation;
@@ -113,10 +125,36 @@ Card.prototype.goTo = function (player, allDeeds, deedName) {
   if(deed.location <= player.location){
     player.balance += 200;
     player.location = deedLocation;
-  } else {
+  }
+  else {
     player.location = deedLocation;
   }
+}
 
 Card.prototype.getOutOfJail = function(player) {
   player.getOutOfJailFree = true;
+}
+
+Deck.prototype.shuffleDeck = function () {
+  var shuffledDeck = [];
+
+  while(shuffledDeck.length < this.cards.length) {
+    var randomIndex = Math.floor(Math.random()*this.cards.length);
+    if(shuffledDeck.indexOf(this.cards[randomIndex]) === -1) {
+      shuffledDeck.push(this.cards[randomIndex]);
+    }
+  }
+  return shuffledDeck;
+}
+
+Deck.prototype.drawCard = function () {
+ if(this.counter < this.cards.length - 1) {
+   outputCard = this.cards[this.counter];
+   return [outputCard, this.counter];
+ }
+ else {
+   outputCard = this.cards[this.counter];
+   this.cards = this.shuffleDeck(this.cards);
+   return [outputCard, this.cards];
+ }
 }

@@ -20,7 +20,8 @@ var players =
 ]
 
 function getMove(player) {
-  var move = Math.floor(Math.random()*10) + 2;
+  //var move = Math.floor(Math.random()*10) + 2;
+  var move = 7;
   if (player.location + move < 40) {
     player.location += move;
   } else {
@@ -46,7 +47,7 @@ rollButton.addEventListener("click", function() {
   moveTo.style.background = player.token
   //player options function
 
-  selectPlayerFunction(player.location, player, bank, dieRoll, players);
+  selectPlayerFunction(player.location, player, bank, dieRoll, players, chanceDeck);
 
 
   nextPlayer()

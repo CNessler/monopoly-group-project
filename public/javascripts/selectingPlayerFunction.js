@@ -64,7 +64,7 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
         deed = checkedDeed;
       }
     })
-  console.log(deed, "Current Deed",deed.owner, "Deed OWNER");
+  // console.log(deed, "Current Deed",deed.owner, "Deed OWNER");
   if(location === 4 || location === 38) {
     myDialog.appendChild(caption).innerHTML = "Pay Fine";
     myDialog.appendChild(closeModal).innerHTML = 'Pay Fine';
@@ -79,8 +79,7 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
   }
 
   else if (deed.owner === ""){
-    // console.log(deed.boardIndex, "THIS IS THE DEED", location, "LOCATIONS");
-
+    console.log(player.name, "PLAYER NAME");
     myDialog.appendChild(caption).innerHTML = 'Property Available'
     myDialog.appendChild(closeModal).innerHTML = 'Do Nothing'
     myDialog.appendChild(closeModal2).innerHTML = 'Buy Property'
@@ -88,7 +87,6 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
     myDialog.showModal();
 
     closeModal.addEventListener('click', function () {
-
       myDialog.close();
       myDialog.innerHTML = '';
     })
@@ -97,6 +95,7 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
       player.buyDeed(location, bank)
       // console.log(player, "PLAYER");
       // console.log(bank, "BANK");
+      console.log(allDeeds);
       console.log(deed, "DEED AFTER",deed.owner, "OWNER AFTER");
       myDialog.close();
       myDialog.innerHTML = '';

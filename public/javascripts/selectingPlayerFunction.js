@@ -53,75 +53,82 @@ var bank = new Bank();
 
 var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers) {
 
-  var myDialog = document.getElementById('myDialog');
-  var caption = document.createElement('p')
-  var closeModal = document.createElement('button');
-  var closeModal2 = document.createElement('button');
+  if(player.inJail === false) {
 
-  var deed;
-  bank.deeds.forEach(function (checkedDeed) {
-    if(checkedDeed.boardIndex === location) {
-      deed = checkedDeed;
-    }
-  })
+    var myDialog = document.getElementById('myDialog');
+    var caption = document.createElement('p')
+    var closeModal = document.createElement('button');
+    var closeModal2 = document.createElement('button');
 
-  if(location === 4 || location === 38) {
-    console.log("tax");
-    myDialog.appendChild(caption).innerHTML = "Pay Fine";
-    myDialog.appendChild(closeModal).innerHTML = 'Pay Fine';
-
-    myDialog.showModal();
-
-    closeModal.addEventListener('click', function () {
-      player.payTax(bank)
-      myDialog.close();
-      myDialog.innerHTML = '';
+    var deed;
+    bank.deeds.forEach(function (checkedDeed) {
+      if(checkedDeed.boardIndex === location) {
+        deed = checkedDeed;
+      }
     })
-  }
 
-  else if( location === 2  || location === 7  || location === 17 || location === 22 || location === 33 || location === 36){
-    console.log("chance or community chest");
-  }
-
-  else if(location % 10 === 0) {
-    console.log("corners");
-  }
-
-  else {
-    if(deed.owner != ""){
-      console.log("first else");
-      myDialog.appendChild(caption).innerHTML = "Pay Rent";
-      myDialog.appendChild(closeModal).innerHTML = 'Pay Rent';
+    if(location === 4 || location === 38) {
+      console.log("tax");
+      myDialog.appendChild(caption).innerHTML = "Pay Fine";
+      myDialog.appendChild(closeModal).innerHTML = 'Pay Fine';
 
       myDialog.showModal();
 
       closeModal.addEventListener('click', function () {
-        player.payRent(deed.owner, deed, dieRoll, allPlayers)
-        console.log(allPlayers, "allPlayers");
+        player.payTax(bank)
         myDialog.close();
         myDialog.innerHTML = '';
       })
+    }
+
+    else if( location === 2  || location === 7  || location === 17 || location === 22 || location === 33 || location === 36){
+      console.log("chance or community chest");
+      //community chest and chance function
+    }
+
+    else if(location % 10 === 0) {
+      console.log("corners");
     }
 
     else {
-      console.log("second else");
-      myDialog.appendChild(caption).innerHTML = 'Property Available'
-      myDialog.appendChild(closeModal).innerHTML = 'Do Nothing'
-      myDialog.appendChild(closeModal2).innerHTML = 'Buy Property'
+      if(deed.owner != ""){
+        console.log("first else");
+        myDialog.appendChild(caption).innerHTML = "Pay Rent";
+        myDialog.appendChild(closeModal).innerHTML = 'Pay Rent';
 
-      myDialog.showModal();
+        myDialog.showModal();
 
-      closeModal.addEventListener('click', function () {
-        myDialog.close();
-        myDialog.innerHTML = '';
-      })
+        closeModal.addEventListener('click', function () {
+          player.payRent(deed.owner, deed, dieRoll, allPlayers)
+          console.log(allPlayers, "allPlayers");
+          myDialog.close();
+          myDialog.innerHTML = '';
+        })
+      }
 
-      closeModal2.addEventListener('click', function () {
-        player.buyDeed(location, bank);
-        myDialog.close();
-        myDialog.innerHTML = '';
-      })
+      else {
+        console.log("second else");
+        myDialog.appendChild(caption).innerHTML = 'Property Available'
+        myDialog.appendChild(closeModal).innerHTML = 'Do Nothing'
+        myDialog.appendChild(closeModal2).innerHTML = 'Buy Property'
+
+        myDialog.showModal();
+
+        closeModal.addEventListener('click', function () {
+          myDialog.close();
+          myDialog.innerHTML = '';
+        })
+
+        closeModal2.addEventListener('click', function () {
+          player.buyDeed(location, bank);
+          myDialog.close();
+          myDialog.innerHTML = '';
+        })
+      }
+
     }
-
   }
-}
+
+  else {
+    console.log("youre in jail, suckaa");
+  }

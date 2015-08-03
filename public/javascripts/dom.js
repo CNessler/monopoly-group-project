@@ -26,11 +26,10 @@ for (var i = 0; i < data.length; i++) {
   player.location = 0;
   players.push(player);
 }
-console.log(player);
-console.log(players[0].name);
 
 function getMove(player) {
-  var move = Math.floor(Math.random()*10) + 2;
+  //var move = Math.floor(Math.random()*10) + 2;
+  var move = 7;
   if (player.location + move < 40) {
     player.location += move;
   } else {
@@ -49,7 +48,6 @@ function nextPlayer() {
 
 rollButton.addEventListener("click", function() {
   var player = players[index]
-  console.log(player, "INDEX");
   var current = document.getElementById('sp' + player.location)
   current.style.backgroundImage = null;
   var dieRoll = getMove(player);

@@ -11,18 +11,9 @@ Player.prototype.buyDeed= function (location, bank) {
   deed.owner += this.name;
 }
 
-Player.prototype.payRent = function(ownerName, deed, dieRoll, allPlayers) {
-  var owner;
-  allPlayers.forEach(function (player) {
-    player.deeds.forEach(function (checkedDeed) {
-      if(checkedDeed.owner === ownerName){
-        owner = player;
-      }
-    })
-  })
+Player.prototype.payRent = function(owner, deed, dieRoll, allPlayers) {
 
   var rentDue;
-
   if(deed.color === "black") {
     var railroadsOwned = 1;
     owner.deeds.forEach(function (checkedDeed) {

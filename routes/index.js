@@ -28,38 +28,50 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
+  var name1 = req.body.playername1;
+  var name2 = req.body.playername2;
+  var name3 = req.body.playername3;
+  var name4 = req.body.playername4;
+  var token1 = req.body.chosentoken1;
+  var token2 = req.body.chosentoken2;
+  var token3 = req.body.chosentoken3;
+  var token4 = req.body.chosentoken4;
+  var list = [
+    {name: name1, token: token1},
+    {name: name2, token: token2},
+    {name: name3, token: token3},
+    {name: name4, token: token4}
+  ]
+  res.cookie('player1', name1);
+  res.cookie('player2', name2);
+  res.cookie('player3', name3);
+  res.cookie('player4', name4);
+  res.cookie('token1', token1);
+  res.cookie('token2', token2);
+  res.cookie('token3', token3);
+  res.cookie('token4', token4);
 
-  var name = req.body.playername;
-  var token = req.body.chosentoken;
-  res.cookie('name', name);
-
-  playersCollection.findOne({name: name})
-  .then(function (foundPlayer) {
-    if(foundPlayer) {
-      res.redirect('/game');
-    }
-    else {
-      var player = new Player(name, token);
-      playersCollection.insert(player)
-      .then(function() {
-        res.redirect('/game');
-      });
-    }
-  });
+  list.forEach(function (player) {
+    var newPlayer = new Player(player.name, player.token);
+    playersCollection.insert(newPlayer);
+  })
+  res.redirect('/game');
 });
 
 router.get('/game', function(req, res, next) {
-  playerName = req.cookies.name
-  // getAllDeeds();
+  var player1 = req.cookies.player1
+  var token1 = req.cookies.token1
 
   playersCollection.find({})
   .then(function (allPlayers) {
-    res.render('game', {playerName:playerName, allPlayers: allPlayers})
+    console.log(allPlayers);
+    res.render('game', {playerName:player1, allPlayers: allPlayers})
   })
 })
 
 router.get('/logout', function (req, res, next) {
   res.clearCookie('name');
+  playersCollection.remove({});
   res.redirect('/');
 })
 

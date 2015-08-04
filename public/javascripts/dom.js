@@ -35,6 +35,7 @@ function getMove(player) {
     // player.location = 10;
   }
   else if (player.location + move < 40) {
+
     player.location += move;
   } else {
     player.location = player.location + move - 40;

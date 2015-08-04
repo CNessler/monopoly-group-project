@@ -10,15 +10,15 @@ var Deck = function () {
   this.counter = 0;
 }
 
-var addMoney = function (player, allPlayers, amount, location, spaces, bank, allDeeds) {
+var addMoney = function (player, owner, allPlayers, amount, location, spaces, bank, allDeeds) {
   player.balance += amount;
 }
 
-var loseMoney = function (player, allPlayers, amount, location, spaces, bank, allDeeds) {
+var loseMoney = function (player, owner, allPlayers, amount, location, spaces, bank, allDeeds) {
   player.balance -= amount;
 }
 
-var payOtherPlayers = function (player, allPlayers, amount, location, spaces, bank, allDeeds) {
+var payOtherPlayers = function (player, owner, allPlayers, amount, location, spaces, bank, allDeeds) {
   for (var i = 0; i < allPlayers.length; i++) {
     if(allPlayers[i] != player){
       player.balance -= 50;
@@ -27,7 +27,7 @@ var payOtherPlayers = function (player, allPlayers, amount, location, spaces, ba
   }
 }
 
-var payPerHouseHotel = function (player, allPlayers, amount, location, spaces, bank, allDeeds) {
+var payPerHouseHotel = function (player, owner, allPlayers, amount, location, spaces, bank, allDeeds) {
   var houses=4;
   var hotels=1;
   for (var i = 0; i < player.deeds.length; i++) {
@@ -38,7 +38,7 @@ var payPerHouseHotel = function (player, allPlayers, amount, location, spaces, b
   player.balance -= amount;
 }
 
-var advanceToNearestUtility = function (player, allPlayers, amount, location, spaces, bank, allDeeds) {
+var advanceToNearestUtility = function (player, owner, allPlayers, amount, location, spaces, bank, allDeeds) {
   if( 12 < player.location < 28){
     player.location = 28;
   }
@@ -51,7 +51,7 @@ var advanceToNearestUtility = function (player, allPlayers, amount, location, sp
   }
 }
 
-var goBack = function (player, allPlayers, amount, location, spaces, bank, allDeeds) {
+var goBack = function (player, owner, allPlayers, amount, location, spaces, bank, allDeeds) {
   player.location -= 3;
 }
 
@@ -93,25 +93,62 @@ var goTo = function (player, allPlayers, amount, location, spaces, bank, corner,
   }
 }
 
-var getOutOfJail = function(player, allPlayers, amount, location, spaces, bank, allDeeds) {
+var getOutOfJail = function(player, owner, allPlayers, amount, location, spaces, bank, allDeeds) {
   player.getOutOfJailFree = true;
 }
 
-var goToPivotal = function(player, allPlayers, amount, location, spaces, bank, allDeeds) {
+var goToPivotal = function(player, owner, allPlayers, amount, location, spaces, bank, allDeeds) {
+  console.log(player.location, "before");
   player.location = 39;
-  if(owner.name != player.name) {
-    var rentDue = allDeeds[26].rent;
-    player.balance -= rentDue;
-    owner.balance += rentDue;
+  console.log(player.location, "");
+  if(allDeeds[27].owner != "" && allDeeds[27].owner != player.name) {
+      var rentDue = allDeeds[27].rent;
+      player.balance -= rentDue;
+      var pivotalOwner;
+      allPlayers.forEach(function (eachPlayer) {
+        eachPlayer.deeds.forEach(function (checkedDeed) {
+          if(checkedDeed.boardIndex === 39) {
+            pivotalOwner = eachPlayer;
+          }
+        })
+        pivotalOwner.balance += rentDue;
+      })
+    }
+  else {
+    var myDialog2 = document.getElementById('myDialog2');
+    myDialog2.innerHTML = "";
+    var caption = document.createElement('p')
+    var closeModal = document.createElement('button');
+    var closeModal2 = document.createElement('button');
+
+    myDialog2.appendChild(caption).innerHTML = 'Property Available'
+    myDialog2.appendChild(closeModal).innerHTML = 'Do Nothing'
+    myDialog2.appendChild(closeModal2).innerHTML = 'Buy Property'
+
+    myDialog2.showModal();
+
+    closeModal.addEventListener('click', function () {
+      playerDash(player);
+      myDialog.close();
+      playerDash(player);
+      myDialog.innerHTML = '';
+    })
+
+    closeModal2.addEventListener('click', function () {
+      player.buyDeed(39, bank);
+      playerDash(player);
+      myDialog2.close();
+      myDialog.innerHTML = '';
+    })
   }
 }
 
-var goToJail = function (player, allPlayers, amount, location, spaces, bank, allDeeds) {
+var goToJail = function (player, owner, allPlayers, amount, location, spaces, bank, allDeeds) {
     player.location = 10;
     player.inJail = true;
 }
 
-var advanceToGo = function (player, allPlayers, amount, location, spaces, bank, allDeeds) {
+var advanceToGo = function (player, owner, allPlayers, amount, location, spaces, bank, allDeeds) {
   player.location = 0;
   player.balance += 200;
 }
@@ -156,14 +193,6 @@ communityChestArray =
   ],
 chanceArray =
   [
-    new Card("pay15", "chance", "pay 15", loseMoney, 15),
-    new Card("get50", "chance", "get 50", addMoney, 50),
-    new Card("get150", "chance","get 150", addMoney, 150),
-    new Card("payPerHH", "chance", "pay 25 per house and 100 per hotel", payPerHouseHotel, 0),
-    new Card("payEachPlayer50", "chance", "pay each player 50", payOtherPlayers, 0),
-    new Card("advancetoUtil", "chance", "go to nearest util and pay 10 times die roll to owner (if owner exists)", advanceToNearestUtility, 0),
-    new Card("goback3", "chance", "go back 3 spaces", goBack, 0),
-    new Card("advanceToGo", "chance", "advance to go", advanceToCorner, 0),
     new Card("gotoPivotal", "chance", "Go to Pivotal", goToPivotal, 0),
     new Card("getoutofjail", "chance", "Get out jail free", getOutOfJail, 0),
     new Card("gotojail", "chance", "Go directly to Jail", goTo, 0)

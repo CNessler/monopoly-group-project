@@ -14,19 +14,24 @@ Player.prototype.buyDeed= function (location, bank) {
 Player.prototype.payRent = function(owner, deed, dieRoll, allPlayers) {
 
   var rentDue;
-  if(deed.color === "black") {
+  if(deed.color === "#a19a9a") {
     var railroadsOwned = 1;
-    owner.deeds.forEach(function (checkedDeed) {
-      if(checkedDeed.color === "black") {
+    for (var i = 0; i < owner.deeds.length; i++) {
+      if(owner.deeds[i].color === "#a19a9a") {
         railroadsOwned++;
       }
-    });
+    }
+    // owner.deeds.forEach(function (checkedDeed) {
+    //   if(checkedDeed.color === "#a19a9a") {
+    //     railroadsOwned++;
+    //   }
+    // });
     rentDue = 25 * railroadsOwned;
   }
-  else if(deed.color === "orange") {
+  else if(deed.color === "#FFa500") {
     var utilitiesOwned = 1;
     owner.deeds.forEach(function (checkedDeed) {
-      if(checkedDeed.color === "orange") {
+      if(checkedDeed.color === "#FFa500") {
         utilitiesOwned++;
       }
     });

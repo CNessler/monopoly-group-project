@@ -48,6 +48,11 @@ table {
 * {
   box-sizing: border-box; }
 
+body {
+  background-image: url("/stylesheets/images/desk.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%; }
+
 p {
   padding: 5px; }
 
@@ -92,8 +97,9 @@ div {
   height: 50px;
   text-align: right;
   padding: 1%;
-  font-size: 22px;
-  border-bottom: 1px solid black; }
+  font-size: 22px; }
+  .nav a {
+    text-decoration: none; }
 
 .dice {
   background-image: url("./images/dice.png");
@@ -105,37 +111,44 @@ div {
 .dash {
   display: inline-block;
   vertical-align: top;
-  box-shadow: 5px 5px 5px gray;
+  box-shadow: 5px 5px 5px black;
   width: 650px;
   height: 700px;
   border: 2px solid black;
-  margin-top: 40px; }
+  margin-top: 40px;
+  overflow: scroll; }
 
-#balance {
+#balance, #getOut {
   height: 100px;
-  width: 100px;
-  border: 1px solid red;
-  display: inline-block; }
+  width: 45%;
+  display: inline-block;
+  padding: 10px;
+  margin: 2.5%;
+  text-align: center;
+  vertical-align: super; }
 
 .property {
-  width: 25%;
-  height: 150px;
+  width: 30%;
+  line-height: 0.7;
+  height: 180px;
   border: 1px solid black;
   display: inline-block;
-  margin-left: 7.5%;
-  margin-bottom: 7.5%; }
+  margin-left: 2.5%;
+  margin-bottom: 5%;
+  margin-top: 5%;
+  vertical-align: top; }
 
 .header {
   margin: 4px; }
 
 .board {
-  width: 700px;
-  height: 700px;
+  width: 699px;
+  height: auto;
   border: 2px solid black;
   margin-left: 5%;
   margin-right: 5%;
   margin-top: 40px;
-  box-shadow: 5px 5px 5px gray;
+  box-shadow: 5px 5px 5px black;
   display: inline-block; }
 
 .col-left, .col-right, .col-center {
@@ -234,11 +247,34 @@ div {
   position: relative;
   top: 10px; }
 
+.name {
+  height: 55px; }
+
+#name {
+  display: inline-block;
+  padding: 10px;
+  padding-left: 30px; }
+
+.dashLinks {
+  display: inline-block;
+  height: 100%;
+  width: 100px;
+  border-left: 2px solid #a19a9a;
+  border-right: 2px solid #a19a9a; }
+
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
 
+h1 {
+  font-size: 50px;
+  text-align: center; }
+
+h2 {
+  font-size: 37px;
+  text-align: left; }
+
 .header {
-  font-size: 18px;
+  font-size: 16px;
   text-align: center; }
 
 .space, .corner {
@@ -250,6 +286,18 @@ body {
   top: -5px;
   padding: 0px; }
 
+.prices {
+  font-size: 14px;
+  text-align: center;
+  padding: 2px; }
+
+.dashLinks {
+  padding: 10px;
+  float: right;
+  text-decoration: none;
+  font-size: 23px;
+  text-align: center; }
+
 #chillin {
   padding-top: 5px;
   padding-left: 0px; }
@@ -257,8 +305,41 @@ body {
 #elevator {
   font-weight: normal; }
 
+#balance {
+  font-size: 30px; }
+
+#getOut {
+  font-size: 25px; }
+
+.board, .dash {
+  background-color: #FFFFFF; }
+
+.nav a, #turn {
+  color: #FFFFFF;
+  text-shadow: 1px 1px 1px #000; }
+
+.nav a:hover {
+  color: #a19a9a; }
+
 .questionMark, .questionMarkSmall {
   color: #FFa500; }
+
+.name {
+  background-color: #FFa500; }
+
+.dashLinks {
+  background-color: #FFFFFF; }
+
+#name {
+  color: #FFFFFF;
+  text-shadow: 1px 1px 1px #000; }
+
+#balance {
+  color: #57A773; }
+
+#getOut {
+  color: #FFa500;
+  border: 7px solid #FFa500; }
 
 #f1, #f2, #f3 {
   background-color: #EE6352; }

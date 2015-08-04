@@ -67,12 +67,10 @@ rollButton.addEventListener("click", function() {
 
   var player = players[index]
   var current = document.getElementById('sp' + player.location)
-  // console.log(current, "CURRENT");
   current.style.backgroundImage = null;
     for (var i = 0; i < misc.length; i++) {
     var foo = "sp" + misc[i].toString();
     if (current.id == foo) {
-      // console.log(current.style.color);
       current.style.color = "white";
     } else {
       current.style.color = "black";

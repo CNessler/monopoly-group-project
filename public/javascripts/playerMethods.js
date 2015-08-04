@@ -167,6 +167,7 @@ Player.prototype.pickUpFreeParking = function (bank) {
 }
 
 Player.prototype.timeInJail = function () {
+  console.log("Time in jail happening!");
     if(this.jailCounter === 3){
       this.inJail = false;
       var dieRoll = getMove(this)

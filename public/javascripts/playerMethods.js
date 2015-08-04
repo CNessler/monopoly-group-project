@@ -8,11 +8,13 @@ Player.prototype.buyDeed= function (location, bank) {
   this.deeds.push(deed);
   this.balance -= deed.price;
   bank.balance += deed.price;
-  deed.owner += this.name;
+  deed.owner = this.name;
+  console.log(deed.owner, "Deed Owner");
 }
 
 Player.prototype.payRent = function(owner, deed, dieRoll, allPlayers) {
 
+  console.log("now this happens", owner, "owner should be logged");
   var rentDue;
   if(deed.color === "black") {
     var railroadsOwned = 1;
@@ -23,6 +25,7 @@ Player.prototype.payRent = function(owner, deed, dieRoll, allPlayers) {
     });
     rentDue = 25 * railroadsOwned;
   }
+
   else if(deed.color === "orange") {
     var utilitiesOwned = 1;
     owner.deeds.forEach(function (checkedDeed) {
@@ -40,8 +43,8 @@ Player.prototype.payRent = function(owner, deed, dieRoll, allPlayers) {
   else {
     rentDue = deed.rent;
   }
-this.balance -= rentDue;
-owner.balance += rentDue;
+  this.balance -= rentDue;
+  owner.balance += rentDue;
 }
 
 Player.prototype.payTax = function (bank) {
@@ -51,5 +54,43 @@ Player.prototype.payTax = function (bank) {
   } else{
     bank.freeParking += 75;
     this.balance -= 75;
+  }
+}
+
+Player.prototype.buyHouse = function (deed, allDeeds, houses) {
+  var monopolyColor = deed.color;
+  if (monopolyColor != "black" || monopolyColor != "orange") {
+    var monopolyCounter = 0;
+    allDeeds.forEach(function (eachDeed) {
+      if(eachDeed.color = monopolyColor) {
+        monopolyCounter++;
+      }
+    });
+    var playerMonopolyCounter = 0;
+    this.deeds.forEach(function (playerDeed) {
+      if(playerDeed.color === monopolyColor) {
+        playerMonopolyCounter++;
+      }
+    })
+    if(playerMonopolyCounter === monopolyCounter) {
+      playerPurchaseCapacity = this.balance - houses*50;
+      if(player.hotels === 0 && playerPurchaseCapacity >= 0) {
+        this.houses += houses;
+        this.balance -= houses*50;
+      }
+      if (player.hotels > 0) {
+        console.log('you already have a hotel here')
+      }
+      if (playerPurchaseCapacity < 0) {
+        for (var i = houses; i >= 0; i--) {
+          if(this.balance - (i*50) > 0) {
+            console.log("you can afford "+ houses + " houses");
+          }
+          else {
+            i--;
+          }
+        }
+      }
+    }
   }
 }

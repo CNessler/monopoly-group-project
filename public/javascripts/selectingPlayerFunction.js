@@ -57,7 +57,7 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
     var owner;
     allPlayers.forEach(function (player) {
       player.deeds.forEach(function (checkedDeed) {
-        if(checkedDeed.owner === ownerName){
+        if(checkedDeed.owner === player.name){
           owner = player;
         }
       })

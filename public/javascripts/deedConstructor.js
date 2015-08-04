@@ -3,6 +3,7 @@
     this.name = name;
     this.price = price;
     this.color = color;
+    this.baseRent = rent;
     this.rent = rent;
     this.owner = owner;
     this.houses = houses;

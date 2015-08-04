@@ -215,7 +215,8 @@ p {
   margin-left: 2.5%;
   margin-bottom: 5%;
   margin-top: 5%;
-  vertical-align: top; }
+  vertical-align: top;
+  float: left; }
 
 .space, .corner {
   vertical-align: top;
@@ -242,6 +243,10 @@ p {
   margin: 2.5%;
   text-align: center;
   vertical-align: super; }
+
+#getOut {
+  width: 230px;
+  padding: 13px; }
 
 #chance, #community {
   margin: 20px;
@@ -337,7 +342,10 @@ label {
 #chance {
   font-size: 18px; }
 
-#community, #getOut {
+#getOut {
+  font-size: 22px; }
+
+#community {
   font-size: 25px; }
 
 #title {
@@ -390,13 +398,12 @@ form {
   background-color: #FFFFFF;
   color: #000; }
 
-#chance, #community {
+#chance, #community, #getOut {
   border: 10px solid #a19a9a;
   box-shadow: 4px 4px 4px #a19a9a; }
 
-#getOut {
-  color: #FFa500;
-  border: 7px solid #FFa500; }
+#foFree {
+  color: #FFa500; }
 
 #name {
   color: #000; }

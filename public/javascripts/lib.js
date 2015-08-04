@@ -69,9 +69,11 @@ function createCard(deed) {
   }
 }
 
-function getOutFree() {
-  if (players[index].getOutOfJailFree) {
+function getOutFree(player) {
+  if (player.getOutOfJailFree) {
     document.getElementById('getOut').style.visibility = "visible";
+  } else {
+    document.getElementById('getOut').style.visibility = "hidden";
   }
 }
 
@@ -82,10 +84,10 @@ function clearCont(){
 }
 
 function playerDash(player) {
+  getOutFree(player)
   document.getElementById('name').innerHTML = player.name;
   document.getElementById('balance').innerHTML = "Money in account: $" + player.balance;
   var deeds = player.deeds;
-  getOutFree();
   clearCont();
   for (var i = 0; i < deeds.length; i++) {
     createCard(deeds[i]);

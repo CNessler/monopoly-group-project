@@ -9,7 +9,8 @@ Player.prototype.buyDeed= function (location, bank) {
   this.balance -= deed.price;
   bank.balance += deed.price;
   deed.owner = this.name;
-  console.log(deed.owner, "Deed Owner");
+  console.log(deed.owner, "Deed Owner METH");
+  console.log(deed.name,"DEED NAME METH");
 }
 
 Player.prototype.payRent = function(owner, deed, dieRoll, allPlayers) {

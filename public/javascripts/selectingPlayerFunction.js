@@ -59,7 +59,6 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
       eachPlayer.deeds.forEach(function (checkedDeed) {
         if(checkedDeed.owner === eachPlayer.name){
           owner = eachPlayer;
->>>>>>> 74882460003469fec6b54c3e0eefadc6395651ac
         }
       })
     })
@@ -84,7 +83,7 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
 
 
     if(location === 4 || location === 38) {
-      console.log("tax");
+      // console.log("tax");
       myDialog.appendChild(caption).innerHTML = "Pay Fine";
       myDialog.appendChild(closeModal).innerHTML = 'Pay Fine';
 

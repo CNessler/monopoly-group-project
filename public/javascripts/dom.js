@@ -27,7 +27,7 @@ for (var i = 0; i < data.length; i++) {
   players.push(player);
 }
 
-console.log(players);
+// console.log(play ers);
 
 // var atts = ["name", "token", "balance", "inJail", "getOut", "active", "turn", "deeds", "location"]
 // var players = [];
@@ -72,17 +72,17 @@ function nextPlayer() {
 }
 
 rollButton.addEventListener("click", function() {
-  console.log("event listener fires");
+  // console.log("event listener fires");
   var player = players[index]
   var current = document.getElementById('sp' + player.location)
   current.style.backgroundImage = null;
   var dieRoll = getMove(player);
   var moveTo = document.getElementById('sp' + player.location)
-  console.log(moveTo);
+  // console.log(moveTo);
   moveTo.style.backgroundImage = "url('" + player.tokensrc + "')";
 
   selectPlayerFunction(player.location, player, bank, dieRoll, players, chanceDeck);
-  console.log("selectPlayerFunction");
-
+  // console.log("selectPlayerFunction");
+  
   nextPlayer()
 });

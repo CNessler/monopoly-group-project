@@ -1,4 +1,4 @@
-module.exports = function() {
+// module.exports = function() {
 var Player = require('./playerConstructor.js').Player
 
   Player.prototype.buyDeed= function (deed, bank) {
@@ -50,19 +50,5 @@ var Player = require('./playerConstructor.js').Player
 
   }
 
-  Player.prototype.timeInJail = function (player) {
-      if(player.jailCounter === 3){
-        player.inJail = false;
-        getMove();
-      }
-      if(player.getOutOfJailFree === true) {
-        player.inJail = false;
-        player.getOutOfJailFree = false;
-        getMove();
-      }
-      else {
-        player.jailCounter ++;
-        player.location = 10;
-      }
-  return Player.prototype;
-}
+//   return Player.prototype;
+// }

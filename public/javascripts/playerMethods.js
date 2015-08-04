@@ -165,3 +165,27 @@ Player.prototype.pickUpFreeParking = function (bank) {
   this.balance += bank.freeParking;
   bank.freeParking = 0;
 }
+
+Player.prototype.timeInJail = function () {
+    if(this.jailCounter === 3){
+      this.inJail = false;
+      var dieRoll = getMove(this)
+      var moveTo = document.getElementById('sp' + this.location)
+      moveTo.style.backgroundImage = "url('" + this.tokensrc + "')";
+
+      selectPlayerFunction(this.location, this, bank, dieRoll, players, chanceDeck);
+    }
+    if(this.getOutOfJailFree === true) {
+      this.inJail = false;
+      this.getOutOfJailFree = false;
+      var dieRoll = getMove(this)
+      var moveTo = document.getElementById('sp' + this.location)
+      moveTo.style.backgroundImage = "url('" + this.tokensrc + "')";
+
+      selectPlayerFunction(this.location, this, bank, dieRoll, players, chanceDeck);
+    }
+    else {
+      this.jailCounter ++;
+      this.location = 10;
+    }
+}

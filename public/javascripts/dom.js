@@ -29,10 +29,13 @@ for (var i = 0; i < data.length; i++) {
 }
 function getMove(player) {
   var move = Math.floor(Math.random()*10) + 2;
-  // var move = 30;
-  if (29 < player.location + move > 31){
-    player.inJail === true;
-    // player.location = 10;
+  // var move = 15;
+  var inEl = player.location + move;
+  if (inEl === 30){
+    alert("You're In The Elevator!")
+    player.inJail = true;
+    player.location = 10;
+    redirectToken(10, player);
   }
   else if (player.location + move < 40) {
 

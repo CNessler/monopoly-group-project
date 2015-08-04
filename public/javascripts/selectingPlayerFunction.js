@@ -69,7 +69,7 @@ var allDeeds = [
 var bank = new Bank();
 
 var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers, chanceDeck) {
-  console.log(allDeeds.length-1, "alldeeds length ", allDeeds[allDeeds.length-1], "pivotal");
+  // console.log(allDeeds.length-1, "alldeeds length ", allDeeds[allDeeds.length-1], "pivotal");
   console.log(player, player.token, player.tokensrc, "PLAYER INFO");
   var getOwner = function (allPlayers) {
     var owner;
@@ -84,20 +84,6 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
   }
 
   var owner = getOwner(allPlayers);
-
-<<<<<<< HEAD
-  // if(player.injail===true) {
-  //   if(player.getOutOfJailFree === true) {
-  //     player.injail = false;
-  //     player.getOutOfJailFree = false;
-  //   }
-  //   else if (player.jailCounter <= 3) {
-  //     nextPlayer();
-  //   } else  {
-  //     player.jailCounter = 0;
-  //     player.injail = false;
-  //   }
-  // }
 
   if(player.inJail === false) {
 
@@ -245,15 +231,16 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
     var closeModal = document.createElement('button');
     var closeModal2 = document.createElement('button');
 
-    console.log("youre in jail, suckaa");
+    // console.log("youre in jail, suckaa");
     myDialog.appendChild(caption).innerHTML = "In Jail";
     myDialog.appendChild(closeModal).innerHTML = 'Miss Turn';
+    redirectToken(10, player)
+    myDialog.show();
 
     closeModal.addEventListener('click', function () {
-      player.timeInJail(allPlayers)
+      player.timeInJail()
       playerDash(player);
       myDialog.close();
-      playerDash(player);
       myDialog.innerHTML = '';
       nextPlayer();
     })

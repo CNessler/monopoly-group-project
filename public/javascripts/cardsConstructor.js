@@ -99,7 +99,6 @@ var getOutOfJail = function(player, owner, allPlayers, amount, location, spaces,
 
 var goToPivotal = function(player, owner, allPlayers, amount, location, spaces, bank, allDeeds) {
   console.log(player.location, "before");
-  player.location = 39;
   console.log(player.location, "");
   if(allDeeds[27].owner != "" && allDeeds[27].owner != player.name) {
       var rentDue = allDeeds[27].rent;
@@ -115,6 +114,8 @@ var goToPivotal = function(player, owner, allPlayers, amount, location, spaces, 
       })
     }
   else {
+    redirectToken(39, player);
+    player.location = 39;
     var myDialog2 = document.getElementById('myDialog2');
     myDialog2.innerHTML = "";
     var caption = document.createElement('p')
@@ -144,6 +145,7 @@ var goToPivotal = function(player, owner, allPlayers, amount, location, spaces, 
 }
 
 var goToJail = function (player, owner, allPlayers, amount, location, spaces, bank, allDeeds) {
+    redirectToken(10, player)
     player.location = 10;
     player.inJail = true;
 }
@@ -194,8 +196,8 @@ communityChestArray =
 chanceArray =
   [
     new Card("gotoPivotal", "chance", "Go to Pivotal", goToPivotal, 0),
-    new Card("getoutofjail", "chance", "Get out jail free", getOutOfJail, 0),
-    new Card("gotojail", "chance", "Go directly to Jail", goTo, 0)
+    new Card("getoutofjail", "chance", "Get out of jail free", getOutOfJail, 0),
+    new Card("gotojail", "chance", "Go directly to Jail", goToJail, 0)
   ]
 
 var communityChestDeck = new Deck();

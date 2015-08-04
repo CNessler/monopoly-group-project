@@ -172,6 +172,7 @@ block content
   div(id='playerData' style='visibility: hidden;')
     for player in allPlayers
       p #{player.name};#{player.token}
+  script(src='/javascripts/generalFunctions.js')     
   script(src="/javascripts/deedConstructor.js")
   script(src="/javascripts/playerConstructor.js")
   script(src="/javascripts/cardsConstructor.js")
@@ -179,4 +180,4 @@ block content
   script(src="/javascripts/selectingPlayerFunction.js")
   script(src='/javascripts/dom.js')      
   script(src='/javascripts/lib.js')      
-  script(src='/javascripts/dash.js')      
+  script(src='/javascripts/dash.js') 

@@ -67,6 +67,30 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
 
   var owner = getOwner(allPlayers);
 
+  if(player.injail===true) {
+    if(player.getOutOfJailFree === true) {
+      player.injail = false;
+      player.getOutOfJailFree = false;
+    }
+    else if (player.jailCounter <= 3) {
+      var player = players[index];
+      var current = document.getElementById('sp' + player.location);
+      current.style.backgroundImage = null;
+      var dieRoll = getMove(player);
+      var moveTo = document.getElementById('sp' + player.location);
+      console.log(moveTo);
+      moveTo.style.backgroundImage = "url('" + player.tokensrc + "')";
+
+      selectPlayerFunction(player.location, player, bank, dieRoll, players, chanceDeck);
+      console.log("selectPlayerFunction");
+
+      nextPlayer();
+    } else  {
+      player.jailCounter = 0;
+      player.injail = false;
+    }
+  }
+
   if(player.inJail === false) {
 
     var myDialog = document.getElementById('myDialog');

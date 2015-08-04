@@ -15,16 +15,16 @@ var library = require('../library/playerConstructor.js')
 var getAllDeeds = require('../public/javascripts/deedConstructor.js')
 
 router.get('/', function(req, res, next) {
-  if(req.cookies.name) {
-      res.redirect('/game');
-    }
-  else {
-    playersCollection.find({})
-    .then(function (allPlayers) {
-        var availableTokens = getAvailableTokens(allPlayers, tokens);
-        res.render('index', {availableTokens: availableTokens});
-    });
-  }
+  // if(req.cookies.name) {
+  //     res.redirect('/game');
+  //   }
+  // else {
+    // playersCollection.find({})
+    // .then(function (allPlayers) {
+        // var availableTokens = getAvailableTokens(allPlayers, tokens);
+        res.render('index');
+    // });
+  // }
 });
 
 router.post('/', function(req, res, next) {

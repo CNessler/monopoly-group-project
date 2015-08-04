@@ -29,7 +29,7 @@ function createCard(deed) {
 
   for (var j = 0; j < utils.length; j++) {
     if (deed.boardIndex === utils[j]) {
-      alert("Utility!")
+      // alert("Utility!")
       line.innerHTML = ""
       line1.innerHTML = ""
       line2.innerHTML = ""
@@ -43,7 +43,7 @@ function createCard(deed) {
       line3.innerHTML = "rent is 10x amount on dice."
       mortgage.innerHTML = "Mortgage value: $75"
     } else if (deed.boardIndex === rr[j]) {
-      alert("Rail Road!")
+      // alert("Rail Road!")
       line.innerHTML = ""
       line1.innerHTML = ""
       line2.innerHTML = ""
@@ -88,5 +88,8 @@ function playerDash(player) {
 }
 
 function clearCont(div){
-  deedContainer.removeChild(div);
+  // deedContainer.empty();
+  while (deedContainer.hasChildNodes()) {
+    deedContainer.removeChild(deedContainer.firstChild);
+  }
 }

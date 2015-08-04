@@ -87,10 +87,18 @@ div {
   .row-center .bar-left {
     width: 20%;
     height: 100%;
-    float: right; }
+    float: right;
+    display: inline-block; }
   .row-center .bar-right {
+    display: inline-block;
+    float: left;
     width: 20%;
-    height: 100%; }
+    height: 100%;
+    vertical-align: top; }
+  .row-center p {
+    display: inline-block;
+    float: right;
+    width: 80%; }
 
 .nav {
   width: 100%;

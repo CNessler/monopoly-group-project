@@ -25,30 +25,7 @@ for (var i = 0; i < data.length; i++) {
   getToken(player);
   player.location = 0;
   players.push(player);
-}
-
-console.log(players);
-
-// var atts = ["name", "token", "balance", "inJail", "getOut", "active", "turn", "deeds", "location"]
-// var players = [];
-// var data = document.getElementById('playerData').childNodes;
-// for (var i = 0; i < data.length; i++) {
-//   var info = data[i].innerHTML.split(";");
-//   var player = {};
-//   console.log(info);
-//   for (var j = 0; j < info.length; j++) {
-//     player[atts[j]] = info[j];
-//   }
-//   player.location = 0;
-//   player.inJail = false;
-//   for (var k = 0; k < tokens.length; k++) {
-//     if (player.token === tokens[k].name) {
-//       player.tokensrc = tokens[k].url;
-//     }
-//   }
-//   players.push(player)
-// }
-// console.log(players, "players");
+  }
 
 function getMove(player) {
   var move = Math.floor(Math.random()*10) + 2;
@@ -71,8 +48,8 @@ function nextPlayer() {
 }
 
 rollButton.addEventListener("click", function() {
-  console.log("event listener fires");
   var player = players[index]
+
   if(player.balance === 0) {
     players.splice[player, 1];
     nextPlayer();
@@ -86,6 +63,7 @@ rollButton.addEventListener("click", function() {
 
     selectPlayerFunction(player.location, player, bank, dieRoll, players, chanceDeck);
     console.log("selectPlayerFunction");
+
 
     nextPlayer()
   }

@@ -3,16 +3,58 @@ $white: #FFFFFF;
 $gray: #a19a9a;
 $black: #000;
 $first: #EE6352;
+// red
 $second: #08B2E3;
+// blue
 $third: #EfE9F4;
+// silver
 $fourth: #57A773;
+// green
 $fifth: #484D6D;
+// navy
 $sixth: #7441A5;
+// purple
 $seventh: #FFD63D;
+// yellow
 $eighth: #9A7470;
+// brown
+
+.board, .dash {
+  background-color: $white;
+}
+
+.nav a, #turn {
+  color: $white;
+  text-shadow: 1px 1px 1px $black;
+}
+.nav a:hover {
+  color: $gray;
+}
 
 .questionMark, .questionMarkSmall {
   color: $orange;
+}
+
+.name {
+  background-color: $orange;
+}
+
+.dashLinks {
+  background-color: $white;
+}
+
+#name {
+  color: $white;
+  text-shadow: 1px 1px 1px $black;
+}
+
+#balance {
+  color: $fourth;
+}
+
+#getOut {
+  color: $orange;
+  border: 7px solid $orange;
 }
 
 #f1, #f2, #f3 {

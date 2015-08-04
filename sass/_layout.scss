@@ -3,8 +3,9 @@
 }
 
 body {
-  // background-image: url("http://realestatecrm.biz/wp-content/uploads/ktz/desk-background-2yfv3l7j84uk6t3qo52fii.jpg");
-  // background-repeat: no-repeat;
+  background-image: url("/stylesheets/images/desk.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
 }
 
 p {
@@ -52,13 +53,11 @@ div {
   .bar-left {
     width: 20%;
     height: 100%;
-    // background-color: red;
     float: right;
   }
   .bar-right {
     width: 20%;
     height: 100%;
-    // background-color: red;
   }
 }
 
@@ -68,7 +67,9 @@ div {
   text-align: right;
   padding: 1%;
   font-size: 22px;
-  border-bottom: 1px solid black;
+  a {
+    text-decoration: none;
+  }
 }
 
 .dice {
@@ -78,55 +79,52 @@ div {
   float: right;
   margin: 15px;
 }
+
 .dash {
   display: inline-block;
   vertical-align: top;
-  box-shadow: 5px 5px 5px gray;
+  box-shadow: 5px 5px 5px black;
   width: 650px;
   height: 700px;
   border: 2px solid black;
   margin-top: 40px;
+  overflow: scroll;
 }
 
-#balance {
+#balance, #getOut {
   height: 100px;
-  width: 100px;
-  border: 1px solid red;
+  width: 45%;
   display: inline-block;
+  padding: 10px;
+  margin: 2.5%;
+  text-align: center;
+  vertical-align: super;
 }
 
 .property {
-  width: 25%;
-  height: 150px;
+  width: 30%;
+  line-height: 0.7;
+  height: 180px;
   border: 1px solid black;
   display: inline-block;
-  margin-left: 7.5%;
-  margin-bottom: 7.5%;
+  margin-left: 2.5%;
+  margin-bottom: 5%;
+  margin-top: 5%;
+  vertical-align: top;
 }
-
 
 .header {
   margin: 4px;
 }
 
-// #dollarSign {
-//   border: 1px solid black;
-//   background: url('/stylesheets/images/dollarSign.png');
-//   height: 100px;
-//   width: 50px;
-//   display: inline-block;
-//   float: left;
-// }
-
-
 .board {
-  width: 700px;
-  height: 700px;
+  width: 699px;
+  height: auto;
   border: 2px solid black;
   margin-left: 5%;
   margin-right: 5%;
   margin-top: 40px;
-  box-shadow: 5px 5px 5px gray;
+  box-shadow: 5px 5px 5px black;
   display: inline-block;
 }
 
@@ -251,4 +249,22 @@ div {
   border-right: 1px solid black;
   position: relative;
   top: 10px;
+}
+
+.name {
+  height: 55px;
+}
+
+#name {
+  display: inline-block;
+  padding: 10px;
+  padding-left: 30px;
+}
+
+.dashLinks {
+  display: inline-block;
+  height: 100%;
+  width: 100px;
+  border-left: 2px solid #a19a9a;
+  border-right: 2px solid #a19a9a;
 }

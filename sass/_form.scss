@@ -1,15 +1,7 @@
 form {
-  background-color: blue;
-  border-radius: 10px;
-  color:black;
   width: 70%;
-  margin: 0 auto;
-  text-align: center;
-  // padding-left: 10%;
-  }
-h1 {
-  font-size: 50px;
-  text-align: center;
+  margin: 25px auto;
+  padding: 25px;
 }
 
 input {
@@ -22,18 +14,29 @@ input {
 
 select {
   margin-top: 1%;
-  width: 15%;
+  width: 10%;
   text-align: center;
   margin-left: 2%;
 }
-.join_game {
-  height: 65px;
-  font-size: 22px;
-  margin-top: 5%;
-} 
+
 label {
   vertical-align: bottom;
   width: 10%;
-  font-size: 20px;
   margin: 0 auto;
+}
+
+.newPlayer {
+  width: 80%;
+  margin: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 30px;
+}
+
+.join_game {
+  height: 65px;
+  margin-top: 25px;
+  input {
+    width: auto;
+  }
 }

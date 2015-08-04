@@ -1,64 +1,53 @@
 extends layout
 
 block content
-  h1 mOnopolize
+  .nav
+    h1#title mOnopolize!
   form(action="/", method="post")
-    .input_name
-      label What's your name:
+    .newPlayer
+      .input_name
+        label What's your name:
         input(type="text" name="playername1")
-    //- if(availableTokens.length > 0)
-    .input_token
-      label Choose your token:
+      .input_token
+        label Choose your token:
         select(name="chosentoken1")
           option(value="dog") Dog
           option(value="ship") Ship
           option(value="car") Car
           option(value="hat") Hat
-          //- each val in availableTokens
-          //-   option(value=val) 
-          //-     =val
-    .input_name
-      label What's your name:
+    .newPlayer
+      .input_name
+        label What's your name:
         input(type="text" name="playername2")
-    //- if(availableTokens.length > 0)
-    .input_token
-      label Choose your token:
+      .input_token
+        label Choose your token:
         select(name="chosentoken2")
           option(value="dog") Dog
           option(value="ship") Ship
           option(value="car") Car
           option(value="hat") Hat
-          //- each val in availableTokens
-          //-   option(value=val) 
-          //-     =val            
-    .input_name
-      label What's your name:
+    .newPlayer
+      .input_name
+        label What's your name:
         input(type="text" name="playername3")
-    //- if(availableTokens.length > 0)
-    .input_token
-      label Choose your token:
+      .input_token
+        label Choose your token:
         select(name="chosentoken3")
           option(value="dog") Dog
           option(value="ship") Ship
           option(value="car") Car
           option(value="hat") Hat
-          //- each val in availableTokens
-          //-   option(value=val) 
-          //-     =val            
-    .input_name
-      label What's your name:
+    .newPlayer
+      .input_name
+        label What's your name:
         input(type="text" name="playername4")
-    //- if(availableTokens.length > 0)
-    .input_token
-      label Choose your token:
+      .input_token
+        label Choose your token:
         select(name="chosentoken4")
           option(value="dog") Dog
           option(value="ship") Ship
           option(value="car") Car
           option(value="hat") Hat
-          //- each val in availableTokens
-          //-   option(value=val) 
-          //-     =val            
     .join_game
       input(type="submit" value="Start Game")
     

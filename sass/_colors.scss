@@ -1,7 +1,7 @@
-$orange: #FFa500;
+$black: #000;
 $white: #FFFFFF;
 $gray: #a19a9a;
-$black: #000;
+$orange: #FFa500;
 $first: #EE6352;
 // red
 $second: #08B2E3;
@@ -19,14 +19,44 @@ $seventh: #FFD63D;
 $eighth: #9A7470;
 // brown
 
-.board, .dash {
+dialog, .newPlayer {
+  border: 10px solid $orange;
+  box-shadow: 10px 10px 10px $black;
+}
+
+form {
+  color: $black;
+}
+
+.board, .corner, .dash, .name, .space, .newPlayer {
   background-color: $white;
 }
 
-.nav a, #turn {
+.board {
+  border: 2px solid black;
+  box-shadow: 5px 5px 5px black;
+}
+
+.corner, .space {
+  border: 1px solid $black;
+}
+
+.dash {
+  box-shadow: 5px 5px 5px $black;
+  border: 2px solid $black;
+}
+
+.dashLinks {
+  background-color: $orange;
+  color: $white;
+  border-right: 3px solid $gray;
+}
+
+.nav a, #turn, #title {
   color: $white;
   text-shadow: 1px 1px 1px $black;
 }
+
 .nav a:hover {
   color: $gray;
 }
@@ -35,57 +65,13 @@ $eighth: #9A7470;
   color: $orange;
 }
 
-.name {
-  background-color: $orange;
-}
-
-.dashLinks {
-  background-color: $white;
-}
-
-#name {
-  color: $white;
-  text-shadow: 1px 1px 1px $black;
+.property {
+  border: 1px solid $black;
+  box-shadow: 1px 1px 1px $black;
 }
 
 #balance {
   color: $fourth;
-}
-
-#getOut {
-  color: $orange;
-  border: 7px solid $orange;
-}
-
-#f1, #f2, #f3 {
-  background-color: $first;
-}
-#s1, #s2, #s3 {
-  background-color: $second;
-}
-#t1, #t2, #t3 {
-  background-color: $third;
-}
-#fo1, #fo2, #fo3 {
-  background-color: $fourth;
-}
-#fi1, #fi2, #fi3 {
-  background-color: $fifth;
-}
-#si1, #si2 {
-  background-color: $sixth;
-}
-#sv1, #sv2, #sv3 {
-  background-color: $seventh;
-}
-#e1, #e2 {
-  background-color: $eighth;
-}
-
-
-#sp30 {
-  background-color: $orange;
-  color: $white;
 }
 
 #chance, #community, #elevator {
@@ -93,17 +79,63 @@ $eighth: #9A7470;
   color: $black;
 }
 
-#sp12, #sp28 {
-  background-color: $orange;
-  color: $white;
-}
-
 #chance, #community {
   border: 10px solid $gray;
   box-shadow: 4px 4px 4px $gray;
 }
 
+#getOut {
+  color: $orange;
+  border: 7px solid $orange;
+}
+
+#name {
+  color: $black;
+}
+
+#sp30 {
+  background-color: $orange;
+  color: $white;
+}
+
+#sp12, #sp28 {
+  background-color: $orange;
+  color: $white;
+}
+
 #sp15, #sp25, #sp35, #sp5 {
   background-color: $gray;
   color: $white;
+}
+
+#f1, #f2, #f3 {
+  background-color: $first;
+}
+
+#s1, #s2, #s3 {
+  background-color: $second;
+}
+
+#t1, #t2, #t3 {
+  background-color: $third;
+}
+
+#fo1, #fo2, #fo3 {
+  background-color: $fourth;
+}
+
+#fi1, #fi2, #fi3 {
+  background-color: $fifth;
+}
+
+#si1, #si2 {
+  background-color: $sixth;
+}
+
+#sv1, #sv2, #sv3 {
+  background-color: $seventh;
+}
+
+#e1, #e2 {
+  background-color: $eighth;
 }

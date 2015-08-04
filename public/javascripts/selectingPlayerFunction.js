@@ -81,7 +81,6 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
       }
     })
 
-
     if(location === 4 || location === 38) {
       console.log("tax");
       myDialog.appendChild(caption).innerHTML = "Pay Fine";
@@ -131,7 +130,7 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
     }
 
     else {
-      if(deed.owner != ""){
+      if(deed.owner != "" && deed.owner != player.name){
         myDialog.appendChild(caption).innerHTML = "Pay Rent";
         myDialog.appendChild(closeModal).innerHTML = 'Pay Rent';
 
@@ -151,7 +150,6 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
         myDialog.appendChild(closeModal2).innerHTML = 'Buy Property'
 
         myDialog.showModal();
-
 
         closeModal.addEventListener('click', function () {
           myDialog.close();

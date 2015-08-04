@@ -108,7 +108,6 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
 
         closeModal.addEventListener('click', function () {
           outputCard.cardAction(player, allPlayers, amount, location, spaces, bank, allDeeds);
-          console.log(player.balance, "after paying 15");
           myDialog.close();
           myDialog.innerHTML = '';
         })
@@ -116,17 +115,44 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
         if (typeof outputCard[1] === "object") {
           chanceDeck.counter = 0;
         }
-        else{
+        else {
           chanceDeck.counter += 1;
         }
       }
       else {
-        console.log("cc");
+        var outputCard = communityChestDeck.drawCard()[0];
+        var amount = outputCard.amount;
+        var spaces = 3;
+
+        myDialog.appendChild(caption).innerHTML = outputCard.caption;
+        myDialog.appendChild(closeModal).innerHTML = 'Ok';
+
+        myDialog.showModal();
+
+        closeModal.addEventListener('click', function () {
+          outputCard.cardAction(player, allPlayers, amount, location, spaces, bank, allDeeds);
+          myDialog.close();
+          myDialog.innerHTML = '';
+        })
+
+        if (typeof outputCard[1] === "object") {
+          communityChestDeck.counter = 0;
+        }
+        else {
+          chanceDeck.counter += 1;
+        }
+
+
       }
     }
 
     else if(location % 10 === 0) {
-      console.log("corners");
+      if(location === 20) {
+        player.pickUpFreeParking(bank);
+      }
+      else if (location === 30) {
+        goToJail(player);
+      }
     }
 
     else {

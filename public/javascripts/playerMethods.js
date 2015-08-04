@@ -152,3 +152,8 @@ Player.prototype.liftMortgage = function (deed) {
   deed.mortgaged = false;
   player.bankBalance -= 1.1*(deed.mortgageValue);
 }
+
+Player.prototype.pickUpFreeParking = function (bank) {
+  this.balance += bank.freeParking;
+  bank.freeParking = 0;
+}

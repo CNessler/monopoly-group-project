@@ -84,18 +84,18 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
 
   var owner = getOwner(allPlayers);
 
-  if(player.injail===true) {
-    if(player.getOutOfJailFree === true) {
-      player.injail = false;
-      player.getOutOfJailFree = false;
-    }
-    else if (player.jailCounter <= 3) {
-      nextPlayer();
-    } else  {
-      player.jailCounter = 0;
-      player.injail = false;
-    }
-  }
+  // if(player.injail===true) {
+  //   if(player.getOutOfJailFree === true) {
+  //     player.injail = false;
+  //     player.getOutOfJailFree = false;
+  //   }
+  //   else if (player.jailCounter <= 3) {
+  //     nextPlayer();
+  //   } else  {
+  //     player.jailCounter = 0;
+  //     player.injail = false;
+  //   }
+  // }
 
   if(player.inJail === false) {
 
@@ -238,6 +238,22 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
   }
 
   else {
+    var myDialog = document.getElementById('myDialog');
+    var caption = document.createElement('p')
+    var closeModal = document.createElement('button');
+    var closeModal2 = document.createElement('button');
+
     console.log("youre in jail, suckaa");
+    myDialog.appendChild(caption).innerHTML = "In Jail";
+    myDialog.appendChild(closeModal).innerHTML = 'Miss Turn';
+
+    closeModal.addEventListener('click', function () {
+      player.timeInJail(allPlayers)
+      playerDash(player);
+      myDialog.close();
+      playerDash(player);
+      myDialog.innerHTML = '';
+      nextPlayer();
+    })
   }
 }

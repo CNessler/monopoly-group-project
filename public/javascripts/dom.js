@@ -29,8 +29,12 @@ for (var i = 0; i < data.length; i++) {
 }
 function getMove(player) {
   var move = Math.floor(Math.random()*10) + 2;
-
-  if (player.location + move < 40) {
+  // var move = 30;
+  if (29 < player.location + move > 31){
+    player.inJail === true;
+    // player.location = 10;
+  }
+  else if (player.location + move < 40) {
     player.location += move;
   } else {
     player.location = player.location + move - 40;
@@ -46,6 +50,7 @@ function nextPlayer() {
   } else if (index === 3) {
     index = 0
   }
+  // console.log(players[index].name, "PLAYERS TURN");
   turn.innerHTML = players[index].name + "'s Turn!";
 }
 
@@ -53,9 +58,10 @@ rollButton.addEventListener("click", function() {
 
   var player = players[index]
   var current = document.getElementById('sp' + player.location)
+  // console.log(current, "CURRENT");
   current.style.backgroundImage = null;
   var dieRoll = getMove(player);
-  console.log(player.location, "LOCATION");
+  // console.log(player.location, "LOCATION");
   var moveTo = document.getElementById('sp' + player.location)
   moveTo.style.backgroundImage = "url('" + player.tokensrc + "')";
 

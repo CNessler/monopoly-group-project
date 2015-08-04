@@ -93,7 +93,3 @@ function playerDash(player) {
     createCard(deeds[i]);
   }
 }
-
-// function clearCont(div){
-//   deedContainer.removeChild(div);
-// }

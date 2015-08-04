@@ -54,7 +54,6 @@ rollButton.addEventListener("click", function() {
   current.style.backgroundImage = null;
   var dieRoll = getMove(player);
   var moveTo = document.getElementById('sp' + player.location)
-console.log(player.tokensrc);
   moveTo.style.backgroundImage = "url('" + player.tokensrc + "')";
 
   selectPlayerFunction(player.location, player, bank, dieRoll, players, chanceDeck);

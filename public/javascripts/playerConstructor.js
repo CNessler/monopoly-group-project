@@ -8,4 +8,5 @@ var Player= function(name, token) {
     this.turn = false;
     this.deeds = [];
     this.location = 0;
+    this.jailCounter = 0;
 }

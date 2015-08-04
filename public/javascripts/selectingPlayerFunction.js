@@ -84,6 +84,19 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
 
   var owner = getOwner(allPlayers);
 
+  if(player.injail===true) {
+    if(player.getOutOfJailFree === true) {
+      player.injail = false;
+      player.getOutOfJailFree = false;
+    }
+    else if (player.jailCounter <= 3) {
+      nextPlayer();
+    } else  {
+      player.jailCounter = 0;
+      player.injail = false;
+    }
+  }
+
   if(player.inJail === false) {
 
     var myDialog = document.getElementById('myDialog');

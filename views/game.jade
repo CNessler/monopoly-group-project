@@ -4,26 +4,25 @@ block content
   .nav 
     a(href="/logout") Logout
   h1#turn #{playerName}'s Turn!
-
   .board
     .row-top
       .corner
         .space#sp20
           p Free Parking
       .space#sp21
-        .foo
+        .container-top
           p E9 Data
           p $220
         .bar#f1
       .space#sp22
         .questionMarkSmall ?
       .space#sp23
-        .foo
+        .container-top
           p GLC
           p $220
         .bar#f2
       .space#sp24
-        .foo
+        .container-top
           p Tectonic
           p $240
         .bar#f3
@@ -31,19 +30,19 @@ block content
         p Ping Pong Table
         p $200
       .space#sp26
-        .foo
+        .container-top
           p Status Page
           p $260
         .bar#s1
       .space#sp27
-        .foo
+        .container-top
           p Mozilla
           p $260
         .bar#s2
       .space#sp28
         p Keg
       .space#sp29
-        .foo
+        .container-top
           p Quick Left
           p $260
         .bar#s3
@@ -87,22 +86,24 @@ block content
         .dice#roll
         .center-space#chance Chance
           .questionMark ?
-        .center-space#community
-          p Community Chest
+        .center-space#community Community Chest
         .center-space#logo
       .col-right
         .space#sp31
-          p Bitly
-          span $300
+          .container-right
+            p Bitly
+            p $300
           .bar-right#fi1
         .space#sp32
-          p Staff IQ
-          span $300
+          .container-right
+            p Staff IQ
+            p $300
           .bar-right#fi2
         .space#sp33
         .space#sp34
-          p Bowtie
-          span $320
+          .container-right
+            p Bowtie
+            p $320
           .bar-right#fi3
         .space#sp35
           p Cornhole
@@ -111,15 +112,17 @@ block content
           .rotateLeft
             .questionMarkSmall ?
         .space#sp37
-          p Artifact Uprising
-          p $350
+          .container-right
+            p Artifact Uprising
+            p $350
           .bar-right#si1
         .space#sp38
           p PARKING TICKET
-          span $75
+          p $75
         .space#sp39
-          p Pivotal Labs
-          span $400
+          .container-right
+            p Pivotal Labs
+            p $400
           .bar-right#si2
     .row-bottom
       .corner
@@ -163,8 +166,8 @@ block content
       for player in allPlayers
         a.dashLinks(id=player.name name="dashLink" href="#")= player.name
     #balance
-    #getOut(style='visibility: hidden;') ESCAPE ELEVATOR FOR FREE
-    div#dollarSign
+    #getOut(style='visibility: hidden;') Escape the elevator for 
+      span#foFree FREE!
     #deedContainer       
       
   dialog#myDialog 

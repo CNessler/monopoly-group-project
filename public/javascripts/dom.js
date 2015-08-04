@@ -1,6 +1,7 @@
 var rollButton = document.getElementById('roll');
 var index = 0;
 var turn = document.getElementById('turn')
+var misc = [12, 28, 5, 15, 25, 35]
 
 var tokens = [
   {name: "hat", url: 'http://www.worldofmonopoly.com/fansite/images/tokens/monopoly_token_hat.png'},
@@ -39,6 +40,10 @@ function getMove(player) {
   }
   else if (player.location + move < 40) {
 
+
+function getMove(player) {
+  var move = Math.floor(Math.random()*10) + 2;
+  if (player.location + move < 40) {
     player.location += move;
   } else {
     player.location = player.location + move - 40;
@@ -64,10 +69,20 @@ rollButton.addEventListener("click", function() {
   var current = document.getElementById('sp' + player.location)
   // console.log(current, "CURRENT");
   current.style.backgroundImage = null;
+    for (var i = 0; i < misc.length; i++) {
+    var foo = "sp" + misc[i].toString();
+    if (current.id == foo) {
+      // console.log(current.style.color);
+      current.style.color = "white";
+    } else {
+      current.style.color = "black";
+    }
+  }
   var dieRoll = getMove(player);
   // console.log(player.location, "LOCATION");
   var moveTo = document.getElementById('sp' + player.location)
   moveTo.style.backgroundImage = "url('" + player.tokensrc + "')";
+  moveTo.style.color = "transparent";
 
   selectPlayerFunction(player.location, player, bank, dieRoll, players, chanceDeck);
 });

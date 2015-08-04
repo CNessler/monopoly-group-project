@@ -19,4 +19,3 @@ for (var i = 0; i < otherPlayers.length; i++) {
 
   clearCont();
   playerDash(players[index])
-})

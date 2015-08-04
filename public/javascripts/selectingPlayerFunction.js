@@ -55,17 +55,17 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
 
   var getOwner = function (allPlayers) {
     var owner;
-    allPlayers.forEach(function (player) {
-      player.deeds.forEach(function (checkedDeed) {
-        if(checkedDeed.owner === player.name){
-          owner = player;
+    allPlayers.forEach(function (eachPlayer) {
+      eachPlayer.deeds.forEach(function (checkedDeed) {
+        if(checkedDeed.owner === eachPlayer.name){
+          owner = eachPlayer;
         }
       })
     })
     return owner;
   }
 
-  getOwner(allPlayers);
+  var owner = getOwner(allPlayers);
 
   if(player.inJail === false) {
 
@@ -132,15 +132,14 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
 
     else {
       if(deed.owner != ""){
-        console.log("first else");
         myDialog.appendChild(caption).innerHTML = "Pay Rent";
         myDialog.appendChild(closeModal).innerHTML = 'Pay Rent';
 
         myDialog.showModal();
 
         closeModal.addEventListener('click', function () {
-          player.payRent(deed.owner, deed, dieRoll, allPlayers)
-          console.log(allPlayers, "allPlayers");
+          player.payRent(owner, deed, dieRoll, allPlayers)
+          console.log(allPlayers, "allPlayer`s");
           myDialog.close();
           myDialog.innerHTML = '';
         })

@@ -8,11 +8,11 @@ deedsCollection = monopolyDB.get('deeds');
 banksCollection = monopolyDB.get('banks');
 gamesCollection = monopolyDB.get('games');
 
-var getAvailableTokens = require('../library/availableTokens.js');
+//var getAvailableTokens = require('../library/availableTokens.js');
 var library = require('../library/playerConstructor.js')
   var tokens = library.tokens;
   var Player = library.Player;
-var getAllDeeds = require('../public/javascripts/deedConstructor.js')
+// var getAllDeeds = require('../public/javascripts/deedConstructor.js')
 
 router.get('/', function(req, res, next) {
   // if(req.cookies.name) {
@@ -22,7 +22,10 @@ router.get('/', function(req, res, next) {
     // playersCollection.find({})
     // .then(function (allPlayers) {
         // var availableTokens = getAvailableTokens(allPlayers, tokens);
+
         res.render('index');
+
+        // res.render('index', {availableTokens: availableTokens});
     // });
   // }
 });

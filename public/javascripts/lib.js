@@ -20,12 +20,12 @@ function createCard(deed) {
 
   prices.setAttribute("class", "prices");
   line.innerHTML = "Price: " + deed.price + " -- Rent: " + deed.rent;
-  line1.innerHTML = "With 1 house: " + (deed.rent * 5);
-  line2.innerHTML = "With 2 houses: " + (deed.rent * 15);
-  line3.innerHTML = "With 3 houses: " + (deed.rent * 25);
-  line4.innerHTML = "With 4 houses: " + (deed.rent * 40);
-  line5.innerHTML = "With hotel: " + (deed.rent * 50);
-  mortgage.innerHTML = "Mortgage: " + deed.mortgage;
+  line1.innerHTML = "With 1 house: " + (deed.baseRent * 5);
+  line2.innerHTML = "With 2 houses: " + (deed.baseRent * 15);
+  line3.innerHTML = "With 3 houses: " + (deed.baseRent * 25);
+  line4.innerHTML = "With 4 houses: " + (deed.baseRent * 40);
+  line5.innerHTML = "With hotel: " + (deed.baseRent * 50);
+  mortgage.innerHTML = "Mortgage: " + deed.mortgageValue;
 
   for (var j = 0; j < utils.length; j++) {
     if (deed.boardIndex === utils[j]) {
@@ -93,3 +93,7 @@ function clearCont(div){
     deedContainer.removeChild(deedContainer.firstChild);
   }
 }
+
+// function clearCont(div){
+//   deedContainer.removeChild(div);
+// }

@@ -57,7 +57,8 @@ var allDeeds = [
 var bank = new Bank();
 
 var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers, chanceDeck) {
-
+  console.log(allDeeds.length-1, "alldeeds length ", allDeeds[allDeeds.length-1], "pivotal");
+  console.log(player, player.token, player.tokensrc, "PLAYER INFO");
   var getOwner = function (allPlayers) {
     var owner;
     allPlayers.forEach(function (eachPlayer) {
@@ -71,6 +72,7 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
   }
 
   var owner = getOwner(allPlayers);
+
 
   if(player.injail===true) {
     if(player.getOutOfJailFree === true) {
@@ -126,7 +128,7 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
         myDialog.showModal();
 
         closeModal.addEventListener('click', function () {
-          outputCard.cardAction(player, allPlayers, amount, location, spaces, bank, allDeeds);
+          outputCard.cardAction(player, owner, allPlayers, amount, location, spaces, bank, allDeeds);
           playerDash(player);
           myDialog.close();
           myDialog.innerHTML = '';
@@ -151,9 +153,9 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
         myDialog.showModal();
 
         closeModal.addEventListener('click', function () {
-          outputCard.cardAction(player, allPlayers, amount, location, spaces, bank, allDeeds);
-          playerDash(player);
           myDialog.close();
+          outputCard.cardAction(player, owner, allPlayers, amount, location, spaces, bank, allDeeds);
+          playerDash(player);
           myDialog.innerHTML = '';
           nextPlayer();
         })

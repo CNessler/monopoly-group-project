@@ -3,8 +3,7 @@ extends layout
 block content
   .nav 
     a(href="/logout") Logout
-  h1 Hey, 
-    = playerName
+  h1#turn #{playerName}'s Turn!
 
   .board
     .row-top
@@ -110,13 +109,13 @@ block content
           p Go
   .dash
     .name
-      h1#name 
-    #balance 
+      h2#name
+      for player in allPlayers
+        a.dashLinks(id=player.name name="dashLink" href="#")= player.name
+    #balance
+    #getOut(style='visibility: hidden;') ESCAPE ELEVATOR FOR FREE
     div#dollarSign
-    #deedContainer 
-    if getOut 
-      #getOut 
-      
+    #deedContainer       
       
   dialog#myDialog 
   div(id='playerData' style='visibility: hidden;')
@@ -128,4 +127,5 @@ block content
   script(src="/javascripts/playerMethods.js")
   script(src="/javascripts/selectingPlayerFunction.js")
   script(src='/javascripts/dom.js')      
+  script(src='/javascripts/lib.js')      
   script(src='/javascripts/dash.js')      

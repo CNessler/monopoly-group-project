@@ -2,11 +2,19 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-.header {
-  font-size: 18px;
+h1 {
+  font-size: 50px;
   text-align: center;
 }
+h2 {
+  font-size: 37px;
+  text-align: left;
+}
 
+.header {
+  font-size: 16px;
+  text-align: center;
+}
 
 .space, .corner {
   font-size: 14px;
@@ -19,6 +27,20 @@ body {
   padding: 0px;
 }
 
+.prices {
+  font-size: 14px;
+  text-align: center;
+  padding: 2px;
+}
+
+.dashLinks {
+  padding: 10px;
+  float: right;
+  text-decoration: none;
+  font-size: 23px;
+  text-align: center;
+}
+
 #chillin {
   padding-top: 5px;
   padding-left: 0px;
@@ -26,4 +48,12 @@ body {
 
 #elevator {
   font-weight: normal;
+}
+
+#balance {
+  font-size: 30px;
+}
+
+#getOut {
+  font-size: 25px;
 }

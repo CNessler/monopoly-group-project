@@ -14,9 +14,13 @@ Player.prototype.buyDeed= function (location, bank) {
 }
 
 Player.prototype.payRent = function(owner, deed, dieRoll, allPlayers) {
+  console.log("payrent runs");
+  console.log(deed.mortgaged, "deed mortagaged");
   if(deed.mortgaged === false) {
+    console.log("not mrotgaged");
     var rentDue;
     if(deed.color === "#a19a9a") {
+      console.log("deed is a railroad");
       var railroadsOwned = 1;
       for (var i = 0; i < owner.deeds.length; i++) {
         if(owner.deeds[i].color === "#a19a9a") {
@@ -26,6 +30,7 @@ Player.prototype.payRent = function(owner, deed, dieRoll, allPlayers) {
       rentDue = 25 * railroadsOwned;
     }
     else if(deed.color === "#FFa500") {
+      console.log("deed is a util");
       var utilitiesOwned = 1;
       owner.deeds.forEach(function (checkedDeed) {
         if(checkedDeed.color === "#FFa500") {
@@ -40,9 +45,11 @@ Player.prototype.payRent = function(owner, deed, dieRoll, allPlayers) {
       }
     }
     else {
+      console.log("deed is a regular property");
       rentDue = deed.rent;
     }
     this.balance -= rentDue;
+    console.log(this.name, this.balance,owner.balance,rentDue);
     owner.balance += rentDue;
   }
 }

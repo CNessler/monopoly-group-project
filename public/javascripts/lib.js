@@ -77,20 +77,20 @@ function getOutFree() {
   }
 }
 
-function playerDash(player) {
-  document.getElementById('name').innerHTML = player.name;
-  document.getElementById('balance').innerHTML = "Money in accout: $" + player.balance;
-  var deeds = player.deeds;
-  getOutFree();
-  for (var i = 0; i < deeds.length; i++) {
-    createCard(deeds[i]);
+function clearCont(){
+   while (deedContainer.hasChildNodes()) {
+     deedContainer.removeChild(deedContainer.firstChild);
   }
 }
 
-function clearCont(div){
-  // deedContainer.empty();
-  while (deedContainer.hasChildNodes()) {
-    deedContainer.removeChild(deedContainer.firstChild);
+function playerDash(player) {
+  document.getElementById('name').innerHTML = player.name;
+  document.getElementById('balance').innerHTML = "Money in account: $" + player.balance;
+  var deeds = player.deeds;
+  getOutFree();
+  clearCont();
+  for (var i = 0; i < deeds.length; i++) {
+    createCard(deeds[i]);
   }
 }
 

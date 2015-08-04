@@ -1,5 +1,6 @@
 var rollButton = document.getElementById('roll');
 var index = 0;
+var turn = document.getElementById('turn')
 
 var tokens = [
   {name: "hat", url: 'http://www.worldofmonopoly.com/fansite/images/tokens/monopoly_token_hat.png'},
@@ -45,6 +46,7 @@ function nextPlayer() {
   } else if (index === 3) {
     index = 0
   }
+  turn.innerHTML = players[index].name + "'s Turn!";
 }
 
 rollButton.addEventListener("click", function() {
@@ -53,10 +55,9 @@ rollButton.addEventListener("click", function() {
   var current = document.getElementById('sp' + player.location)
   current.style.backgroundImage = null;
   var dieRoll = getMove(player);
+  console.log(player.location, "LOCATION");
   var moveTo = document.getElementById('sp' + player.location)
   moveTo.style.backgroundImage = "url('" + player.tokensrc + "')";
 
   selectPlayerFunction(player.location, player, bank, dieRoll, players, chanceDeck);
-
-  nextPlayer()
 });

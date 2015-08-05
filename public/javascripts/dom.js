@@ -17,8 +17,6 @@ var index = 0;
 var turn = document.getElementById('turn')
 var misc = [12, 28, 5, 15, 25, 35]
 
-
-
 var tokens = [
  {name: "hat", url: 'http://www.worldofmonopoly.com/fansite/images/tokens/monopoly_token_hat.png'},
  {name: "ship", url: 'http://www.worldofmonopoly.com/fansite/images/tokens/monopoly_token_ship.png'},
@@ -36,14 +34,18 @@ function getToken(player) {
 }
 
 var players = [];
-var data = document.getElementById('playerData').childNodes;
-for (var i = 0; i < data.length; i++) {
- var singlePlayer = data[i].innerHTML.split(';');
- var player = new Player(singlePlayer[0], singlePlayer[1])
- getToken(player);
- player.location = 0;
- players.push(player);
- }
+function startGame() {
+  var data = document.getElementById('playerData').childNodes;
+  for (var i = 0; i < data.length; i++) {
+    var singlePlayer = data[i].innerHTML.split(';');
+    var player = new Player(singlePlayer[0], singlePlayer[1])
+    getToken(player);
+    player.location = 0;
+    players.push(player);
+  }
+  turn.innerHTML = players[index].name + "'s Turn!"
+}
+
 
 function getMove(player) {
 
@@ -78,40 +80,30 @@ function nextPlayer() {
   }, 2500)
 }
 
+startGame();
+
 rollButton.addEventListener("click", function() {
 
   var sentObjectExample = {name: "Akhil", message: "my twilio test"}
 
   var player = players[index]
   var current = document.getElementById('sp' + player.location)
-  current.style.backgroundImage = null;
   var dieRoll = getMove(player);
-  console.log(player.location, "LOCATION");
-  var moveTo = document.getElementById('sp' + player.location)
-  moveTo.style.backgroundImage = "url('" + player.tokensrc + "')";
-
   selectPlayerFunction(player.location, player, bank, dieRoll, players, chanceDeck);
 
- var player = players[index]
- var current = document.getElementById('sp' + player.location)
- current.style.backgroundImage = null;
+  var existing = current.childNodes;
+  for (var i = 0; i < existing.length; i++) {
+    if (existing[i].id === players[index].name) {
+      existing[i].remove();
+    }
+  }
 
-
- current.style.color = "black";
- for (var i = 0; i < misc.length; i++) {
-   var loc = "sp" + misc[i].toString()
-   if (current.id === loc) {
-     current.style.color = "white";
-   }
- }
- var dieRoll = getMove(player);
- console.log(player.location, "LOCATION");
- var moveTo = document.getElementById('sp' + player.location)
- moveTo.style.backgroundImage = "url('" + player.tokensrc + "')";
-
- moveTo.style.color = "transparent";
- selectPlayerFunction(player.location, player, bank, dieRoll, players, chanceDeck);
-
+  var moveTo = document.getElementById('sp' + player.location)
+  var token = document.createElement('div');
+  token.setAttribute("class", "token");
+  token.setAttribute("id", player.name);
+  token.style.backgroundImage = "url('" + player.tokensrc + "')";
+  moveTo.appendChild(token)
 });
 
 var sendGameDataBtn = document.getElementById('twilioCall');

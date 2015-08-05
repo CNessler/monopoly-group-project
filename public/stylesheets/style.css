@@ -227,7 +227,15 @@ p {
   padding: 0;
   display: inline-block;
   border-collapse: collapse;
-  background-position: center; }
+  background-position: center;
+  position: relative; }
+
+.token {
+  height: 65px;
+  width: 65px;
+  z-index: 1;
+  position: absolute;
+  top: 25%; }
 
 .corner {
   height: 87px;

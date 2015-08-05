@@ -159,7 +159,6 @@ function getProperty(id) {
   }
 }
 
-
 function getOutFree(player) {
   if (player.getOutOfJailFree) {
     document.getElementById('getOut').style.visibility = "visible";

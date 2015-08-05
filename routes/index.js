@@ -99,14 +99,11 @@ res.redirect('/');
 })
 
 router.post('/gamedata', function (req, res, next) {
-<<<<<<< HEAD
   newMessage = req.body.message;
   console.log(newMessage, typeof newMessage, "json message from client side");
   sendSMS(newMessage);
-=======
-message = req.body;
-console.log(message, "json message from client side");
->>>>>>> 17f67dbeddb1287263dcd468847bf93e0b9b5b7b
+  message = req.body;
+  console.log(message, "json message from client side");
 })
 
 

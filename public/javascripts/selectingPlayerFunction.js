@@ -97,8 +97,8 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
         else {
           var tax = 75;
         }
-        myDialog.appendChild(caption).innerHTML = "Pay Fine: " + tax;
-        myDialog.appendChild(closeModal).innerHTML = 'Pay Fine ' + tax;
+        myDialog.appendChild(caption).innerHTML = "Pay Fine ($" + tax + ")";
+        myDialog.appendChild(closeModal).innerHTML = "Pay Fine ($" + tax + ")";
 
         myDialog.showModal();
 
@@ -107,6 +107,7 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
           playerDash(player);
           myDialog.close();
           myDialog.innerHTML = '';
+          nextPlayer();
         })
       }
 

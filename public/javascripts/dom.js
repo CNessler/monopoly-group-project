@@ -76,8 +76,8 @@ function startGame() {
 
 function getMove(player) {
 
- // var move = Math.floor(Math.random()*10) + 2;
-var move = 30;
+ var move = Math.floor(Math.random()*10) + 2;
+// var move = 30;
  var goEl = player.location + move
  if (goEl === 30){
   //  alert('Head to the elevator');

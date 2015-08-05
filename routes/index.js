@@ -1,8 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var unirest = require('unirest');
-
-// var client = require('twilio')(process.env.TWILIO_SID, process.env.TWILIO_AUTH)
+var client = require('twilio')(process.env.TWILIO_SID, process.env.TWILIO_AUTH)
 
 var monopolyDB = require('monk')(process.env.MONGOLAB_URI);
 
@@ -11,6 +10,19 @@ playersCollection = monopolyDB.get('players');
 deedsCollection = monopolyDB.get('deeds');
 banksCollection = monopolyDB.get('banks');
 gamesCollection = monopolyDB.get('games');
+
+var sendSMS = function (aMessage, callback) {
+  client.messages.create({
+    body: aMessage,
+    to: process.env.JAYLYN,
+    to: process.env.CLAIRE,
+    from: process.env.SOURCE
+  }, function (err, sms) {
+    if(err) {
+      console.log(err);
+    }
+  });
+}
 
 //var getAvailableTokens = require('../library/availableTokens.js');
 var library = require('../library/playerConstructor.js')
@@ -87,8 +99,14 @@ res.redirect('/');
 })
 
 router.post('/gamedata', function (req, res, next) {
+<<<<<<< HEAD
+  newMessage = req.body.message;
+  console.log(newMessage, typeof newMessage, "json message from client side");
+  sendSMS(newMessage);
+=======
 message = req.body;
 console.log(message, "json message from client side");
+>>>>>>> 17f67dbeddb1287263dcd468847bf93e0b9b5b7b
 })
 
 

@@ -19,6 +19,10 @@
     "monk": "^1.0.1",
     "morgan": "~1.5.3",
     "serve-favicon": "~2.2.1",
+<<<<<<< HEAD
+    "twilio": "^2.2.1",
+=======
+>>>>>>> 17f67dbeddb1287263dcd468847bf93e0b9b5b7b
     "unirest": "^0.4.2"
   }
 }

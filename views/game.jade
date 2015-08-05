@@ -4,6 +4,10 @@ block content
   .nav 
     a(href="/logout") Logout
   h1#turn #{playerName}'s Turn!
+
+  
+  div#twilioCall Twilio Call  
+
   .board
     .row-top
       .corner
@@ -167,9 +171,15 @@ block content
         a.dashLinks(id=player.name name="dashLink" href="#")= player.name
     #balance
 
+    #getOut(style='visibility: hidden;') ESCAPE ELEVATOR FOR FREE
+    div#dollarSign
+    #deedContainer
+
+
     #getOut(style='visibility: hidden;') Escape the elevator for 
       span#foFree FREE!
     #deedContainer       
+
       
 
   dialog#myDialog 

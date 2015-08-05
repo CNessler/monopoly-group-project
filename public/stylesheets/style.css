@@ -146,9 +146,12 @@ p {
 .nav {
   width: 100%;
   height: 40px;
-  padding: 1%; }
+  padding: 1%;
+  margin-bottom: 15px; }
   .nav a {
-    text-decoration: none; }
+    text-decoration: none;
+    padding: 10px;
+    padding-right: 30px; }
 
 .prices {
   padding: 2px; }
@@ -281,8 +284,8 @@ p {
   transform: rotate(45deg); }
 
 #chillin {
-  padding-top: 5px;
-  padding-left: 0px; }
+  position: relative;
+  top: 2px; }
 
 #community {
   height: 100px;
@@ -295,9 +298,12 @@ p {
   height: 70%;
   width: 80%;
   padding: 3px;
-  float: left;
+  float: right;
   position: relative;
-  top: 10px; }
+  top: 0px; }
+
+#freeParking {
+  padding-top: 20%; }
 
 #mortgageButton {
   width: auto; }
@@ -316,6 +322,9 @@ p {
 
 #sp2 {
   background-size: 100%; }
+
+#weatherAPI {
+  float: left; }
 
 * {
   text-align: center; }
@@ -376,8 +385,17 @@ label {
 #community {
   font-size: 25px; }
 
+#freeParking, #takeEl, #sp20 {
+  font-size: 18px; }
+
+#go {
+  font-size: 30px; }
+
 #title {
   font-size: 80px; }
+
+#weatherAPI {
+  font-size: 19px; }
 
 dialog, .newPlayer {
   border: 10px solid #FFa500;
@@ -436,10 +454,16 @@ form {
 #foFree {
   color: #FFa500; }
 
+#go {
+  color: #FFa500; }
+
 #name {
   color: #000; }
 
-#sp30 {
+#sp0, #sp20, #sp30 {
+  border: 5px solid #FFa500; }
+
+#sp10 {
   background-color: #FFa500;
   color: #FFFFFF; }
 
@@ -474,6 +498,10 @@ form {
 
 #e1, #e2 {
   background-color: #9A7470; }
+
+#weatherAPI {
+  color: #FFFFFF;
+  text-shadow: 1px 1px 1px #000; }
 
 form {
   width: 70%;

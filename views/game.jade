@@ -2,17 +2,17 @@ extends layout
 
 block content
   .nav 
+    div#weatherAPI  
+    a#twilioCall BONUS API: Spam Claire!
     a(href="/logout") Logout
   h1#turn
 
   
-  div#twilioCall Twilio Call  
-
   .board
     .row-top
       .corner
         .space#sp20
-          p Free Parking
+          p#freeParking Free Parking
       .space#sp21
         .container-top
           p E9 Data
@@ -51,8 +51,8 @@ block content
           p $260
         .bar#s3
       .corner
-        .space#sp30 Just chillin'
-          #elevator Stuck in the Elevator!
+        .space#sp30 
+          p#takeEl Take the Elevator
     .row-center
       .col-left
         .space#sp19
@@ -131,7 +131,8 @@ block content
     .row-bottom
       .corner
         .space#sp10
-          p Take the Elevator
+          #elevator Stuck in the Elevator!
+          p#chillin Just chillin'
       .space#sp9
         .bar#sv1
         p RxAs.
@@ -163,7 +164,8 @@ block content
         p $60
       .corner
         .space#sp0
-          p Go
+          p#go Go!
+          span Collect $200
   .dash
     .name
       h2#name

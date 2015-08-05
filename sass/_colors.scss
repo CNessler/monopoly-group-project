@@ -92,11 +92,19 @@ form {
   color: $orange;
 }
 
+#go {
+  color: $orange;
+}
+
 #name {
   color: $black;
 }
 
-#sp30 {
+#sp0, #sp20, #sp30 {
+  border: 5px solid $orange;
+}
+
+#sp10 {
   background-color: $orange;
   color: $white;
 }
@@ -141,4 +149,9 @@ form {
 
 #e1, #e2 {
   background-color: $eighth;
+}
+
+#weatherAPI {
+  color: $white;
+  text-shadow: 1px 1px 1px $black;
 }

@@ -60,7 +60,8 @@ dialog {
   height: 200px;
   width: 350px;
   padding: 20px;
-  padding-top: 30px; }
+  padding-top: 30px;
+  z-index: 20; }
   dialog button {
     width: 100px;
     padding: 5px;
@@ -450,6 +451,9 @@ form {
 #chance, #community, #getOut {
   border: 10px solid #a19a9a;
   box-shadow: 4px 4px 4px #a19a9a; }
+
+#errorMsg {
+  color: #FFa500; }
 
 #foFree {
   color: #FFa500; }

@@ -3,51 +3,53 @@ extends layout
 block content
   .nav
     h1#title mOnopolize!
+  if errorMsg
+    h2#errorMsg #{errorMsg}
   form(action="/", method="post")
     .newPlayer
       .input_name
         label What's your name:
-        input(type="text" name="playername1")
+        input(type="text" name="playername1" value=name1)
       .input_token
         label Choose your token:
         select(name="chosentoken1")
-          option(value="dog") Dog
+          option(value="dog" selected) Dog
           option(value="ship") Ship
           option(value="car") Car
           option(value="hat") Hat
     .newPlayer
       .input_name
         label What's your name:
-        input(type="text" name="playername2")
+        input(type="text" name="playername2" value=name2)
       .input_token
         label Choose your token:
         select(name="chosentoken2")
           option(value="dog") Dog
-          option(value="ship") Ship
+          option(value="ship" selected) Ship
           option(value="car") Car
           option(value="hat") Hat
     .newPlayer
       .input_name
         label What's your name:
-        input(type="text" name="playername3")
+        input(type="text" name="playername3" value=name3)
       .input_token
         label Choose your token:
         select(name="chosentoken3")
           option(value="dog") Dog
           option(value="ship") Ship
-          option(value="car") Car
+          option(value="car" selected) Car
           option(value="hat") Hat
     .newPlayer
       .input_name
         label What's your name:
-        input(type="text" name="playername4")
+        input(type="text" name="playername4" value=name4)
       .input_token
         label Choose your token:
         select(name="chosentoken4")
           option(value="dog") Dog
           option(value="ship") Ship
           option(value="car") Car
-          option(value="hat") Hat
+          option(value="hat" selected) Hat
     .join_game
       input(type="submit" value="Start Game")
     

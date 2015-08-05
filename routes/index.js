@@ -55,6 +55,7 @@ router.post('/', function(req, res, next) {
   var token2 = req.body.chosentoken2;
   var token3 = req.body.chosentoken3;
   var token4 = req.body.chosentoken4;
+  var errorMsg = false;
   var list = [
     {name: name1, token: token1},
     {name: name2, token: token2},
@@ -74,6 +75,23 @@ router.post('/', function(req, res, next) {
       list[i].token = errorList[i].token
     }
   }
+  for (var i = 0; i < list.length; i++) {
+    for (var j = i + 1; j < list.length; j++) {
+      console.log(i, list[i].token, j, list[j].token);
+      if (list[i].token === list[j].token) {
+        errorMsg = "Each player must have a different token"
+      }
+    }
+  }
+  if (errorMsg) {
+    res.render('index', {errorMsg: errorMsg, name1: name1, name2: name2, name3: name3, name4: name4});
+  } else {
+    list.forEach(function (player) {
+      var newPlayer = new Player(player.name, player.token);
+      playersCollection.insert(newPlayer);
+    })
+    res.redirect('/game');
+  }
   // res.cookie('player1', name1);
   // res.cookie('player2', name2);
   // res.cookie('player3', name3);
@@ -82,12 +100,6 @@ router.post('/', function(req, res, next) {
   // res.cookie('token2', token2);
   // res.cookie('token3', token3);
   // res.cookie('token4', token4);
-
-  list.forEach(function (player) {
-    var newPlayer = new Player(player.name, player.token);
-    playersCollection.insert(newPlayer);
-  })
-  res.redirect('/game');
 
 });
 

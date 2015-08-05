@@ -92,8 +92,16 @@ form {
   color: $orange;
 }
 
+#go {
+  color: $orange;
+}
+
 #name {
   color: $black;
+}
+
+#sp0, #sp20, #sp30 {
+  border: 5px solid $orange;
 }
 
 #sp10 {

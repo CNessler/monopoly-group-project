@@ -300,6 +300,9 @@ p {
   position: relative;
   top: 0px; }
 
+#freeParking {
+  padding-top: 20%; }
+
 #mortgageButton {
   width: auto; }
 
@@ -380,6 +383,12 @@ label {
 #community {
   font-size: 25px; }
 
+#freeParking, #takeEl, #sp20 {
+  font-size: 18px; }
+
+#go {
+  font-size: 30px; }
+
 #title {
   font-size: 80px; }
 
@@ -443,8 +452,14 @@ form {
 #foFree {
   color: #FFa500; }
 
+#go {
+  color: #FFa500; }
+
 #name {
   color: #000; }
+
+#sp0, #sp20, #sp30 {
+  border: 5px solid #FFa500; }
 
 #sp10 {
   background-color: #FFa500;

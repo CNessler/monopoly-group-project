@@ -96,7 +96,7 @@ form {
   color: $black;
 }
 
-#sp30 {
+#sp10 {
   background-color: $orange;
   color: $white;
 }
@@ -141,4 +141,9 @@ form {
 
 #e1, #e2 {
   background-color: $eighth;
+}
+
+#weatherAPI {
+  color: $white;
+  text-shadow: 1px 1px 1px $black;
 }

@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var unirest = require('unirest');
 
 var monopolyDB = require('monk')(process.env.MONGOLAB_URI);
 
@@ -61,13 +62,19 @@ router.post('/', function(req, res, next) {
 });
 
 router.get('/game', function(req, res, next) {
-  var player1 = req.cookies.player1
-  var token1 = req.cookies.token1
+  unirest.get('api.openweathermap.org/data/2.5/weather?zip=94040,us')
+  .header(process.env.WEATHER)
+  .end(function(response) {
 
-  playersCollection.find({})
-  .then(function (allPlayers) {
-    console.log(allPlayers);
-    res.render('game', {playerName:player1, allPlayers: allPlayers})
+    var player1 = req.cookies.player1
+    var token1 = req.cookies.token1
+
+    playersCollection.find({})
+    .then(function (allPlayers) {
+      console.log(allPlayers);
+      console.log(response);
+      res.render('game', {playerName:player1, allPlayers: allPlayers, response: response.body})
+    })
   })
 })
 

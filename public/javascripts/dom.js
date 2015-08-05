@@ -1,3 +1,5 @@
+
+
 var rollButton = document.getElementById('roll');
 var index = 0;
 
@@ -52,8 +54,8 @@ rollButton.addEventListener("click", function() {
 
   if(player.balance === 0) {
     players.splice[player, 1];
-    nextPlayer();
-    } Else {
+  //next players turn
+} Else if {
     var current = document.getElementById('sp' + player.location)
     current.style.backgroundImage = null;
     var dieRoll = getMove(player);

@@ -72,8 +72,8 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
       player.injail = false;
       player.getOutOfJailFree = false;
     }
-    else if (player.jailCounter <= 3) {
-      nextPlayer();
+    else if (player.jailCounter ) {
+      alert('Your In JAIL!!')
     } else  {
       player.jailCounter = 0;
       player.injail = false;

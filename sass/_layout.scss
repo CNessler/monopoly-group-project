@@ -1,84 +1,104 @@
 * {
   box-sizing: border-box;
+  background-repeat: no-repeat;
 }
 
-body {
+html {
   background-image: url("/stylesheets/images/desk.jpg");
-  background-repeat: no-repeat;
   background-size: 100%;
+}
+
+div {
+  background-size: contain;
+}
+
+dialog {
+  height: 200px;
+  width: 350px;
+  padding: 20px;
+  padding-top: 30px;
+  button {
+    width: 100px;
+    padding: 5px;
+    margin: 15px;
+  }
 }
 
 p {
   padding: 5px;
 }
 
-div {
-  background-size: contain;
-  background-repeat: no-repeat;
-}
-
-.row-top, .row-center, .row-bottom {
+.board {
   width: 700px;
-  display: inline;
+  height: auto;
+  margin-left: 2%;
+  margin-right: 2%;
+  margin-top: 40px;
+  display: inline-block;
 }
 
-.row-top {
+.col-left, .col-right, .col-center {
+  display: inline-block;
+}
+
+.col-center {
+  border: 1px solid black;
+  width: 522px;
+  background-image: url("./images/galvanizelogo.png");
+  height: 522px;
+  vertical-align: top;
+}
+
+.col-left {
+  width: 87px;
   .space {
-    width: 58px;
-    height: 87px;
-  }
-  .bar {
-    position: relative;
-    top: 80%;
-    width: 100%;
-    height: 20%;
-    // background-color: red;
+    width: 87px;
+    height: 58px;
   }
 }
 
-.row-bottom {
+.col-right {
+  width: 87px;
   .space {
-    width: 58px;
-    height: 87px;
-  }
-  .bar {
-    width: 100%;
-    height: 20%;
-    // background-color: red;
-  }
-}
-
-.row-center {
-  height: 570px;
-  .bar-left {
-    width: 20%;
-    height: 100%;
-    float: right;
-    display: inline-block;
-  }
-  .bar-right {
-    display: inline-block;
-    float: left;
-    width: 20%;
-    height: 100%;
-    vertical-align: top;
+    width: 87px;
+    height: 58px;
   }
   p {
-    display: inline-block;
-    float: right;
-    width: 80%;
+    padding: 2px;
   }
 }
 
-.nav {
-  width: 100%;
-  height: 50px;
-  text-align: right;
-  padding: 1%;
-  font-size: 22px;
-  a {
-    text-decoration: none;
-  }
+.container-top {
+  height: 80%;
+  display: block;
+  margin: 0 auto;
+}
+
+.container-right {
+  width: 80%;
+  height: 100%;
+  display: block;
+  margin: 0 auto;
+  float: right;
+  padding-top: 5px;
+  padding-right: 10px;
+}
+
+.dash {
+  display: inline-block;
+  vertical-align: top;
+  width: 650px;
+  height: 700px;
+  margin-top: 40px;
+  overflow: scroll;
+}
+
+.dashLinks {
+  display: inline-block;
+  height: 100%;
+  width: 100px;
+  padding: 10px;
+  float: right;
 }
 
 .dice {
@@ -89,138 +109,29 @@ div {
   margin: 15px;
 }
 
-.dash {
-  display: inline-block;
-  vertical-align: top;
-  box-shadow: 5px 5px 5px black;
-  width: 650px;
-  height: 700px;
-  border: 2px solid black;
-  margin-top: 40px;
-  overflow: scroll;
-}
-
-#balance, #getOut {
-  height: 100px;
-  width: 45%;
-  display: inline-block;
-  padding: 10px;
-  margin: 2.5%;
-  text-align: center;
-  vertical-align: super;
-}
-
-.property {
-  width: 30%;
-  line-height: 0.7;
-  height: 180px;
-  border: 1px solid black;
-  display: inline-block;
-  margin-left: 2.5%;
-  margin-bottom: 5%;
-  margin-top: 5%;
-  vertical-align: top;
-}
-
 .header {
   margin: 4px;
 }
 
-.board {
-  width: 699px;
-  height: auto;
-  border: 2px solid black;
-  margin-left: 5%;
-  margin-right: 5%;
-  margin-top: 40px;
-  box-shadow: 5px 5px 5px black;
-  display: inline-block;
+.name {
+  height: 55px;
 }
 
-.col-left, .col-right, .col-center {
-  display: inline-block;
-}
-
-.col-left {
-  width: 87px;
-  // background-color: pink;
-  .space {
-    width: 87px;
-    height: 58px;
-    // background-color: blue;
-  }
-
-}
-
-.col-right {
-  width: 87px;
-  // background-color: pink;
-  .space {
-    width: 87px;
-    height: 58px;
-    // background-color: red;
-  }
-}
-
-.col-center {
-  border: 1px solid black;
-  width: 522px;
-  background-image: url("./images/galvanizelogo.png");
-  background-repeat: no-repeat;
-  background-size: contain;
-  // background-color: black;
-  height: 522px;
-  vertical-align: top;
-}
-
-.space, .corner {
-  vertical-align: top;
-  margin: 0;
-  padding: 0;
-  display: inline-block;
-  border: 1px solid black;
-  border-collapse: collapse;
-}
-
-.corner {
-  height: 87px;
-  width: 87px;
-  // background-color: pink;
-}
-
-.corner .space {
+.nav {
   width: 100%;
-  height: 100%;
-  border: none;
+  height: 40px;
+  padding: 1%;
+  a {
+    text-decoration: none;
+  }
 }
 
-#chance, #community {
-  margin: 20px;
-  position: relative;
-  text-align: center;
-  padding: 10px;
+.prices {
+  padding: 2px;
 }
 
-#chance {
-  font-size: 18px;
-  height: 200px;
-  width: 100px;
-  top: 10px;
-  left: 50px;
-  transform: rotate(45deg);
-}
-
-#community {
-  font-size: 25px;
-  height: 100px;
-  width: 200px;
-  top: 110px;
-  left: 280px;
-  transform: rotate(-45deg);
-}
-
-.rotateLeft {
-  transform: rotate(-90deg);
+.propDisplay {
+  padding: 5px;
 }
 
 .questionMark, .questionMarkSmall {
@@ -235,9 +146,168 @@ div {
   font-size: 50px;
 }
 
+.rotateLeft {
+  transform: rotate(-90deg);
+  position: relative;
+  top: -5px;
+  padding: 0px;
+}
+
+.row-top, .row-center, .row-bottom {
+  width: 700px;
+  display: inline;
+}
+
+.row-top {
+  .bar {
+    position: relative;
+    width: 100%;
+    height: 20%;
+  }
+  .space {
+    width: 58px;
+    height: 87px;
+  }
+}
+
+.row-bottom {
+  .bar {
+    width: 100%;
+    height: 20%;
+  }
+  .space {
+    width: 58px;
+    height: 87px;
+  }
+}
+
+.row-center {
+  height: 570px;
+  p {
+    display: inline-block;
+    float: right;
+    width: 80%;
+  }
+  .bar-left {
+    width: 20%;
+    height: 100%;
+    float: right;
+    display: inline-block;
+  }
+  .bar-right {
+    display: inline-block;
+    float: left;
+    width: 20%;
+    height: 100%;
+    vertical-align: top;
+  }
+}
+
+.property {
+  width: 30%;
+  line-height: 0.7;
+  height: 180px;
+  display: inline-block;
+  margin-left: 2.5%;
+  margin-bottom: 5%;
+  margin-top: 5%;
+  vertical-align: top;
+  float: left;
+}
+
+.space, .corner {
+  vertical-align: top;
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  border-collapse: collapse;
+  background-position: center;
+}
+
+.corner {
+  height: 87px;
+  width: 87px;
+}
+
+.corner .space {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+#balance, #getOut {
+  height: 100px;
+  width: 45%;
+  display: inline-block;
+  padding: 10px;
+  margin: 2.5%;
+  text-align: center;
+  vertical-align: super;
+}
+
+#closeButton {
+  display: block;
+  float: right;
+  width: 20px;
+  height: 20px;
+  padding: 2px;
+  margin: 0px;
+}
+
+#getOut {
+  width: 230px;
+  padding: 13px;
+}
+
+#chance, #community {
+  margin: 20px;
+  position: relative;
+  text-align: center;
+  padding: 10px;
+}
+
+#chance {
+  height: 200px;
+  width: 100px;
+  top: 10px;
+  left: 50px;
+  transform: rotate(45deg);
+}
+
+#chillin {
+  padding-top: 5px;
+  padding-left: 0px;
+}
+
+#community {
+  height: 100px;
+  width: 200px;
+  top: 110px;
+  left: 280px;
+  transform: rotate(-45deg);
+}
+
+#elevator {
+  height: 70%;
+  width: 80%;
+  padding: 3px;
+  float: left;
+  position: relative;
+  top: 10px;
+}
+
+#mortgageButton {
+  width: auto;
+}
+
+#name {
+  display: inline-block;
+  padding: 10px;
+  padding-left: 30px;
+}
+
 #sp17, #sp33, #sp2 {
   background-image: url("http://www.worldofmonopoly.com/fansite/images/icons/monopoly_icon_chest_col.gif");
-  background-repeat: no-repeat;
   background-position: center;
 }
 
@@ -247,33 +317,4 @@ div {
 
 #sp2 {
   background-size: 100%;
-}
-
-#elevator {
-  height: 70%;
-  width: 80%;
-  padding: 3px;
-  float: left;
-  border-top: 1px solid black;
-  border-right: 1px solid black;
-  position: relative;
-  top: 10px;
-}
-
-.name {
-  height: 55px;
-}
-
-#name {
-  display: inline-block;
-  padding: 10px;
-  padding-left: 30px;
-}
-
-.dashLinks {
-  display: inline-block;
-  height: 100%;
-  width: 100px;
-  border-left: 2px solid #a19a9a;
-  border-right: 2px solid #a19a9a;
 }

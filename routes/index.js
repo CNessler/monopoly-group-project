@@ -12,16 +12,16 @@ banksCollection = monopolyDB.get('banks');
 gamesCollection = monopolyDB.get('games');
 
 var sendSMS = function (aMessage, callback) {
-client.messages.create({
-  body: aMessage,
-  to: process.env.JAYLYN,
-  to: process.env.CLAIRE,
-  from: process.env.SOURCE
-}, function (err, sms) {
-  if(err) {
-    console.log(err);
-  }
-});
+  client.messages.create({
+    body: aMessage,
+    to: process.env.JAYLYN,
+    to: process.env.CLAIRE,
+    from: process.env.SOURCE
+  }, function (err, sms) {
+    if(err) {
+      console.log(err);
+    }
+  });
 }
 
 //var getAvailableTokens = require('../library/availableTokens.js');
@@ -104,19 +104,13 @@ router.post('/', function(req, res, next) {
 });
 
 router.get('/game', function(req, res, next) {
-unirest.get('api.openweathermap.org/data/2.5/weather?zip=94040,us')
-.header('key', process.env.WEATHER)
-.end(function(response) {
-
   var player1 = req.cookies.player1
   var token1 = req.cookies.token1
-
-
-    playersCollection.find({})
-    .then(function (allPlayers) {
-      console.log(allPlayers);
-      res.render('game', {playerName:player1, allPlayers: allPlayers})
-    })
+  
+  playersCollection.find({})
+  .then(function (allPlayers) {
+    console.log(allPlayers);
+    res.render('game', {playerName:player1, allPlayers: allPlayers})
   })
 });
 
@@ -128,11 +122,11 @@ router.get('/logout', function (req, res, next) {
 })
 
 router.post('/gamedata', function (req, res, next) {
-newMessage = req.body.message;
-console.log(newMessage, typeof newMessage, "json message from client side");
-sendSMS(newMessage);
-message = req.body;
-console.log(message, "json message from client side");
+  newMessage = req.body.message;
+  console.log(newMessage, typeof newMessage, "json message from client side");
+  sendSMS(newMessage);
+  message = req.body;
+  console.log(message, "json message from client side");
 })
 
 

@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+var unirest = require('unirest');
+
 // var client = require('twilio')(process.env.TWILIO_SID, process.env.TWILIO_AUTH)
 
 var monopolyDB = require('monk')(process.env.MONGOLAB_URI);
@@ -76,6 +78,7 @@ playersCollection.find({})
   res.render('game', {playerName:player1, allPlayers: allPlayers})
 })
 })
+});
 
 router.get('/logout', function (req, res, next) {
 res.clearCookie('name');

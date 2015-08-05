@@ -4,7 +4,7 @@ var rr = [5, 15, 25, 35];
 
 
 playerDash(players[index])
-//click on player link and generate player deed info and display
+
 var otherPlayers = document.getElementsByName('dashLink')
 var name = document.getElementById('name')
 for (var i = 0; i < otherPlayers.length; i++) {

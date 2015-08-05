@@ -68,7 +68,12 @@ function nextPlayer() {
  } else if (index === 3) {
    index = 0
  }
- turn.innerHTML = players[index].name + "'s Turn!";
+  window.setTimeout(function () {
+    playerDash(players[index])
+  }, 2500)
+  window.setTimeout(function () {
+   turn.innerHTML = players[index].name + "'s Turn!";
+  }, 2500)
 }
 
 rollButton.addEventListener("click", function() {

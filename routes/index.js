@@ -63,8 +63,12 @@ res.redirect('/game');
 });
 
 router.get('/game', function(req, res, next) {
-var player1 = req.cookies.player1
-var token1 = req.cookies.token1
+  unirest.get('api.openweathermap.org/data/2.5/weather?zip=94040,us')
+  .header('key', process.env.WEATHER)
+  .end(function(response) {
+
+    var player1 = req.cookies.player1
+    var token1 = req.cookies.token1
 
 playersCollection.find({})
 .then(function (allPlayers) {

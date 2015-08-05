@@ -1,4 +1,16 @@
+var weatherXHR = new XMLHttpRequest;
 
+weatherXHR.open('get', 'http://api.wunderground.com/api/4d5eeb69540ad8e6/conditions/q/CO/Denver.json');
+weatherXHR.addEventListener('load', function() {
+var response = weatherXHR.response;
+var weatherData = JSON.parse(response);
+var temperature = weatherData.current_observation.temp_f;
+var feelsLike = weatherData.current_observation.feelslike_f;
+var weatherDescription = weatherData.current_observation.weather;
+console.log(temperature, "temp", feelsLike, weatherDescription);
+console.log(weatherData.current_observation);
+})
+weatherXHR.send(null);
 
 var rollButton = document.getElementById('roll');
 var index = 0;

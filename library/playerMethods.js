@@ -1,4 +1,4 @@
-module.exports = function() {
+// module.exports = function() {
 var Player = require('./playerConstructor.js').Player
 
   Player.prototype.buyDeed= function (deed, bank) {
@@ -46,9 +46,9 @@ var Player = require('./playerConstructor.js').Player
     }
 
   this.balance -= rentDue;
-  owner.balance += rentDue; 
+  owner.balance += rentDue;
 
   }
 
-  return Player.prototype;
-}
+//   return Player.prototype;
+// }

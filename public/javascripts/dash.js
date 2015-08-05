@@ -2,31 +2,22 @@ var deedContainer = document.getElementById('deedContainer');
 var utils = [12, 28, 0, 0];
 var rr = [5, 15, 25, 35];
 
-playerDash(players[index])
 
+playerDash(players[index])
+//click on player link and generate player deed info and display
 var otherPlayers = document.getElementsByName('dashLink')
+var name = document.getElementById('name')
 for (var i = 0; i < otherPlayers.length; i++) {
   otherPlayers[i].addEventListener('click', function(){
-    for (var i = 0; i < players.length; i++) {
-      var x = deedContainer.children;
-      if (x.length >= 1) {
-        for (var i = 0; i < (x.length + 1); i++) {
-          clearCont(x[i]);
-        }
-      }
-      if (players[i].name === this.id) {
-        playerDash(players[i])
+    clearCont();
+    for (var j = 0; j < players.length; j++) {
+      if (players[j].name === this.id) {
+        name.innerHTML = players[j].name
+        playerDash(players[j])
       }
     }
   })
 }
 
-rollButton.addEventListener('click', function () {
-  var x = deedContainer.children;
-  if (x.length >= 1) {
-    for (var i = 0; i < (x.length + 1); i++) {
-      clearCont(x[i]);
-    }
-  }
+  clearCont();
   playerDash(players[index])
-})

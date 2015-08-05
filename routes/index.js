@@ -16,8 +16,6 @@ var library = require('../library/playerConstructor.js')
 // var getAllDeeds = require('../public/javascripts/deedConstructor.js')
 
 router.get('/', function(req, res, next) {
-
-  res.render('index')
   // if(req.cookies.name) {
   //     res.redirect('/game');
   //   }
@@ -25,6 +23,9 @@ router.get('/', function(req, res, next) {
     // playersCollection.find({})
     // .then(function (allPlayers) {
         // var availableTokens = getAvailableTokens(allPlayers, tokens);
+
+        res.render('index');
+
         // res.render('index', {availableTokens: availableTokens});
     // });
   // }

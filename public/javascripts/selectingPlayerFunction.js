@@ -226,6 +226,7 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
       myDialog.appendChild(caption).innerHTML = "You're FREE";
       myDialog.appendChild(closeModal).innerHTML = 'Now Roll The Die';
       redirectToken(10, player)
+      player.location = 10;
       myDialog.show();
 
       closeModal.addEventListener('click', function () {
@@ -236,16 +237,17 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
         // nextPlayer();
       })
       player.inJail = false;
-      var dieRoll = getMove(player)
-      var moveTo = document.getElementById('sp' + player.location)
-      moveTo.style.backgroundImage = "url('" + player.tokensrc + "')";
-
-      selectPlayerFunction(player.location, player, bank, dieRoll, players, chanceDeck);
+      // var dieRoll = getMove(player)
+      // var moveTo = document.getElementById('sp' + player.location)
+      // moveTo.style.backgroundImage = "url('" + player.tokensrc + "')";
+      //
+      // selectPlayerFunction(player.location, player, bank, dieRoll, players, chanceDeck);
     }
     else if(player.getOutOfJailFree === true) {
       myDialog.appendChild(caption).innerHTML = "You're FREE";
       myDialog.appendChild(closeModal).innerHTML = 'Now Roll The Die';
       redirectToken(10, player)
+      player.location = 10;
       myDialog.show();
 
       closeModal.addEventListener('click', function () {
@@ -258,11 +260,11 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
 
       player.inJail = false;
       player.getOutOfJailFree = false;
-      var dieRoll = getMove(player)
-      var moveTo = document.getElementById('sp' + player.location)
-      moveTo.style.backgroundImage = "url('" + player.tokensrc + "')";
+      // var dieRoll = getMove(player)
+      // var moveTo = document.getElementById('sp' + player.location)
+      // moveTo.style.backgroundImage = "url('" + player.tokensrc + "')";
 
-      selectPlayerFunction(player.location, player, bank, dieRoll, players, chanceDeck);
+      // selectPlayerFunction(player.location, player, bank, dieRoll, players, chanceDeck);
     }
     else {
       myDialog.appendChild(caption).innerHTML = "In Jail";

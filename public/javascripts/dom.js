@@ -6,10 +6,10 @@ var turn = document.getElementById('turn')
 var misc = [12, 28, 5, 15, 25, 35]
 
 var tokens = [
- {name: "hat", url: 'http://www.worldofmonopoly.com/fansite/images/tokens/monopoly_token_hat.png'},
- {name: "ship", url: 'http://www.worldofmonopoly.com/fansite/images/tokens/monopoly_token_ship.png'},
- {name: "dog", url: 'https://gobeyondphotography.files.wordpress.com/2013/01/monopoly_token_dog.png'},
- {name: "car", url: 'http://4.bp.blogspot.com/-ogjy-t9xq1E/UQGnaJbui8I/AAAAAAAAB-k/OPDG4YAI2Yk/s1600/monopoly_token_car.png'}
+ {name: "hat", url: '../stylesheets/images/monopoly_token_hat.png'},
+ {name: "ship", url: '../stylesheets/images/ship.png'},
+ {name: "dog", url: '../stylesheets/images/dog.png'},
+ {name: "car", url: '../stylesheets/images/car.png'}
 ]
 
 function getToken(player) {

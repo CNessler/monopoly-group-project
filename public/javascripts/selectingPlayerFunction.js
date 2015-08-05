@@ -73,6 +73,7 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
 
   var owner = getOwner(allPlayers);
 
+
   if(player.inJail === false) {
 
     var myDialog = document.getElementById('myDialog');
@@ -197,7 +198,7 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
         closeModal.addEventListener('click', function () {
           playerDash(player);
           myDialog.close();
-          playerDash(player);
+          // playerDash(player);
           myDialog.innerHTML = '';
           nextPlayer();
         })

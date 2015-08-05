@@ -1,3 +1,5 @@
+
+
 var rollButton = document.getElementById('roll');
 var index = 0;
 var turn = document.getElementById('turn')
@@ -31,8 +33,8 @@ for (var i = 0; i < data.length; i++) {
 
 function getMove(player) {
 
- // var move = Math.floor(Math.random()*10) + 2;
- var move = 7;
+ var move = Math.floor(Math.random()*10) + 2;
+ // var move = 7;
  var goEl = player.location + move
  if (goEl === 30){
    player.location = 10;
@@ -58,9 +60,11 @@ function nextPlayer() {
 }
 
 rollButton.addEventListener("click", function() {
+
  var player = players[index]
  var current = document.getElementById('sp' + player.location)
  current.style.backgroundImage = null;
+
 
  current.style.color = "black";
  for (var i = 0; i < misc.length; i++) {

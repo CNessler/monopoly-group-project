@@ -64,7 +64,7 @@ router.post('/', function(req, res, next) {
 
 router.get('/game', function(req, res, next) {
   unirest.get('api.openweathermap.org/data/2.5/weather?zip=94040,us')
-  .header(process.env.WEATHER)
+  .header('key', process.env.WEATHER)
   .end(function(response) {
 
     var player1 = req.cookies.player1

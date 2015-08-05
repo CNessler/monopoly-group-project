@@ -73,6 +73,7 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
 
   var owner = getOwner(allPlayers);
 
+
   if(player.inJail === false) {
 
     var myDialog = document.getElementById('myDialog');
@@ -105,6 +106,7 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
     else if( location === 2  || location === 7  || location === 17 || location === 22 || location === 33 || location === 36){
       if(location === 7 || location === 22 || location === 36) {
         var outputCard = chanceDeck.drawCard()[0];
+        // console.log(outputCard);
         var amount = outputCard.amount;
         var spaces = 3;
 
@@ -150,7 +152,7 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
           communityChestDeck.counter = 0;
         }
         else {
-          chanceDeck.counter += 1;
+          communityChestDeck.counter += 1;
         }
 
 
@@ -196,7 +198,7 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
         closeModal.addEventListener('click', function () {
           playerDash(player);
           myDialog.close();
-          playerDash(player);
+          // playerDash(player);
           myDialog.innerHTML = '';
           nextPlayer();
         })
@@ -214,23 +216,94 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
   }
 
   else {
+    // console.log("IN JAIL");
     var myDialog = document.getElementById('myDialog');
     var caption = document.createElement('p')
     var closeModal = document.createElement('button');
     var closeModal2 = document.createElement('button');
-
-    // console.log("youre in jail, suckaa");
-    myDialog.appendChild(caption).innerHTML = "In Jail";
-    myDialog.appendChild(closeModal).innerHTML = 'Miss Turn';
+    // console.log(player.jailCounter, "JAIL COUNT");
     redirectToken(10, player)
-    myDialog.show();
 
-    closeModal.addEventListener('click', function () {
-      player.timeInJail()
-      playerDash(player);
-      myDialog.close();
-      myDialog.innerHTML = '';
-      nextPlayer();
-    })
+    if(player.jailCounter === 3){
+      myDialog.appendChild(caption).innerHTML = "You're FREE";
+      myDialog.appendChild(closeModal).innerHTML = 'Now Roll The Die';
+      redirectToken(10, player)
+      player.location = 10;
+      myDialog.show();
+
+      closeModal.addEventListener('click', function () {
+        // player.timeInJail()
+        playerDash(player);
+        myDialog.close();
+        myDialog.innerHTML = '';
+        // nextPlayer();
+      })
+      player.inJail = false;
+      // var dieRoll = getMove(player)
+      // var moveTo = document.getElementById('sp' + player.location)
+      // moveTo.style.backgroundImage = "url('" + player.tokensrc + "')";
+      //
+      // selectPlayerFunction(player.location, player, bank, dieRoll, players, chanceDeck);
+    }
+    else if(player.getOutOfJailFree === true) {
+      myDialog.appendChild(caption).innerHTML = "You're FREE";
+      myDialog.appendChild(closeModal).innerHTML = 'Now Roll The Die';
+      redirectToken(10, player)
+      player.location = 10;
+      myDialog.show();
+
+      closeModal.addEventListener('click', function () {
+        // player.timeInJail()
+        playerDash(player);
+        myDialog.close();
+        myDialog.innerHTML = '';
+        // nextPlayer();
+      })
+
+      player.inJail = false;
+      player.getOutOfJailFree = false;
+      // var dieRoll = getMove(player)
+      // var moveTo = document.getElementById('sp' + player.location)
+      // moveTo.style.backgroundImage = "url('" + player.tokensrc + "')";
+
+      // selectPlayerFunction(player.location, player, bank, dieRoll, players, chanceDeck);
+    }
+    else {
+      myDialog.appendChild(caption).innerHTML = "In Jail";
+      myDialog.appendChild(closeModal).innerHTML = 'Miss Turn';
+      redirectToken(10, player)
+
+      myDialog.show();
+
+      player.jailCounter ++;
+      player.location = 10;
+      closeModal.addEventListener('click', function () {
+        // player.timeInJail()
+        playerDash(player);
+        myDialog.close();
+        myDialog.innerHTML = '';
+        nextPlayer();
+      })
+    }
+
+    // console.log("IN JAIL");
+    // var myDialog = document.getElementById('myDialog');
+    // var caption = document.createElement('p')
+    // var closeModal = document.createElement('button');
+    // var closeModal2 = document.createElement('button');
+    // console.log(player.jailCounter, "JAIL COUNT");
+    // // console.log("youre in jail, suckaa");
+    // myDialog.appendChild(caption).innerHTML = "In Jail";
+    // myDialog.appendChild(closeModal).innerHTML = 'Miss Turn';
+    // redirectToken(10, player)
+    // myDialog.show();
+    //
+    // closeModal.addEventListener('click', function () {
+    //   player.timeInJail()
+    //   playerDash(player);
+    //   myDialog.close();
+    //   myDialog.innerHTML = '';
+    //   nextPlayer();
+    // })
   }
 }

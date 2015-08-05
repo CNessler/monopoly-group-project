@@ -2,6 +2,8 @@ var rollButton = document.getElementById('roll');
 var index = 0;
 var turn = document.getElementById('turn')
 
+
+
 var tokens = [
   {name: "hat", url: 'http://www.worldofmonopoly.com/fansite/images/tokens/monopoly_token_hat.png'},
   {name: "ship", url: 'http://www.worldofmonopoly.com/fansite/images/tokens/monopoly_token_ship.png'},
@@ -51,6 +53,9 @@ function nextPlayer() {
 }
 
 rollButton.addEventListener("click", function() {
+
+  var sentObjectExample = {name: "Akhil", message: "my twilio test"}
+
   var player = players[index]
   var current = document.getElementById('sp' + player.location)
   current.style.backgroundImage = null;
@@ -61,3 +66,16 @@ rollButton.addEventListener("click", function() {
 
   selectPlayerFunction(player.location, player, bank, dieRoll, players, chanceDeck);
 });
+
+var sendGameDataBtn = document.getElementById('twilioCall');
+sendGameDataBtn.addEventListener('click', function() {
+
+  var xhr = new XMLHttpRequest();
+  xhr.open('post', "/gamedata", true);
+  xhr.setRequestHeader('Content-type', "application/json");
+
+  var sentObjectExample = {name: "Akhil", message: "final twilio test"};
+  sentObjectString = JSON.stringify(sentObjectExample);
+
+  xhr.send(sentObjectString);
+})

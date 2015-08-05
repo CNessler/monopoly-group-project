@@ -122,9 +122,9 @@ var goToPivotal = function(player, owner, allPlayers, amount, location, spaces, 
     var closeModal = document.createElement('button');
     var closeModal2 = document.createElement('button');
 
-    myDialog2.appendChild(caption).innerHTML = 'Property Available'
+    myDialog2.appendChild(caption).innerHTML = 'Property Available: ' + allDeeds[27].name
     myDialog2.appendChild(closeModal).innerHTML = 'Do Nothing'
-    myDialog2.appendChild(closeModal2).innerHTML = 'Buy Property'
+    myDialog2.appendChild(closeModal2).innerHTML = 'Buy Property ($' + allDeeds[27].price + ')'
 
     myDialog2.showModal();
 
@@ -181,31 +181,31 @@ Deck.prototype.drawCard = function () {
 
 communityChestArray =
   [
-    new Card("pay15", "cc", "pay 15", loseMoney, 15),
-    new Card("get50", "cc", "get 50", addMoney, 50),
-    new Card("get150", "cc","get 150", addMoney, 150),
-    new Card("payPerHH", "cc", "pay 25 per house and 100 per hotel", payPerHouseHotel, 0),
-    new Card("payEachPlayer50", "cc", "pay each player 50", payOtherPlayers, 0),
-    new Card("advancetoUtil", "cc", "go to nearest util and pay 10 times die roll to owner (if owner exists)", advanceToNearestUtility, 0),
-    new Card("goback3", "cc", "go back 3 spaces", goBack, 0),
-    new Card("advanceToGo", "cc", "advance to go", advanceToGo, 0),
-    new Card("gotoPivotal", "cc", "Go to Pivotal", goToPivotal, 0),
-    new Card("getoutofjail", "cc", "Get out jail free", getOutOfJail, 0),
-    new Card("gotojail", "cc", "Go directly to Jail", goToJail, 0)
+    new Card("pay15", "cc", "Community Chest: You owe $15", loseMoney, 15),
+    new Card("get50", "cc", "Community Chest: You owe $50", addMoney, 50),
+    new Card("get150", "cc","Community Chest: You win $150", addMoney, 150),
+    new Card("payPerHH", "cc", "Community Chest: Pay $25 per house and $100 per hotel", payPerHouseHotel, 0),
+    new Card("payEachPlayer50", "cc", "Community Chest: Pay each player $50", payOtherPlayers, 0),
+    new Card("advancetoUtil", "cc", "Community Chest: Go to nearest utility and pay 10 times the amount on the dice to owner", advanceToNearestUtility, 0),
+    new Card("goback3", "cc", "Community Chest: Go back 3 spaces", goBack, 0),
+    new Card("advanceToGo", "cc", "Community Chest: Advance to Go!", advanceToGo, 0),
+    new Card("gotoPivotal", "cc", "Community Chest: Go to Pivotal Labs", goToPivotal, 0),
+    new Card("getoutofjail", "cc", "Community Chest: 'Escape from the elevator for FREE!' card", getOutOfJail, 0),
+    new Card("gotojail", "cc", "Community Chest: Uh oh! You're stuck in the elevator.", goToJail, 0)
   ],
 chanceArray =
   [
-    new Card("gotoPivotal", "chance", "Go to Pivotal", goToPivotal, 0),
-    new Card("getoutofjail", "chance", "Get out of jail free", getOutOfJail, 0),
-    new Card("gotojail", "chance", "Go directly to Jail", goToJail, 0),
-    new Card("pay15", "chance", "pay 15", loseMoney, 15),
-    new Card("get50", "chance", "get 50", addMoney, 50),
-    new Card("get150", "chance","get 150", addMoney, 150),
-    new Card("payPerHH", "chance", "pay 25 per house and 100 per hotel", payPerHouseHotel, 0),
-    new Card("payEachPlayer50", "chance", "pay each player 50", payOtherPlayers, 0),
-    new Card("advancetoUtil", "chance", "go to nearest util and pay 10 times die roll to owner (if owner exists)", advanceToNearestUtility, 0),
-    new Card("goback3", "chance", "go back 3 spaces", goBack, 0),
-    new Card("advanceToGo", "chance", "advance to go", advanceToGo, 0)
+    new Card("gotoPivotal", "chance", "Chance: Go to Pivotal Labs", goToPivotal, 0),
+    new Card("getoutofjail", "chance", "Chance: 'Escape from the elevator for FREE!' card", getOutOfJail, 0),
+    new Card("gotojail", "chance", "Chance: Uh oh! You're stuck in the elevator.", goToJail, 0),
+    new Card("pay15", "chance", "Chance: You owe $15", loseMoney, 15),
+    new Card("get50", "chance", "Chance: You win $150", addMoney, 50),
+    new Card("get150", "chance","Chance: You win $150", addMoney, 150),
+    new Card("payPerHH", "chance", "Chance: Pay $25 per house and $100 per hotel", payPerHouseHotel, 0),
+    new Card("payEachPlayer50", "chance", "Chance: Pay each player $50", payOtherPlayers, 0),
+    new Card("advancetoUtil", "chance", "Chance: Go to nearest utility and pay 10 times the amount on the dice to owner", advanceToNearestUtility, 0),
+    new Card("goback3", "chance", "Chance: Go back 3 spaces", goBack, 0),
+    new Card("advanceToGo", "chance", "Chance: Advance to Go!", advanceToGo, 0)
   ]
 
 var communityChestDeck = new Deck();

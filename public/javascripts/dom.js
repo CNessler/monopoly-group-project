@@ -1,4 +1,16 @@
+var weatherXHR = new XMLHttpRequest;
 
+weatherXHR.open('get', 'http://api.wunderground.com/api/4d5eeb69540ad8e6/conditions/q/CO/Denver.json');
+weatherXHR.addEventListener('load', function() {
+var response = weatherXHR.response;
+var weatherData = JSON.parse(response);
+var temperature = weatherData.current_observation.temp_f;
+var feelsLike = weatherData.current_observation.feelslike_f;
+var weatherDescription = weatherData.current_observation.weather;
+console.log(temperature, "temp", feelsLike, weatherDescription);
+console.log(weatherData.current_observation);
+})
+weatherXHR.send(null);
 
 var rollButton = document.getElementById('roll');
 var index = 0;
@@ -22,19 +34,23 @@ function getToken(player) {
 }
 
 var players = [];
-var data = document.getElementById('playerData').childNodes;
-for (var i = 0; i < data.length; i++) {
- var singlePlayer = data[i].innerHTML.split(';');
- var player = new Player(singlePlayer[0], singlePlayer[1])
- getToken(player);
- player.location = 0;
- players.push(player);
- }
+function startGame() {
+  var data = document.getElementById('playerData').childNodes;
+  for (var i = 0; i < data.length; i++) {
+    var singlePlayer = data[i].innerHTML.split(';');
+    var player = new Player(singlePlayer[0], singlePlayer[1])
+    getToken(player);
+    player.location = 0;
+    players.push(player);
+  }
+  turn.innerHTML = players[index].name + "'s Turn!"
+}
+
 
 function getMove(player) {
 
  var move = Math.floor(Math.random()*10) + 2;
- // var move = 7;
+
  var goEl = player.location + move
  if (goEl === 30){
    player.location = 10;
@@ -56,28 +72,49 @@ function nextPlayer() {
  } else if (index === 3) {
    index = 0
  }
- turn.innerHTML = players[index].name + "'s Turn!";
+  window.setTimeout(function () {
+    playerDash(players[index])
+  }, 2500)
+  window.setTimeout(function () {
+   turn.innerHTML = players[index].name + "'s Turn!";
+  }, 2500)
 }
+
+startGame();
 
 rollButton.addEventListener("click", function() {
 
- var player = players[index]
- var current = document.getElementById('sp' + player.location)
- current.style.backgroundImage = null;
+  var sentObjectExample = {name: "Akhil", message: "my twilio test"}
 
+  var player = players[index]
+  var current = document.getElementById('sp' + player.location)
+  var dieRoll = getMove(player);
+  selectPlayerFunction(player.location, player, bank, dieRoll, players, chanceDeck);
 
- current.style.color = "black";
- for (var i = 0; i < misc.length; i++) {
-   var loc = "sp" + misc[i].toString()
-   if (current.id === loc) {
-     current.style.color = "white";
-   }
- }
- var dieRoll = getMove(player);
- console.log(player.location, "LOCATION");
- var moveTo = document.getElementById('sp' + player.location)
- moveTo.style.backgroundImage = "url('" + player.tokensrc + "')";
+  var existing = current.childNodes;
+  for (var i = 0; i < existing.length; i++) {
+    if (existing[i].id === players[index].name) {
+      existing[i].remove();
+    }
+  }
 
- moveTo.style.color = "transparent";
- selectPlayerFunction(player.location, player, bank, dieRoll, players, chanceDeck);
+  var moveTo = document.getElementById('sp' + player.location)
+  var token = document.createElement('div');
+  token.setAttribute("class", "token");
+  token.setAttribute("id", player.name);
+  token.style.backgroundImage = "url('" + player.tokensrc + "')";
+  moveTo.appendChild(token)
 });
+
+var sendGameDataBtn = document.getElementById('twilioCall');
+sendGameDataBtn.addEventListener('click', function() {
+
+  var xhr = new XMLHttpRequest();
+  xhr.open('post', "/gamedata", true);
+  xhr.setRequestHeader('Content-type', "application/json");
+
+  var sentObjectExample = {name: "Akhil", message: "final twilio test"};
+  sentObjectString = JSON.stringify(sentObjectExample);
+
+  xhr.send(sentObjectString);
+})

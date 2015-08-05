@@ -130,6 +130,10 @@ p {
   padding: 2px;
 }
 
+.propDisplay {
+  padding: 5px;
+}
+
 .questionMark, .questionMarkSmall {
   padding-top: 10px;
 }
@@ -218,6 +222,15 @@ p {
   display: inline-block;
   border-collapse: collapse;
   background-position: center;
+  position: relative;
+}
+
+.token {
+  height: 65px;
+  width: 65px;
+  z-index: 1;
+  position: absolute;
+  top: 25%;
 }
 
 .corner {
@@ -239,6 +252,15 @@ p {
   margin: 2.5%;
   text-align: center;
   vertical-align: super;
+}
+
+#closeButton {
+  display: block;
+  float: right;
+  width: 20px;
+  height: 20px;
+  padding: 2px;
+  margin: 0px;
 }
 
 #getOut {
@@ -281,6 +303,10 @@ p {
   float: left;
   position: relative;
   top: 10px;
+}
+
+#mortgageButton {
+  width: auto;
 }
 
 #name {

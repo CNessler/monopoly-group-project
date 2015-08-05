@@ -153,6 +153,9 @@ p {
 .prices {
   padding: 2px; }
 
+.propDisplay {
+  padding: 5px; }
+
 .questionMark, .questionMarkSmall {
   padding-top: 10px; }
 
@@ -224,7 +227,15 @@ p {
   padding: 0;
   display: inline-block;
   border-collapse: collapse;
-  background-position: center; }
+  background-position: center;
+  position: relative; }
+
+.token {
+  height: 65px;
+  width: 65px;
+  z-index: 1;
+  position: absolute;
+  top: 25%; }
 
 .corner {
   height: 87px;
@@ -243,6 +254,14 @@ p {
   margin: 2.5%;
   text-align: center;
   vertical-align: super; }
+
+#closeButton {
+  display: block;
+  float: right;
+  width: 20px;
+  height: 20px;
+  padding: 2px;
+  margin: 0px; }
 
 #getOut {
   width: 230px;
@@ -279,6 +298,9 @@ p {
   float: left;
   position: relative;
   top: 10px; }
+
+#mortgageButton {
+  width: auto; }
 
 #name {
   display: inline-block;
@@ -336,6 +358,12 @@ label {
 .join_game input {
   font-size: 30px; }
 
+.propDisplay {
+  font-size: 15px; }
+
+.propName {
+  font-size: 25px; }
+
 #balance {
   font-size: 30px; }
 
@@ -390,6 +418,9 @@ form {
 .property {
   border: 1px solid #000;
   box-shadow: 1px 1px 1px #000; }
+
+.propName {
+  color: #FFa500; }
 
 #balance {
   color: #57A773; }

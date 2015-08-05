@@ -7,10 +7,11 @@ var weatherData = JSON.parse(response);
 var temperature = weatherData.current_observation.temp_f;
 var feelsLike = weatherData.current_observation.feelslike_f;
 var weatherDescription = weatherData.current_observation.weather;
-console.log(temperature, "temp", feelsLike, weatherDescription);
-console.log(weatherData.current_observation);
+// console.log(temperature, "temp", feelsLike, weatherDescription);
+// console.log(weatherData.current_observation);
 })
 weatherXHR.send(null);
+
 
 var rollButton = document.getElementById('roll');
 var index = 0;

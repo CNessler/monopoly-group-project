@@ -324,5 +324,6 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
       myDialog.innerHTML = '';
       nextPlayer();
     })
+
   }
 }

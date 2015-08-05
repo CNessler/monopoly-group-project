@@ -1,28 +1,20 @@
-// checkBalanceDues = function (owner, expenditure) {
-//   // if(this.balance < expenditure){
-//     var mortgageAvailable = this.deeds.length - 1;
-//     for (var i = 0; i < this.deeds.length; i++) {
-//       if(this.deeds[i].mortgaged === true){
-//         mortgageAvailable --;
-//       }
-//     }
-//   //   if(maxMoney < expenditure){
-//   //     alert("Bankrupt")
-//   //     //figure out how to skip player or remove
-//   //   }
-//     while(this.balance < expenditure && mortgageAvailable > 0){
-//       alert('need to mortgage')
-//
-//     }
 
+function makeFunc() {
+  var checkboxes  = [];
+  for(var i = 0; i < players.deeds.length; i++) {
+   checkboxes[i] = document.createElement('input');
+   var label = document.createElement('label');
+   label.innerHTML = players.deeds[i].name
+   checkboxes[i].type = "checkbox";
 
-var go = function (x) {
-  if(x > 30){
-    console.log("HEYO");
+   label.appendChild(checkboxes[i]);
+   myDialog4.appendChild(label)
   }
-  else {
-    go(x)
-    x++
+  function displayName() {
+    
   }
-}
-go(4)
+  return displayName;
+};
+
+var myFunc = makeFunc();
+myFunc();

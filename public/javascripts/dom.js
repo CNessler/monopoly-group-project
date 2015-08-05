@@ -29,6 +29,7 @@ for (var i = 0; i < data.length; i++) {
  }
 
 function getMove(player) {
+
  // var move = Math.floor(Math.random()*10) + 2;
  var move = 15;
  var goEl = player.location + move
@@ -59,10 +60,19 @@ rollButton.addEventListener("click", function() {
  var player = players[index]
  var current = document.getElementById('sp' + player.location)
  current.style.backgroundImage = null;
+
+ current.style.color = "black";
+ for (var i = 0; i < misc.length; i++) {
+   var loc = "sp" + misc[i].toString()
+   if (current.id === loc) {
+     current.style.color = "white";
+   }
+ }
  var dieRoll = getMove(player);
  console.log(player.location, "LOCATION");
  var moveTo = document.getElementById('sp' + player.location)
  moveTo.style.backgroundImage = "url('" + player.tokensrc + "')";
 
+ moveTo.style.color = "transparent";
  selectPlayerFunction(player.location, player, bank, dieRoll, players, chanceDeck);
 });

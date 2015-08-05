@@ -139,7 +139,7 @@ sendGameDataBtn.addEventListener('click', function() {
   xhr.open('post', "/gamedata", true);
   xhr.setRequestHeader('Content-type', "application/json");
 
-  var sentObjectExample = {name: "Akhil", message: "final twilio test"};
+  var sentObjectExample = {name: "Akhil", message: "HI CLAIRE!!!!"};
   sentObjectString = JSON.stringify(sentObjectExample);
 
   xhr.send(sentObjectString);

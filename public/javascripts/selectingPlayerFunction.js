@@ -91,8 +91,14 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
 
       if(location === 4 || location === 38) {
         // console.log("tax");
+        if(location ===4){
+          var tax = 30;
+        }
+        else {
+          var tax = 75;
+        }
         myDialog.appendChild(caption).innerHTML = "Pay Fine: " + tax;
-        myDialog.appendChild(closeModal).innerHTML = 'Pay Fine' + tax;
+        myDialog.appendChild(closeModal).innerHTML = 'Pay Fine ' + tax;
 
         myDialog.showModal();
 
@@ -174,8 +180,14 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
 
       else {
         if(deed.owner != "" && deed.owner != player.name){
+          if(location === 12 || location === 28){
+            myDialog.appendChild(caption).innerHTML = "Pay Rent";
+            myDialog.appendChild(closeModal).innerHTML = "Pay Rent";
+          }
+          else {
           myDialog.appendChild(caption).innerHTML = "Pay Rent ($" + deed.rent + ")";
           myDialog.appendChild(closeModal).innerHTML = "Pay Rent ($" + deed.rent + ")";
+          }
 
           myDialog.showModal();
 
@@ -223,13 +235,14 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
       var closeModal = document.createElement('button');
       var closeModal2 = document.createElement('button');
       // console.log(player.jailCounter, "JAIL COUNT");
-      redirectToken(10, player)
+      // redirectToken(10, player)
 
       if(player.jailCounter === 3){
         myDialog.appendChild(caption).innerHTML = "You're FREE!";
         myDialog.appendChild(closeModal).innerHTML = 'Now Roll The Dice...';
         redirectToken(10, player)
         player.location = 10;
+
         myDialog.show();
 
         closeModal.addEventListener('click', function () {
@@ -325,5 +338,6 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
       myDialog.innerHTML = '';
       nextPlayer();
     })
+
   }
 }

@@ -92,7 +92,7 @@ function getProperty(id) {
   for (var i = 0; i < misc.length; i++) {
     if (id == misc[i]) {
       miscSpace = true;
-    }
+     }
   }
 
   if (!prop.mortgaged) {

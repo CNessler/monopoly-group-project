@@ -8,15 +8,16 @@ var temperature = weatherData.current_observation.temp_f;
 var feelsLike = weatherData.current_observation.feelslike_f;
 var weatherDescription = weatherData.current_observation.weather;
 
-console.log(temperature, "temp", feelsLike, weatherDescription);
-console.log(weatherData.current_observation);
+
+// console.log(temperature, "temp", feelsLike, weatherDescription);
+// console.log(weatherData.current_observation);
 var good = ''
 var bad = ''
 goodWeather = ['sunnny', 'clear', 'cloudy']
 badWeather = ['rain', 'snow', 'storm']
 for (var i = 0; i < goodWeather.length; i++) {
 var weatherContain = weatherDescription.toLowerCase().includes(goodWeather[i])
-console.log(weatherContain);
+// console.log(weatherContain);
 if(weatherContain === true)
 good = 'Go play outside!'
 }
@@ -25,7 +26,7 @@ for (var i = 0; i < badWeather.length; i++) {
   if(weatherContain === true)
   bad = 'Better stay inside and play Monopoly.'
 }
-console.log(good, bad);
+// console.log(good, bad);
 var weatherID = document.getElementById('weatherAPI');
 weatherID.innerHTML = 'The current forecast for today is ' + weatherDescription + '.  It feels like ' + feelsLike + '\xB0' + '. ' + good + bad;
 
@@ -75,10 +76,11 @@ function startGame() {
 
 function getMove(player) {
 
- var move = Math.floor(Math.random()*10) + 2;
-
+ // var move = Math.floor(Math.random()*10) + 2;
+var move = 30;
  var goEl = player.location + move
  if (goEl === 30){
+  //  alert('Head to the elevator');
    player.location = 10;
    player.inJail = true;
  }
@@ -115,14 +117,15 @@ rollButton.addEventListener("click", function() {
   var player = players[index]
   var current = document.getElementById('sp' + player.location)
   var dieRoll = getMove(player);
-  selectPlayerFunction(player.location, player, bank, dieRoll, players, chanceDeck);
 
   var existing = current.childNodes;
+  console.log(existing, "EXISTING BEFORE");
   for (var i = 0; i < existing.length; i++) {
     if (existing[i].id === players[index].name) {
       existing[i].remove();
     }
   }
+  // console.log(existing, "EXISTING AFTER");
 
   var moveTo = document.getElementById('sp' + player.location)
   var token = document.createElement('div');
@@ -130,6 +133,8 @@ rollButton.addEventListener("click", function() {
   token.setAttribute("id", player.name);
   token.style.backgroundImage = "url('" + player.tokensrc + "')";
   moveTo.appendChild(token)
+
+  selectPlayerFunction(player.location, player, bank, dieRoll, players, chanceDeck);
 });
 
 var sendGameDataBtn = document.getElementById('twilioCall');

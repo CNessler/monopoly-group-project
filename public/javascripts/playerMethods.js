@@ -9,18 +9,18 @@ Player.prototype.buyDeed= function (location, bank) {
   this.balance -= deed.price;
   bank.balance += deed.price;
   deed.owner = this.name;
-  console.log(deed.owner, "Deed Owner METH");
-  console.log(deed.name,"DEED NAME METH");
+  // console.log(deed.owner, "Deed Owner METH");
+  // console.log(deed.name,"DEED NAME METH");
 }
 
 Player.prototype.payRent = function(owner, deed, dieRoll, allPlayers) {
-  console.log("payrent runs");
-  console.log(deed.mortgaged, "deed mortagaged");
+  // console.log("payrent runs");
+  // console.log(deed.mortgaged, "deed mortagaged");
   if(deed.mortgaged === false) {
-    console.log("not mrotgaged");
+    // console.log("not mrotgaged");
     var rentDue;
     if(deed.color === "#a19a9a") {
-      console.log("deed is a railroad");
+      // console.log("deed is a railroad");
       var railroadsOwned = 1;
       for (var i = 0; i < owner.deeds.length; i++) {
         if(owner.deeds[i].color === "#a19a9a") {
@@ -30,7 +30,7 @@ Player.prototype.payRent = function(owner, deed, dieRoll, allPlayers) {
       rentDue = 25 * railroadsOwned;
     }
     else if(deed.color === "#FFa500") {
-      console.log("deed is a util");
+      // console.log("deed is a util");
       var utilitiesOwned = 1;
       owner.deeds.forEach(function (checkedDeed) {
         if(checkedDeed.color === "#FFa500") {
@@ -45,11 +45,11 @@ Player.prototype.payRent = function(owner, deed, dieRoll, allPlayers) {
       }
     }
     else {
-      console.log("deed is a regular property");
+      // console.log("deed is a regular property");
       rentDue = deed.rent;
     }
     this.balance -= rentDue;
-    console.log(this.name, this.balance,owner.balance,rentDue);
+    // console.log(this.name, this.balance,owner.balance,rentDue);
     owner.balance += rentDue;
   }
 }
@@ -95,12 +95,12 @@ Player.prototype.buyHouse = function (deed, allDeeds, houses) {
           deed.rent = deed.rent * multiplicationFactor;
         }
         if (player.hotels > 0) {
-          console.log('you already have a hotel here')
+          // console.log('you already have a hotel here')
         }
         if (playerPurchaseCapacity < 0) {
           for (var i = houses; i >= 0; i--) {
             if(this.balance - (i*50) > 0) {
-              console.log("you can afford "+ houses + " houses");
+              // console.log("you can afford "+ houses + " houses");
             }
             else {
               i--;

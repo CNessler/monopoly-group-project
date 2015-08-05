@@ -1,6 +1,7 @@
 var rollButton = document.getElementById('roll');
 var index = 0;
 var turn = document.getElementById('turn')
+var misc = [12, 28, 5, 15, 25, 35]
 
 var tokens = [
  {name: "hat", url: 'http://www.worldofmonopoly.com/fansite/images/tokens/monopoly_token_hat.png'},
@@ -31,7 +32,7 @@ for (var i = 0; i < data.length; i++) {
 function getMove(player) {
 
  // var move = Math.floor(Math.random()*10) + 2;
- var move = 15;
+ var move = 7;
  var goEl = player.location + move
  if (goEl === 30){
    player.location = 10;

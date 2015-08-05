@@ -1,15 +1,21 @@
-var a = 'akhil'
-var b = 'sankar'
-var c = 'derek'
-var d = 'vance'
 
-var logger = function (w,e,q,r) {
-  console.log(q, e);
+
+var logger = function(x) {
+  if(x > 0) {
+    console.log(x);
+    x--;
+    logger(x);
+  }
+  else {
+    console.log("done");
+  }
 }
 
-var anotherLogger = function (q,w,e,r) {
-  console.log(w,r);
-}
+logger(5)
 
-logger(a,b,c,d);
-anotherLogger(a,b,c,d);
+
+var balanceDues = function (balance, paymentDue) {
+  //if (balance < paymentDue && unmortaged deeds) {
+
+  }
+}

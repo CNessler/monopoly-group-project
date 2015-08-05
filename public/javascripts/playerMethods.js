@@ -166,27 +166,47 @@ Player.prototype.pickUpFreeParking = function (bank) {
   bank.freeParking = 0;
 }
 
-Player.prototype.timeInJail = function () {
-  console.log("Time in jail happening!");
-    if(this.jailCounter === 3){
-      this.inJail = false;
-      var dieRoll = getMove(this)
-      var moveTo = document.getElementById('sp' + this.location)
-      moveTo.style.backgroundImage = "url('" + this.tokensrc + "')";
+// Player.prototype.timeInJail = function () {
+//   console.log("Time in jail happening!");
+//     if(this.jailCounter === 3){
+//       this.inJail = false;
+//       var dieRoll = getMove(this)
+//       var moveTo = document.getElementById('sp' + this.location)
+//       moveTo.style.backgroundImage = "url('" + this.tokensrc + "')";
+//
+//       selectPlayerFunction(this.location, this, bank, dieRoll, players, chanceDeck);
+//     }
+//     if(this.getOutOfJailFree === true) {
+//       this.inJail = false;
+//       this.getOutOfJailFree = false;
+//       var dieRoll = getMove(this)
+//       var moveTo = document.getElementById('sp' + this.location)
+//       moveTo.style.backgroundImage = "url('" + this.tokensrc + "')";
+//
+//       selectPlayerFunction(this.location, this, bank, dieRoll, players, chanceDeck);
+//     }
+//     else {
+//       this.jailCounter ++;
+//       this.location = 10;
+//     }
+// }
 
-      selectPlayerFunction(this.location, this, bank, dieRoll, players, chanceDeck);
+Player.prototype.checkBalanceDues = function (owner, expenditure) {
+  // if(this.balance < expenditure){
+    var mortgageAvailable = this.deeds.length - 1;
+    for (var i = 0; i < this.deeds.length; i++) {
+      if(this.deeds[i].mortgaged === true){
+        mortgageAvailable --;
+      }
     }
-    if(this.getOutOfJailFree === true) {
-      this.inJail = false;
-      this.getOutOfJailFree = false;
-      var dieRoll = getMove(this)
-      var moveTo = document.getElementById('sp' + this.location)
-      moveTo.style.backgroundImage = "url('" + this.tokensrc + "')";
+  //   if(maxMoney < expenditure){
+  //     alert("Bankrupt")
+  //     //figure out how to skip player or remove
+  //   }
+  //   while(this.balance < expenditure && mortgageAvailable > 0){
+  //     alert('need to mortgage')
+  //
+  //   }
+  // }
 
-      selectPlayerFunction(this.location, this, bank, dieRoll, players, chanceDeck);
-    }
-    else {
-      this.jailCounter ++;
-      this.location = 10;
-    }
 }

@@ -57,154 +57,228 @@ var allDeeds = [
 var bank = new Bank();
 
 var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers, chanceDeck) {
-  // console.log(allDeeds.length-1, "alldeeds length ", allDeeds[allDeeds.length-1], "pivotal");
-  console.log(player, player.token, player.tokensrc, "PLAYER INFO");
-  var getOwner = function (allPlayers) {
-    var owner;
-    allPlayers.forEach(function (eachPlayer) {
-      eachPlayer.deeds.forEach(function (checkedDeed) {
-        if(checkedDeed.owner === eachPlayer.name){
-          owner = eachPlayer;
+    // console.log(allDeeds.length-1, "alldeeds length ", allDeeds[allDeeds.length-1], "pivotal");
+    console.log(player, player.token, player.tokensrc, "PLAYER INFO");
+    var getOwner = function (allPlayers) {
+      var owner;
+      allPlayers.forEach(function (eachPlayer) {
+        eachPlayer.deeds.forEach(function (checkedDeed) {
+          if(checkedDeed.owner === eachPlayer.name){
+            owner = eachPlayer;
+          }
+        })
+      })
+      return owner;
+    }
+
+    var owner = getOwner(allPlayers);
+
+  if(player.balance > 0){
+    if(player.inJail === false) {
+
+      var myDialog = document.getElementById('myDialog');
+        var caption = document.createElement('p')
+        var closeModal = document.createElement('button');
+        var closeModal2 = document.createElement('button');
+
+      var deed;
+      bank.deeds.forEach(function (checkedDeed) {
+        if(checkedDeed.boardIndex === location) {
+          deed = checkedDeed;
         }
       })
-    })
-    return owner;
-  }
 
-  var owner = getOwner(allPlayers);
+      if(location === 4 || location === 38) {
+        // console.log("tax");
+        myDialog.appendChild(caption).innerHTML = "Pay Fine";
+        myDialog.appendChild(closeModal).innerHTML = 'Pay Fine';
 
+        myDialog.showModal();
 
-  if(player.inJail === false) {
-
-    var myDialog = document.getElementById('myDialog');
-      var caption = document.createElement('p')
-      var closeModal = document.createElement('button');
-      var closeModal2 = document.createElement('button');
-
-    var deed;
-    bank.deeds.forEach(function (checkedDeed) {
-      if(checkedDeed.boardIndex === location) {
-        deed = checkedDeed;
+        closeModal.addEventListener('click', function () {
+          player.payTax(bank);
+          playerDash(player);
+          myDialog.close();
+          myDialog.innerHTML = '';
+        })
       }
-    })
 
-    if(location === 4 || location === 38) {
-      // console.log("tax");
-      myDialog.appendChild(caption).innerHTML = "Pay Fine";
-      myDialog.appendChild(closeModal).innerHTML = 'Pay Fine';
+      else if( location === 2  || location === 7  || location === 17 || location === 22 || location === 33 || location === 36){
+        if(location === 7 || location === 22 || location === 36) {
+          var outputCard = chanceDeck.drawCard()[0];
+          // console.log(outputCard);
+          var amount = outputCard.amount;
+          var spaces = 3;
 
-      myDialog.showModal();
+          myDialog.appendChild(caption).innerHTML = outputCard.caption;
+          myDialog.appendChild(closeModal).innerHTML = 'Ok';
 
-      closeModal.addEventListener('click', function () {
-        player.payTax(bank);
+          myDialog.showModal();
+
+          closeModal.addEventListener('click', function () {
+            outputCard.cardAction(player, owner, allPlayers, amount, location, spaces, bank, allDeeds);
+            playerDash(player);
+            myDialog.close();
+            myDialog.innerHTML = '';
+            nextPlayer();
+          })
+
+          if (typeof outputCard[1] === "object") {
+            chanceDeck.counter = 0;
+          }
+          else {
+            chanceDeck.counter += 1;
+          }
+        }
+        else {
+          var outputCard = communityChestDeck.drawCard()[0];
+          var amount = outputCard.amount;
+          var spaces = 3;
+
+          myDialog.appendChild(caption).innerHTML = outputCard.caption;
+          myDialog.appendChild(closeModal).innerHTML = 'Ok';
+
+          myDialog.showModal();
+
+          closeModal.addEventListener('click', function () {
+            myDialog.close();
+            outputCard.cardAction(player, owner, allPlayers, amount, location, spaces, bank, allDeeds);
+            playerDash(player);
+            myDialog.innerHTML = '';
+            nextPlayer();
+          })
+
+          if (typeof outputCard[1] === "object") {
+            communityChestDeck.counter = 0;
+          }
+          else {
+            communityChestDeck.counter += 1;
+          }
+
+
+        }
+      }
+
+      else if(location % 10 === 0) {
+        if(location === 20) {
+          player.pickUpFreeParking(bank);
+
+        }
+        else if (location === 30) {
+          goToJail(player);
+        }
         playerDash(player);
-        myDialog.close();
-        myDialog.innerHTML = '';
-      })
-    }
-
-    else if( location === 2  || location === 7  || location === 17 || location === 22 || location === 33 || location === 36){
-      if(location === 7 || location === 22 || location === 36) {
-        var outputCard = chanceDeck.drawCard()[0];
-        // console.log(outputCard);
-        var amount = outputCard.amount;
-        var spaces = 3;
-
-        myDialog.appendChild(caption).innerHTML = outputCard.caption;
-        myDialog.appendChild(closeModal).innerHTML = 'Ok';
-
-        myDialog.showModal();
-
-        closeModal.addEventListener('click', function () {
-          outputCard.cardAction(player, owner, allPlayers, amount, location, spaces, bank, allDeeds);
-          playerDash(player);
-          myDialog.close();
-          myDialog.innerHTML = '';
-          nextPlayer();
-        })
-
-        if (typeof outputCard[1] === "object") {
-          chanceDeck.counter = 0;
-        }
-        else {
-          chanceDeck.counter += 1;
-        }
+        nextPlayer();
       }
+
       else {
-        var outputCard = communityChestDeck.drawCard()[0];
-        var amount = outputCard.amount;
-        var spaces = 3;
+        if(deed.owner != "" && deed.owner != player.name){
+          myDialog.appendChild(caption).innerHTML = "Pay Rent";
+          myDialog.appendChild(closeModal).innerHTML = 'Pay Rent';
 
-        myDialog.appendChild(caption).innerHTML = outputCard.caption;
-        myDialog.appendChild(closeModal).innerHTML = 'Ok';
+          myDialog.showModal();
 
-        myDialog.showModal();
-
-        closeModal.addEventListener('click', function () {
-          myDialog.close();
-          outputCard.cardAction(player, owner, allPlayers, amount, location, spaces, bank, allDeeds);
-          playerDash(player);
-          myDialog.innerHTML = '';
-          nextPlayer();
-        })
-
-        if (typeof outputCard[1] === "object") {
-          communityChestDeck.counter = 0;
+          closeModal.addEventListener('click', function () {
+            player.payRent(owner, deed, dieRoll, allPlayers)
+            console.log(allPlayers, "allPlayer`s");
+            playerDash(player);
+            myDialog.close();
+            myDialog.innerHTML = '';
+            nextPlayer();
+          })
         }
+
         else {
-          communityChestDeck.counter += 1;
+          myDialog.appendChild(caption).innerHTML = 'Property Available'
+          myDialog.appendChild(closeModal).innerHTML = 'Do Nothing'
+          myDialog.appendChild(closeModal2).innerHTML = 'Buy Property'
+
+          myDialog.showModal();
+
+          closeModal.addEventListener('click', function () {
+            playerDash(player);
+            myDialog.close();
+            // playerDash(player);
+            myDialog.innerHTML = '';
+            nextPlayer();
+          })
+
+          closeModal2.addEventListener('click', function () {
+            player.buyDeed(location, bank);
+            playerDash(player);
+            myDialog.close();
+            myDialog.innerHTML = '';
+            nextPlayer();
+          })
         }
 
-
       }
-    }
-
-    else if(location % 10 === 0) {
-      if(location === 20) {
-        player.pickUpFreeParking(bank);
-
-      }
-      else if (location === 30) {
-        goToJail(player);
-      }
-      playerDash(player);
-      nextPlayer();
     }
 
     else {
-      if(deed.owner != "" && deed.owner != player.name){
-        myDialog.appendChild(caption).innerHTML = "Pay Rent";
-        myDialog.appendChild(closeModal).innerHTML = 'Pay Rent';
+      // console.log("IN JAIL");
+      var myDialog = document.getElementById('myDialog');
+      var caption = document.createElement('p')
+      var closeModal = document.createElement('button');
+      var closeModal2 = document.createElement('button');
+      // console.log(player.jailCounter, "JAIL COUNT");
+      redirectToken(10, player)
 
-        myDialog.showModal();
+      if(player.jailCounter === 3){
+        myDialog.appendChild(caption).innerHTML = "You're FREE";
+        myDialog.appendChild(closeModal).innerHTML = 'Now Roll The Die';
+        redirectToken(10, player)
+        player.location = 10;
+        myDialog.show();
 
         closeModal.addEventListener('click', function () {
-          player.payRent(owner, deed, dieRoll, allPlayers)
-          console.log(allPlayers, "allPlayer`s");
+          // player.timeInJail()
           playerDash(player);
           myDialog.close();
           myDialog.innerHTML = '';
-          nextPlayer();
+          // nextPlayer();
         })
+        player.inJail = false;
+        // var dieRoll = getMove(player)
+        // var moveTo = document.getElementById('sp' + player.location)
+        // moveTo.style.backgroundImage = "url('" + player.tokensrc + "')";
+        //
+        // selectPlayerFunction(player.location, player, bank, dieRoll, players, chanceDeck);
       }
+      else if(player.getOutOfJailFree === true) {
+        myDialog.appendChild(caption).innerHTML = "You're FREE";
+        myDialog.appendChild(closeModal).innerHTML = 'Now Roll The Die';
+        redirectToken(10, player)
+        player.location = 10;
+        myDialog.show();
 
+        closeModal.addEventListener('click', function () {
+          // player.timeInJail()
+          playerDash(player);
+          myDialog.close();
+          myDialog.innerHTML = '';
+          // nextPlayer();
+        })
+
+        player.inJail = false;
+        player.getOutOfJailFree = false;
+        // var dieRoll = getMove(player)
+        // var moveTo = document.getElementById('sp' + player.location)
+        // moveTo.style.backgroundImage = "url('" + player.tokensrc + "')";
+
+        // selectPlayerFunction(player.location, player, bank, dieRoll, players, chanceDeck);
+      }
       else {
-        myDialog.appendChild(caption).innerHTML = 'Property Available'
-        myDialog.appendChild(closeModal).innerHTML = 'Do Nothing'
-        myDialog.appendChild(closeModal2).innerHTML = 'Buy Property'
+        myDialog.appendChild(caption).innerHTML = "In Jail";
+        myDialog.appendChild(closeModal).innerHTML = 'Miss Turn';
+        redirectToken(10, player)
 
-        myDialog.showModal();
+        myDialog.show();
 
+        player.jailCounter ++;
+        player.location = 10;
         closeModal.addEventListener('click', function () {
-          playerDash(player);
-          myDialog.close();
-          // playerDash(player);
-          myDialog.innerHTML = '';
-          nextPlayer();
-        })
-
-        closeModal2.addEventListener('click', function () {
-          player.buyDeed(location, bank);
+          // player.timeInJail()
           playerDash(player);
           myDialog.close();
           myDialog.innerHTML = '';
@@ -212,98 +286,43 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
         })
       }
 
+      // console.log("IN JAIL");
+      // var myDialog = document.getElementById('myDialog');
+      // var caption = document.createElement('p')
+      // var closeModal = document.createElement('button');
+      // var closeModal2 = document.createElement('button');
+      // console.log(player.jailCounter, "JAIL COUNT");
+      // // console.log("youre in jail, suckaa");
+      // myDialog.appendChild(caption).innerHTML = "In Jail";
+      // myDialog.appendChild(closeModal).innerHTML = 'Miss Turn';
+      // redirectToken(10, player)
+      // myDialog.show();
+      //
+      // closeModal.addEventListener('click', function () {
+      //   player.timeInJail()
+      //   playerDash(player);
+      //   myDialog.close();
+      //   myDialog.innerHTML = '';
+      //   nextPlayer();
+      // })
     }
   }
-
   else {
-    // console.log("IN JAIL");
     var myDialog = document.getElementById('myDialog');
     var caption = document.createElement('p')
     var closeModal = document.createElement('button');
     var closeModal2 = document.createElement('button');
-    // console.log(player.jailCounter, "JAIL COUNT");
-    redirectToken(10, player)
 
-    if(player.jailCounter === 3){
-      myDialog.appendChild(caption).innerHTML = "You're FREE";
-      myDialog.appendChild(closeModal).innerHTML = 'Now Roll The Die';
-      redirectToken(10, player)
-      player.location = 10;
-      myDialog.show();
+    myDialog.appendChild(caption).innerHTML = "You've gone bankrupt";
+    myDialog.appendChild(closeModal).innerHTML = 'Sell Back Mortgages';
 
-      closeModal.addEventListener('click', function () {
-        // player.timeInJail()
-        playerDash(player);
-        myDialog.close();
-        myDialog.innerHTML = '';
-        // nextPlayer();
-      })
-      player.inJail = false;
-      // var dieRoll = getMove(player)
-      // var moveTo = document.getElementById('sp' + player.location)
-      // moveTo.style.backgroundImage = "url('" + player.tokensrc + "')";
-      //
-      // selectPlayerFunction(player.location, player, bank, dieRoll, players, chanceDeck);
-    }
-    else if(player.getOutOfJailFree === true) {
-      myDialog.appendChild(caption).innerHTML = "You're FREE";
-      myDialog.appendChild(closeModal).innerHTML = 'Now Roll The Die';
-      redirectToken(10, player)
-      player.location = 10;
-      myDialog.show();
+    myDialog.show();
 
-      closeModal.addEventListener('click', function () {
-        // player.timeInJail()
-        playerDash(player);
-        myDialog.close();
-        myDialog.innerHTML = '';
-        // nextPlayer();
-      })
-
-      player.inJail = false;
-      player.getOutOfJailFree = false;
-      // var dieRoll = getMove(player)
-      // var moveTo = document.getElementById('sp' + player.location)
-      // moveTo.style.backgroundImage = "url('" + player.tokensrc + "')";
-
-      // selectPlayerFunction(player.location, player, bank, dieRoll, players, chanceDeck);
-    }
-    else {
-      myDialog.appendChild(caption).innerHTML = "In Jail";
-      myDialog.appendChild(closeModal).innerHTML = 'Miss Turn';
-      redirectToken(10, player)
-
-      myDialog.show();
-
-      player.jailCounter ++;
-      player.location = 10;
-      closeModal.addEventListener('click', function () {
-        // player.timeInJail()
-        playerDash(player);
-        myDialog.close();
-        myDialog.innerHTML = '';
-        nextPlayer();
-      })
-    }
-
-    // console.log("IN JAIL");
-    // var myDialog = document.getElementById('myDialog');
-    // var caption = document.createElement('p')
-    // var closeModal = document.createElement('button');
-    // var closeModal2 = document.createElement('button');
-    // console.log(player.jailCounter, "JAIL COUNT");
-    // // console.log("youre in jail, suckaa");
-    // myDialog.appendChild(caption).innerHTML = "In Jail";
-    // myDialog.appendChild(closeModal).innerHTML = 'Miss Turn';
-    // redirectToken(10, player)
-    // myDialog.show();
-    //
-    // closeModal.addEventListener('click', function () {
-    //   player.timeInJail()
-    //   playerDash(player);
-    //   myDialog.close();
-    //   myDialog.innerHTML = '';
-    //   nextPlayer();
-    // })
+    closeModal.addEventListener('click', function () {
+      playerDash(player);
+      myDialog.close();
+      myDialog.innerHTML = '';
+      nextPlayer();
+    })
   }
 }

@@ -106,6 +106,7 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
     else if( location === 2  || location === 7  || location === 17 || location === 22 || location === 33 || location === 36){
       if(location === 7 || location === 22 || location === 36) {
         var outputCard = chanceDeck.drawCard()[0];
+        // console.log(outputCard);
         var amount = outputCard.amount;
         var spaces = 3;
 
@@ -151,7 +152,7 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
           communityChestDeck.counter = 0;
         }
         else {
-          chanceDeck.counter += 1;
+          communityChestDeck.counter += 1;
         }
 
 
@@ -197,7 +198,7 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
         closeModal.addEventListener('click', function () {
           playerDash(player);
           myDialog.close();
-          playerDash(player);
+          // playerDash(player);
           myDialog.innerHTML = '';
           nextPlayer();
         })

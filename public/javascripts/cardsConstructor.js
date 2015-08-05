@@ -130,8 +130,8 @@ var goToPivotal = function(player, owner, allPlayers, amount, location, spaces, 
 
     closeModal.addEventListener('click', function () {
       playerDash(player);
-      myDialog.close();
-      playerDash(player);
+      myDialog2.close();
+      // playerDash(player);
       myDialog.innerHTML = '';
     })
 
@@ -197,7 +197,15 @@ chanceArray =
   [
     new Card("gotoPivotal", "chance", "Go to Pivotal", goToPivotal, 0),
     new Card("getoutofjail", "chance", "Get out of jail free", getOutOfJail, 0),
-    new Card("gotojail", "chance", "Go directly to Jail", goToJail, 0)
+    new Card("gotojail", "chance", "Go directly to Jail", goToJail, 0),
+    new Card("pay15", "chance", "pay 15", loseMoney, 15),
+    new Card("get50", "chance", "get 50", addMoney, 50),
+    new Card("get150", "chance","get 150", addMoney, 150),
+    new Card("payPerHH", "chance", "pay 25 per house and 100 per hotel", payPerHouseHotel, 0),
+    new Card("payEachPlayer50", "chance", "pay each player 50", payOtherPlayers, 0),
+    new Card("advancetoUtil", "chance", "go to nearest util and pay 10 times die roll to owner (if owner exists)", advanceToNearestUtility, 0),
+    new Card("goback3", "chance", "go back 3 spaces", goBack, 0),
+    new Card("advanceToGo", "chance", "advance to go", advanceToGo, 0)
   ]
 
 var communityChestDeck = new Deck();

@@ -130,6 +130,10 @@ p {
   padding: 2px;
 }
 
+.propDisplay {
+  padding: 5px;
+}
+
 .questionMark, .questionMarkSmall {
   padding-top: 10px;
 }
@@ -241,6 +245,15 @@ p {
   vertical-align: super;
 }
 
+#closeButton {
+  display: block;
+  float: right;
+  width: 20px;
+  height: 20px;
+  padding: 2px;
+  margin: 0px;
+}
+
 #getOut {
   width: 230px;
   padding: 13px;
@@ -281,6 +294,10 @@ p {
   float: left;
   position: relative;
   top: 10px;
+}
+
+#mortgageButton {
+  width: auto;
 }
 
 #name {

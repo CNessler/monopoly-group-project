@@ -61,6 +61,19 @@ router.post('/', function(req, res, next) {
     {name: name3, token: token3},
     {name: name4, token: token4}
   ]
+  var errorList = [
+    {name: "Jeff", token: "iron"},
+    {name: "Martha", token: "thimble"},
+    {name: "Evan", token: "shoe"},
+    {name: "Zack", token: "wheelbarrow"}
+  ]
+  for (var i = 0; i < list.length; i++) {
+    if (list[i].name === '') {
+      console.log(list[i].name);
+      list[i].name = errorList[i].name
+      list[i].token = errorList[i].token
+    }
+  }
   // res.cookie('player1', name1);
   // res.cookie('player2', name2);
   // res.cookie('player3', name3);

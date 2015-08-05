@@ -43,7 +43,11 @@ var tokens = [
  {name: "hat", url: '../stylesheets/images/monopoly_token_hat.png'},
  {name: "ship", url: '../stylesheets/images/ship.png'},
  {name: "dog", url: '../stylesheets/images/dog.png'},
- {name: "car", url: '../stylesheets/images/car.png'}
+ {name: "car", url: '../stylesheets/images/car.png'},
+ {name: "shoe", url: '../stylesheets/images/shoe.png'},
+ {name: "thimble", url: '../stylesheets/images/thimble.png'},
+ {name: "wheelbarrow", url: '../stylesheets/images/wheelbarrow.png'},
+ {name: "iron", url: '../stylesheets/images/iron.png'}
 ]
 
 function getToken(player) {

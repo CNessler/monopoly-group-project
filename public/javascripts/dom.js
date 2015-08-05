@@ -31,7 +31,6 @@ for (var i = 0; i < data.length; i++) {
 
 function getMove(player) {
  var move = Math.floor(Math.random()*10) + 2;
- // var move = 7;
  if (player.location + move < 40) {
    player.location += move;
  } else {

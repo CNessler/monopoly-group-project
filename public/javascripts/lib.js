@@ -1,4 +1,5 @@
 var deedContainer = document.getElementById('deedContainer');
+var dialog3 = document.getElementById('myDialog3');
 
 function createCard(deed) {
   var property = document.createElement('div');
@@ -12,12 +13,10 @@ function createCard(deed) {
   var line4 = document.createElement("p")
   var line5 = document.createElement("p")
   var mortgage = document.createElement("p")
-
   property.setAttribute("class", "property");
   property.setAttribute("id", deed.boardIndex)
   header.setAttribute("class", "header")
   header.style.backgroundColor = deed.color;
-
   prices.setAttribute("class", "prices");
   line.innerHTML = "Price: " + deed.price + " -- Rent: " + deed.rent;
   line1.innerHTML = "With 1 house: " + (deed.baseRent * 5);
@@ -26,10 +25,8 @@ function createCard(deed) {
   line4.innerHTML = "With 4 houses: " + (deed.baseRent * 40);
   line5.innerHTML = "With hotel: " + (deed.baseRent * 50);
   mortgage.innerHTML = "Mortgage: " + deed.mortgageValue;
-
   for (var j = 0; j < utils.length; j++) {
     if (deed.boardIndex === utils[j]) {
-
       line.innerHTML = ""
       line1.innerHTML = ""
       line2.innerHTML = ""
@@ -43,7 +40,6 @@ function createCard(deed) {
       line3.innerHTML = "rent is 10x amount on dice."
       mortgage.innerHTML = "Mortgage value: $75"
     } else if (deed.boardIndex === rr[j]) {
-
       line.innerHTML = ""
       line1.innerHTML = ""
       line2.innerHTML = ""
@@ -69,7 +65,77 @@ function createCard(deed) {
     property.appendChild(prices);
     deedContainer.appendChild(property);
   }
+  property.addEventListener('click', function (e) {
+    getProperty(e.currentTarget.id);
+  })
 }
+
+function getProperty(id) {
+  clearMod(dialog3);
+  var prop;
+  var msg;
+  var caption = document.createElement('p');
+  var caption2 = document.createElement('p');
+  var closeButton = document.createElement('button');
+  var houseButton = document.createElement('button');
+  caption.setAttribute("class", "propName");
+  caption2.setAttribute("class", "propDisplay");
+  closeButton.setAttribute("id", "closeButton");
+  houseButton.setAttribute("id", "houseButton");
+  for (var i = 0; i < allDeeds.length; i++) {
+    if(allDeeds[i].boardIndex == id){
+      prop = allDeeds[i];
+    }
+  }
+  if (!prop.mortgaged) {
+    msg = "";
+    var mortgageButton = document.createElement('button');
+    mortgageButton.setAttribute("id", "mortgageButton");
+  } else {
+    msg = " - MORTGAGED"
+  }
+  dialog3.appendChild(closeButton).innerHTML = "X";
+  dialog3.appendChild(caption).innerHTML = prop.name;
+  dialog3.appendChild(caption2).innerHTML = "Houses: " + prop.houses + " - Hotels: " + prop.hotels + msg
+  dialog3.showModal();
+  closeButton.addEventListener('click', function () {
+    dialog3.close();
+  })
+  if (prop.owner === players[index].name) {
+    if (mortgageButton) {
+      dialog3.appendChild(mortgageButton).innerHTML = "Mortgage ($" + prop.mortgageValue + ")";
+    }
+    if (prop.houses <=3 && prop.hotels !== 1) {
+      dialog3.appendChild(houseButton).innerHTML = "Add house";
+    } else if (prop.hotels === 0){
+      dialog3.appendChild(houseButton).innerHTML = "Add hotel";
+    }
+    mortgageButton.addEventListener('click', function () {
+      // if not mortgaged, run mortgage function
+      var m = document.getElementById('mortgageButton');
+      m.remove();
+      prop.mortgaged = true;
+      dialog3.close();
+    })
+    houseButton.addEventListener('click', function () {
+      if (prop.houses <= 2 && prop.hotels !== 1) {
+        dialog3.appendChild(houseButton).innerHTML = "Add house";
+      } else if (prop.houses === 3 && prop.hotels === 0) {
+        dialog3.appendChild(houseButton).innerHTML = "Add hotel";
+      }
+      if (prop.houses <=3 && prop.hotels !== 1) {
+        prop.houses ++
+      } else if (prop.houses === 4 && prop.hotels === 0) {
+        prop.houses = 0;
+        prop.hotels = 1;
+        var hb = document.getElementById('houseButton');
+        hb.remove();
+      }
+      caption2.innerHTML = "Houses: " + prop.houses + " - Hotels: " + prop.hotels + msg
+    });
+  }
+}
+
 
 function getOutFree(player) {
   if (player.getOutOfJailFree) {
@@ -80,8 +146,14 @@ function getOutFree(player) {
 }
 
 function clearCont(){
-   while (deedContainer.hasChildNodes()) {
-     deedContainer.removeChild(deedContainer.firstChild);
+  while (deedContainer.hasChildNodes()) {
+    deedContainer.removeChild(deedContainer.firstChild);
+  }
+}
+
+function clearMod(modal){
+   while (modal.hasChildNodes()) {
+     modal.removeChild(modal.firstChild);
   }
 }
 

@@ -149,7 +149,9 @@ p {
   padding: 1%;
   margin-bottom: 15px; }
   .nav a {
-    text-decoration: none; }
+    text-decoration: none;
+    padding: 10px;
+    padding-right: 30px; }
 
 .prices {
   padding: 2px; }

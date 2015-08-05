@@ -87,6 +87,13 @@ function getProperty(id) {
       prop = allDeeds[i];
     }
   }
+  var miscSpace = false;
+  for (var i = 0; i < misc.length; i++) {
+    if (id == misc[i]) {
+      miscSpace = true;
+    }
+  }
+
   if (!prop.mortgaged) {
     msg = "";
     var mortgageButton = document.createElement('button');
@@ -94,45 +101,61 @@ function getProperty(id) {
   } else {
     msg = " - MORTGAGED"
   }
+
   dialog3.appendChild(closeButton).innerHTML = "X";
   dialog3.appendChild(caption).innerHTML = prop.name;
-  dialog3.appendChild(caption2).innerHTML = "Houses: " + prop.houses + " - Hotels: " + prop.hotels + msg
+
+  if (miscSpace === true) {
+    dialog3.appendChild(caption2).innerHTML = "Mortgage Value: $" + prop.mortgageValue + msg;
+    houseButton = null;
+  } else {
+    dialog3.appendChild(caption2).innerHTML = "Houses: " + prop.houses + " - Hotels: " + prop.hotels + msg
+  }
+
   dialog3.showModal();
   closeButton.addEventListener('click', function () {
     dialog3.close();
   })
+
   if (prop.owner === players[index].name) {
     if (mortgageButton) {
       dialog3.appendChild(mortgageButton).innerHTML = "Mortgage ($" + prop.mortgageValue + ")";
     }
-    if (prop.houses <=3 && prop.hotels !== 1) {
-      dialog3.appendChild(houseButton).innerHTML = "Add house";
-    } else if (prop.hotels === 0){
-      dialog3.appendChild(houseButton).innerHTML = "Add hotel";
+    if (houseButton) {
+      if (prop.houses <=3 && prop.hotels !== 1) {
+        dialog3.appendChild(houseButton).innerHTML = "Add house";
+      } else if (prop.hotels === 0){
+        dialog3.appendChild(houseButton).innerHTML = "Add hotel";
+      }
     }
     mortgageButton.addEventListener('click', function () {
-      // if not mortgaged, run mortgage function
+      players[index].balance += prop.mortgageValue;
+      bank.balance -= prop.mortgageValue;
       var m = document.getElementById('mortgageButton');
       m.remove();
+      prop.houses = 0;
+      prop.hotels = 0;
       prop.mortgaged = true;
       dialog3.close();
     })
-    houseButton.addEventListener('click', function () {
-      if (prop.houses <= 2 && prop.hotels !== 1) {
-        dialog3.appendChild(houseButton).innerHTML = "Add house";
-      } else if (prop.houses === 3 && prop.hotels === 0) {
-        dialog3.appendChild(houseButton).innerHTML = "Add hotel";
-      }
-      if (prop.houses <=3 && prop.hotels !== 1) {
-        prop.houses ++
-      } else if (prop.houses === 4 && prop.hotels === 0) {
-        prop.houses = 0;
-        prop.hotels = 1;
-        var hb = document.getElementById('houseButton');
-        hb.remove();
-      }
-      caption2.innerHTML = "Houses: " + prop.houses + " - Hotels: " + prop.hotels + msg
-    });
+    if (houseButton) {
+      houseButton.addEventListener('click', function () {
+        if (prop.houses <= 2 && prop.hotels !== 1) {
+          dialog3.appendChild(houseButton).innerHTML = "Add house";
+        } else if (prop.houses === 3 && prop.hotels === 0) {
+          dialog3.appendChild(houseButton).innerHTML = "Add hotel";
+        }
+        if (prop.houses <=3 && prop.hotels !== 1) {
+          prop.houses ++
+        } else if (prop.houses === 4 && prop.hotels === 0) {
+          prop.houses = 0;
+          prop.hotels = 1;
+          var hb = document.getElementById('houseButton');
+          hb.remove();
+        }
+        caption2.innerHTML = "Houses: " + prop.houses + " - Hotels: " + prop.hotels + msg
+      });
+    }
   }
 }
 

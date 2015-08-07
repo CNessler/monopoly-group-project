@@ -181,7 +181,7 @@ Deck.prototype.drawCard = function () {
 
 communityChestArray =
   [
-    new Card("pay15", "cc", "Community Chest: You owe $15", loseMoney, 15),
+    new Card("pay150", "cc", "Community Chest: You owe $15", loseMoney, 150),
     new Card("get50", "cc", "Community Chest: You owe $50", addMoney, 50),
     new Card("get150", "cc","Community Chest: You win $150", addMoney, 150),
     new Card("payPerHH", "cc", "Community Chest: Pay $25 per house and $100 per hotel", payPerHouseHotel, 0),

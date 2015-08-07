@@ -97,6 +97,22 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
         else {
           var tax = 75;
         }
+        if(player.balance < tax) {
+          checkBalance(player, boardIndex, expenditure)
+          // myDialog.appendChild(caption).innerHTML = 'You must mortgage properties'
+          // myDialog.appendChild(closeModal).innerHTML = 'see properties'
+          //
+          // myDialog.showModal();
+          //
+          // closeModal.addEventListener('click', function () {
+          //   playerDash(player);
+          //   // checkBalance(player, location, tax)
+          //   myDialog.close();
+          //   myDialog.innerHTML = '';
+          //   nextPlayer();
+          // })
+        }
+        else {
         myDialog.appendChild(caption).innerHTML = "Pay Fine ($" + tax + ")";
         myDialog.appendChild(closeModal).innerHTML = "Pay Fine ($" + tax + ")";
 
@@ -105,10 +121,12 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
         closeModal.addEventListener('click', function () {
           player.payTax(bank);
           playerDash(player);
+          // checkBalance(player, location, deed.price)
           myDialog.close();
           myDialog.innerHTML = '';
           nextPlayer();
         })
+        }
       }
 
       else if( location === 2  || location === 7  || location === 17 || location === 22 || location === 33 || location === 36){
@@ -124,10 +142,10 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
           myDialog.showModal();
 
           closeModal.addEventListener('click', function () {
-            // checkBalance(player, location, deed.price)
             outputCard.cardAction(player, owner, allPlayers, amount, location, spaces, bank, allDeeds);
             playerDash(player);
             myDialog.close();
+            // checkBalance(player, location, deed.price)
             myDialog.innerHTML = '';
             nextPlayer();
           })

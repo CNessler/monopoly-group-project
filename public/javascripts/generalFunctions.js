@@ -25,6 +25,7 @@ function checkBalance(player, boardIndex, expenditure) {
     }
     if(maxMoney < expenditure){
       player = null;
+      delete player;
       console.log(player, "REMOVE TRY");
       alert('YOU ARE BROKE')
       //remove or skip player from game
@@ -56,8 +57,9 @@ function checkBalance(player, boardIndex, expenditure) {
           for(var j = 0; j < property.length; j++) {
              property[j].addEventListener('click', function () {
                if(this.checked){
-               balanceShort -= this.value;
+               balanceShort -= Number(this.value);
                this.mortgaged = true;
+               player.balance += Number(this.value)
                caption.innerHTML = 'You are short $' + balanceShort;
                if(balanceShort <= 0){
                  caption.innerHTML = 'You now have ' + balanceShort;
@@ -67,10 +69,14 @@ function checkBalance(player, boardIndex, expenditure) {
              else {
                balanceShort += Number(this.value);
                this.mortgaged = false;
+               player.balance -= Number(this.value);
                mortgageBtn.disabled = true;
                caption.innerHTML = 'You are short $' + balanceShort;
              }
           });
+          mortgageBtn.addEventListener('click', function () {
+            myDialog4.close();
+          })
           }
         }
   //tax

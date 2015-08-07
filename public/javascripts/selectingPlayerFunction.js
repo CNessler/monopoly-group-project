@@ -124,6 +124,7 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
           myDialog.showModal();
 
           closeModal.addEventListener('click', function () {
+            // checkBalance(player, location, deed.price)
             outputCard.cardAction(player, owner, allPlayers, amount, location, spaces, bank, allDeeds);
             playerDash(player);
             myDialog.close();
@@ -149,9 +150,10 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
           myDialog.showModal();
 
           closeModal.addEventListener('click', function () {
-            myDialog.close();
+            // checkBalance(player, location, deed.price)
             outputCard.cardAction(player, owner, allPlayers, amount, location, spaces, bank, allDeeds);
             playerDash(player);
+            myDialog.close();
             myDialog.innerHTML = '';
             nextPlayer();
           })
@@ -193,6 +195,7 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
           myDialog.showModal();
 
           closeModal.addEventListener('click', function () {
+            checkBalance(player, location, deed.price)
             player.payRent(owner, deed, dieRoll, allPlayers)
             console.log(allPlayers, "allPlayer`s");
             playerDash(player);
@@ -201,7 +204,20 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
             nextPlayer();
           })
         }
+        else if (player.balance < deed.price){
+          myDialog.appendChild(caption).innerHTML = 'You cannot afford this property'
+          myDialog.appendChild(closeModal).innerHTML = 'Sorry bout ya'
 
+          myDialog.showModal();
+
+          closeModal.addEventListener('click', function () {
+            playerDash(player);
+            myDialog.close();
+            myDialog.innerHTML = '';
+            nextPlayer();
+          })
+
+        }
         else {
           myDialog.appendChild(caption).innerHTML = 'Property Available: ' + deed.name
           myDialog.appendChild(closeModal).innerHTML = 'Do Nothing'
@@ -212,12 +228,12 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
           closeModal.addEventListener('click', function () {
             playerDash(player);
             myDialog.close();
-            // playerDash(player);
             myDialog.innerHTML = '';
             nextPlayer();
           })
 
           closeModal2.addEventListener('click', function () {
+            console.log(checkBalance(player, location, deed.price), 'WORKING');
             player.buyDeed(location, bank);
             playerDash(player);
             myDialog.close();
@@ -323,22 +339,47 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
     }
   }
   else {
-    var myDialog = document.getElementById('myDialog');
+    var myDialog4 = document.getElementById('myDialog4');
     var caption = document.createElement('p')
-    var closeModal = document.createElement('button');
-    var closeModal2 = document.createElement('button');
+    myDialog4.appendChild(caption).innerHTML = 'You are short $' + balanceShort;
+    var mortgageBtn = document.createElement('button')
+    mortgageBtn.disabled = true;
+    myDialog4.appendChild(mortgageBtn).innerHTML = "mortgage properties";
 
-    myDialog.appendChild(caption).innerHTML = "You've gone bankrupt!";
-    myDialog.appendChild(closeModal).innerHTML = 'Sell back mortgages';
+    var balanceShort = expenditure - player.balance
 
-    myDialog.show();
+    var property  = [];
+    for(var i = 0; i < player.deeds.length; i++) {
+       property[i] = document.createElement('input');
+       var label = document.createElement('label');
+       label.innerHTML = player.deeds[i].name
+       property[i].type = "checkbox";
+       property[i].value = player.deeds[i].mortgageValue;
 
-    closeModal.addEventListener('click', function () {
-      playerDash(player);
-      myDialog.close();
-      myDialog.innerHTML = '';
-      nextPlayer();
-    })
+       label.appendChild(property[i]);
+       myDialog4.appendChild(label)
+      }
 
+      myDialog4.showModal();
+
+      for(var j = 0; j < property.length; j++) {
+         property[j].addEventListener('click', function () {
+           if(this.checked){
+           balanceShort -= this.value;
+           this.mortgaged = true;
+           caption.innerHTML = 'You are short $' + balanceShort;
+           if(balanceShort <= 0){
+             caption.innerHTML = 'You now have ' + balanceShort;
+             mrtgageBtn.disabled = false;
+           }
+         }
+         else {
+           balanceShort += Number(this.value);
+           this.mortgaged = false;
+           mrtgageBtn.disabled = true;
+           caption.innerHTML = 'You are short $' + balanceShort;
+         }
+      });
+    }
   }
 }

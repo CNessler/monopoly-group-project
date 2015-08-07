@@ -17,74 +17,68 @@ function redirectToken(boardIndex, player) {
 }
 
 
-// function checkBalance(player, boardIndex, expenditure) {
-//   if(player.balance < expenditure){
-//     var maxMoney = player.balance;
-//     for (var i = 0; i < player.deeds.length; i++) {
-//       maxMoney += player.deeds[i].mortgageValue + ((player.deeds[i].hotels * 100) + (player.deeds[i].houses * 50)*0.5)
-//     }
-//     if(maxMoney < expenditure){
-//       alert('YOU ARE BROKE')
-//       //remove or skip player from game
-//     }
-//     else {
-//         var myDialog4 = document.getElementById('myDialog4');
-//         var caption = document.createElement('p')
-//         var balanceShort = expenditure - player.balance
-//         myDialog4.appendChild(caption).innerHTML = 'You are short $' + balanceShort;
-//
-//         var property  = [];
-//         for(var i = 0; i < player.deeds.length; i++) {
-//            property[i] = document.createElement('input');
-//            var label = document.createElement('label');
-//            label.innerHTML = player.deeds[i].name
-//            property[i].type = "checkbox";
-//            property[i].value = player.deeds[i].mortgageValue;
-//
-//            label.appendChild(property[i]);
-//            myDialog4.appendChild(label)
-//           }
-//
-//           btn.addEventListener('click', function() {
-//            myDialog4.showModal();
-//           })
-//
-//           for(var j = 0; j < property.length; j++) {
-//              property[j].addEventListener('click', function () {
-//                balanceShort -= this.value;
-//                alert(balanceShort);
-//                caption.innerHTML = 'You are short $' + balanceShort;
-//           });
-//           }
-//     }
-//
-//         // var checkboxes  = [];
-//         // for(var i = 0; i < players.deeds.length; i++) {
-//         //  checkboxes[i] = document.createElement('input');
-//         //  var label = document.createElement('label');
-//         //  label.innerHTML = players.deeds[i].name
-//         //  checkboxes[i].type = "checkbox";
-//         //  checkboxes[i].value = players.deeds[i].mortgageValue;
-//         //
-//         //  label.appendChild(checkboxes[i]);
-//         //  myDialog4.appendChild(label)
-//         // }
-//         //
-//         // for(var j=0; j<checkboxes.length; j++){
-//         //   checkboxes[j].addEventListener('click', function () {
-//         //     balanceShort -= this.value
-//         //   })
-//         // }
-//
-//
-//       myDialog.appendChild(caption).innerHTML = "Pay Fine";
-//       myDialog.appendChild(closeModal).innerHTML = 'Pay Fine';
-//   }
-//   //tax
-//
-//   //rent
-// }
-// checkBalance()
+function checkBalance(player, boardIndex, expenditure) {
+  if(player.balance < expenditure){
+    var maxMoney = player.balance;
+    for (var i = 0; i < player.deeds.length; i++) {
+      maxMoney += player.deeds[i].mortgageValue + ((player.deeds[i].hotels * 100) + (player.deeds[i].houses * 50)*0.5)
+    }
+    if(maxMoney < expenditure){
+      player = null;
+      console.log(player, "REMOVE TRY");
+      alert('YOU ARE BROKE')
+      //remove or skip player from game
+    }
+    else {
+        var myDialog4 = document.getElementById('myDialog4');
+        var caption = document.createElement('p')
+        myDialog4.appendChild(caption).innerHTML = 'You are short $' + balanceShort;
+        var mortgageBtn = document.createElement('button')
+        mortgageBtn.disabled = true;
+        myDialog4.appendChild(mortgageBtn).innerHTML = "mortgage properties";
+
+        var balanceShort = expenditure - player.balance
+
+        var property  = [];
+        for(var i = 0; i < player.deeds.length; i++) {
+           property[i] = document.createElement('input');
+           var label = document.createElement('label');
+           label.innerHTML = player.deeds[i].name
+           property[i].type = "checkbox";
+           property[i].value = player.deeds[i].mortgageValue;
+
+           label.appendChild(property[i]);
+           myDialog4.appendChild(label)
+          }
+
+          myDialog4.showModal();
+
+          for(var j = 0; j < property.length; j++) {
+             property[j].addEventListener('click', function () {
+               if(this.checked){
+               balanceShort -= this.value;
+               this.mortgaged = true;
+               caption.innerHTML = 'You are short $' + balanceShort;
+               if(balanceShort <= 0){
+                 caption.innerHTML = 'You now have ' + balanceShort;
+                 mortgageBtn.disabled = false;
+               }
+             }
+             else {
+               balanceShort += Number(this.value);
+               this.mortgaged = false;
+               mortgageBtn.disabled = true;
+               caption.innerHTML = 'You are short $' + balanceShort;
+             }
+          });
+          }
+        }
+  //tax
+
+  //rent
+  }
+}
+
 
 // function purchaseCheck() {
 //   //property check

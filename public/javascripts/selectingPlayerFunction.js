@@ -107,6 +107,7 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
           playerDash(player);
           myDialog.close();
           myDialog.innerHTML = '';
+          nextPlayer();
         })
       }
 

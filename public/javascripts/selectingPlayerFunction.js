@@ -98,7 +98,7 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
           var tax = 75;
         }
         if(player.balance < tax) {
-          checkBalance(player, boardIndex, expenditure)
+          checkBalance(player, boardIndex, tax)
           // myDialog.appendChild(caption).innerHTML = 'You must mortgage properties'
           // myDialog.appendChild(closeModal).innerHTML = 'see properties'
           //
@@ -213,13 +213,17 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
           myDialog.showModal();
 
           closeModal.addEventListener('click', function () {
-            checkBalance(player, location, deed.price)
-            player.payRent(owner, deed, dieRoll, allPlayers)
-            console.log(allPlayers, "allPlayer`s");
-            playerDash(player);
-            myDialog.close();
-            myDialog.innerHTML = '';
-            nextPlayer();
+            if(player.balance < deed.rent){
+              checkBalance(player, location, deed.rent)
+            }
+            else {
+              player.payRent(owner, deed, dieRoll, allPlayers)
+              // console.log(allPlayers, "allPlayer`s");
+              playerDash(player);
+              myDialog.close();
+              myDialog.innerHTML = '';
+              nextPlayer();
+            }
           })
         }
         else if (player.balance < deed.price){
@@ -251,7 +255,7 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
           })
 
           closeModal2.addEventListener('click', function () {
-            console.log(checkBalance(player, location, deed.price), 'WORKING');
+            // console.log(checkBalance(player, location, deed.price), 'WORKING');
             player.buyDeed(location, bank);
             playerDash(player);
             myDialog.close();

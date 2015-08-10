@@ -28,8 +28,8 @@ var payOtherPlayers = function (player, owner, allPlayers, amount, location, spa
 }
 
 var payPerHouseHotel = function (player, owner, allPlayers, amount, location, spaces, bank, allDeeds) {
-  var houses=4;
-  var hotels=1;
+  var houses=0;
+  var hotels=0;
   for (var i = 0; i < player.deeds.length; i++) {
     houses += player.deeds[i].houses
     hotels += player.deeds[i].hotels
@@ -101,17 +101,22 @@ var goToPivotal = function(player, owner, allPlayers, amount, location, spaces, 
   console.log(player.location, "before");
   console.log(player.location, "");
   if(allDeeds[27].owner != "" && allDeeds[27].owner != player.name) {
-      var rentDue = allDeeds[27].rent;
-      player.balance -= rentDue;
-      var pivotalOwner;
-      allPlayers.forEach(function (eachPlayer) {
-        eachPlayer.deeds.forEach(function (checkedDeed) {
-          if(checkedDeed.boardIndex === 39) {
-            pivotalOwner = eachPlayer;
-          }
+      if(player.balance < allDeeds[27].rent){
+        checkBalance(player, 27, deed.rent)
+      }
+      else {
+        var rentDue = allDeeds[27].rent;
+        player.balance -= rentDue;
+        var pivotalOwner;
+        allPlayers.forEach(function (eachPlayer) {
+          eachPlayer.deeds.forEach(function (checkedDeed) {
+            if(checkedDeed.boardIndex === 39) {
+              pivotalOwner = eachPlayer;
+            }
+          })
+          pivotalOwner.balance += rentDue;
         })
-        pivotalOwner.balance += rentDue;
-      })
+      }
     }
   else {
     redirectToken(39, player);
@@ -122,25 +127,40 @@ var goToPivotal = function(player, owner, allPlayers, amount, location, spaces, 
     var closeModal = document.createElement('button');
     var closeModal2 = document.createElement('button');
 
-    myDialog2.appendChild(caption).innerHTML = 'Property Available: ' + allDeeds[27].name
-    myDialog2.appendChild(closeModal).innerHTML = 'Do Nothing'
-    myDialog2.appendChild(closeModal2).innerHTML = 'Buy Property ($' + allDeeds[27].price + ')'
+    if (player.balance < allDeeds[27].price){
+      myDialog.appendChild(caption).innerHTML = 'You cannot afford this property'
+      myDialog.appendChild(closeModal).innerHTML = 'Sorry bout ya'
 
-    myDialog2.showModal();
+      myDialog.showModal();
 
-    closeModal.addEventListener('click', function () {
-      playerDash(player);
-      myDialog2.close();
-      // playerDash(player);
-      myDialog.innerHTML = '';
-    })
+      closeModal.addEventListener('click', function () {
+        playerDash(player);
+        myDialog.close();
+        myDialog.innerHTML = '';
+        nextPlayer();
+      })
+    }
+    else {
+      myDialog2.appendChild(caption).innerHTML = 'Property Available: ' + allDeeds[27].name
+      myDialog2.appendChild(closeModal).innerHTML = 'Do Nothing'
+      myDialog2.appendChild(closeModal2).innerHTML = 'Buy Property ($' + allDeeds[27].price + ')'
 
-    closeModal2.addEventListener('click', function () {
-      player.buyDeed(39, bank);
-      playerDash(player);
-      myDialog2.close();
-      myDialog.innerHTML = '';
-    })
+      myDialog2.showModal();
+
+      closeModal.addEventListener('click', function () {
+        playerDash(player);
+        myDialog2.close();
+        // playerDash(player);
+        myDialog.innerHTML = '';
+      })
+
+      closeModal2.addEventListener('click', function () {
+        player.buyDeed(39, bank);
+        playerDash(player);
+        myDialog2.close();
+        myDialog.innerHTML = '';
+      })
+    }
   }
 }
 

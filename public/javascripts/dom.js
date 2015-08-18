@@ -100,15 +100,15 @@ rollButton.addEventListener("click", function() {
   selectPlayerFunction(player.location, player, bank, dieRoll, players, chanceDeck);
 });
 
-var sendGameDataBtn = document.getElementById('twilioCall');
-sendGameDataBtn.addEventListener('click', function() {
-
-  var xhr = new XMLHttpRequest();
-  xhr.open('post', "/gamedata", true);
-  xhr.setRequestHeader('Content-type', "application/json");
-
-  var sentObjectExample = {name: "Akhil", message: "HI CLAIRE!!!!"};
-  sentObjectString = JSON.stringify(sentObjectExample);
-
-  xhr.send(sentObjectString);
-})
+// var sendGameDataBtn = document.getElementById('twilioCall');
+// sendGameDataBtn.addEventListener('click', function() {
+//
+//   var xhr = new XMLHttpRequest();
+//   xhr.open('post', "/gamedata", true);
+//   xhr.setRequestHeader('Content-type', "application/json");
+//
+//   var sentObjectExample = {name: "Akhil", message: "HI CLAIRE!!!!"};
+//   sentObjectString = JSON.stringify(sentObjectExample);
+//
+//   xhr.send(sentObjectString);
+// })

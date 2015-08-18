@@ -3,9 +3,11 @@ var router = express.Router();
 var unirest = require('unirest');
 var client = require('twilio')(process.env.TWILIO_SID, process.env.TWILIO_AUTH)
 
+var library = require('../library/playerConstructor.js')
+  var tokens = library.tokens;
+  var Player = library.Player;
+
 var monopolyDB = require('monk')(process.env.MONGOLAB_URI);
-
-
 playersCollection = monopolyDB.get('players');
 deedsCollection = monopolyDB.get('deeds');
 banksCollection = monopolyDB.get('banks');
@@ -24,26 +26,9 @@ var sendSMS = function (aMessage, callback) {
   });
 }
 
-//var getAvailableTokens = require('../library/availableTokens.js');
-var library = require('../library/playerConstructor.js')
-var tokens = library.tokens;
-var Player = library.Player;
-// var getAllDeeds = require('../public/javascripts/deedConstructor.js')
 
 router.get('/', function(req, res, next) {
-
-
   res.render('index')
-  // if(req.cookies.name) {
-  //     res.redirect('/game');
-  //   }
-  // else {
-  // playersCollection.find({})
-  // .then(function (allPlayers) {
-  // var availableTokens = getAvailableTokens(allPlayers, tokens);
-  // res.render('index', {availableTokens: availableTokens});
-  // });
-  // }
 });
 
 router.post('/', function(req, res, next) {
@@ -92,21 +77,12 @@ router.post('/', function(req, res, next) {
     })
     res.redirect('/game');
   }
-  // res.cookie('player1', name1);
-  // res.cookie('player2', name2);
-  // res.cookie('player3', name3);
-  // res.cookie('player4', name4);
-  // res.cookie('token1', token1);
-  // res.cookie('token2', token2);
-  // res.cookie('token3', token3);
-  // res.cookie('token4', token4);
-
 });
 
 router.get('/game', function(req, res, next) {
   var player1 = req.cookies.player1
   var token1 = req.cookies.token1
-  
+
   playersCollection.find({})
   .then(function (allPlayers) {
     console.log(allPlayers);

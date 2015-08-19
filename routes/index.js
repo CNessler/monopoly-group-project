@@ -5,11 +5,14 @@ var client = require('twilio')(process.env.TWILIO_SID, process.env.TWILIO_AUTH)
 
 var monopolyDB = require('monk')(process.env.MONGOLAB_URI);
 
+  playersCollection = monopolyDB.get('players');
+  deedsCollection = monopolyDB.get('deeds');
+  banksCollection = monopolyDB.get('banks');
+  gamesCollection = monopolyDB.get('games');
 
-playersCollection = monopolyDB.get('players');
-deedsCollection   = monopolyDB.get('deeds');
-banksCollection   = monopolyDB.get('banks');
-gamesCollection   = monopolyDB.get('games');
+var library = require('../library/constructors.js')
+  var tokens = library.tokens;
+  var Player = library.Player;
 
 var sendSMS = function (aMessage, callback) {
   client.messages.create({
@@ -24,14 +27,9 @@ var sendSMS = function (aMessage, callback) {
   });
 }
 
-var library = require('../library/playerConstructor.js')
-var tokens = library.tokens;
-var Player = library.Player;
-
 router.get('/', function(req, res, next) {
   res.render('index')
 });
-
 
 router.post('/', function(req, res, next) {
   var name1 = req.body.playername1;

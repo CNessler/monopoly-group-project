@@ -1,3 +1,40 @@
+var weatherXHR = new XMLHttpRequest;
+
+weatherXHR.open('get', 'https://api.wunderground.com/api/4d5eeb69540ad8e6/conditions/q/CO/Denver.json');
+weatherXHR.addEventListener('load', function() {
+var response = weatherXHR.response;
+var weatherData = JSON.parse(response);
+var temperature = weatherData.current_observation.temp_f;
+var feelsLike = weatherData.current_observation.feelslike_f;
+var weatherDescription = weatherData.current_observation.weather;
+
+
+// console.log(temperature, "temp", feelsLike, weatherDescription);
+// console.log(weatherData.current_observation);
+var good = ''
+var bad = ''
+goodWeather = ['sunnny', 'clear', 'cloudy']
+badWeather = ['rain', 'snow', 'storm']
+for (var i = 0; i < goodWeather.length; i++) {
+var weatherContain = weatherDescription.toLowerCase().includes(goodWeather[i])
+// console.log(weatherContain);
+if(weatherContain === true)
+good = 'Go play outside!'
+}
+for (var i = 0; i < badWeather.length; i++) {
+  var weatherContain = weatherDescription.toLowerCase().includes(badWeather[i])
+  if(weatherContain === true)
+  bad = 'Better stay inside and play Monopoly.'
+}
+// console.log(good, bad);
+var weatherID = document.getElementById('weatherAPI');
+weatherID.innerHTML = 'The current forecast for today is ' + weatherDescription + '.  It feels like ' + feelsLike + '\xB0' + '. ' + good + bad;
+
+
+})
+
+
+weatherXHR.send(null);
 var rollButton = document.getElementById('roll');
 var index = 0;
 var turn = document.getElementById('turn')

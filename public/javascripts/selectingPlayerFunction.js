@@ -1,6 +1,3 @@
-var Bank = require('./bankConstructor.js').Bank;
-var allDeeds = require('./deedConstructor.js');
-
 var bank = new Bank(allDeeds);
 
 var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers, chanceDeck) {
@@ -13,8 +10,7 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
     locationIsOnChanceOrCC:
       location === 2  || location === 7  || location === 17 ||
       location === 22 || location === 33 || location === 36,
-
-
+  }
 
   if(player.balance > 0){
     if(player.inJail === false) {

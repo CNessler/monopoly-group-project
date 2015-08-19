@@ -188,7 +188,7 @@ function clearMod(modal){
   }
 }
 
-function playerDash(player) {
+function updatePlayerDash (player) {
   getOutFree(player)
   document.getElementById('name').innerHTML = player.name;
   document.getElementById('balance').innerHTML = "Money in account: $" + player.balance;

@@ -1,25 +1,4 @@
-
-
-function redirectToken(boardIndex, player) {
-  var current = document.getElementById('sp' + player.location);
-  var existing = current.childNodes;
-
-  for (var i = 0; i < existing.length; i++) {
-    if (existing[i].id === players[index].name) {
-      existing[i].remove();
-    }
-  }
-
-  var moveTo = document.getElementById('sp' + boardIndex)
-  var token = document.createElement('div');
-  token.setAttribute("class", "token");
-  token.setAttribute("id", player.name);
-  token.style.backgroundImage = "url('" + player.tokensrc + "')";
-  moveTo.appendChild(token)
-}
-
-
-function checkBalance(player, boardIndex, expenditure) {
+function checkMaxBalance(player, boardIndex, expenditure) {
 
   if(player.balance < expenditure){
     var maxMoney = player.balance;
@@ -29,7 +8,6 @@ function checkBalance(player, boardIndex, expenditure) {
 
   if(maxMoney < expenditure){
     player = null;
-    delete player;
   }
 
   else {
@@ -83,4 +61,26 @@ function checkBalance(player, boardIndex, expenditure) {
     }
   }
   }
+}
+
+function checkForOwner(allPlayers) {
+  var owner;
+  allPlayers.forEach(function (eachPlayer) {
+    eachPlayer.deeds.forEach(function (checkedDeed) {
+      if(checkedDeed.owner === eachPlayer.name){
+        owner = eachPlayer;
+      }
+    })
+  })
+  return owner;
+}
+
+function checkForDeedAtCurrentLocation(location, bank) {
+  var deed;
+  bank.deeds.forEach(function (checkedDeed) {
+    if(checkedDeed.boardIndex === location) {
+      deed = checkedDeed;
+    }
+  })
+  return deed;
 }

@@ -22,7 +22,6 @@ var sendSMS = function (aMessage, callback) {
     from: process.env.SOURCE
   }, function (err, sms) {
     if(err) {
-      console.log(err);
     }
   });
 }
@@ -55,14 +54,12 @@ router.post('/', function(req, res, next) {
   ]
   for (var i = 0; i < list.length; i++) {
     if (list[i].name === '') {
-      console.log(list[i].name);
       list[i].name = errorList[i].name
       list[i].token = errorList[i].token
     }
   }
   for (var i = 0; i < list.length; i++) {
     for (var j = i + 1; j < list.length; j++) {
-      console.log(i, list[i].token, j, list[j].token);
       if (list[i].token === list[j].token) {
         errorMsg = "Each player must have a different token"
       }
@@ -85,7 +82,6 @@ router.get('/game', function(req, res, next) {
 
   playersCollection.find({})
   .then(function (allPlayers) {
-    console.log(allPlayers);
     res.render('game', {playerName:player1, allPlayers: allPlayers})
   })
 });
@@ -99,10 +95,8 @@ router.get('/logout', function (req, res, next) {
 
 router.post('/gamedata', function (req, res, next) {
   newMessage = req.body.message;
-  console.log(newMessage, typeof newMessage, "json message from client side");
   sendSMS(newMessage);
   message = req.body;
-  console.log(message, "json message from client side");
 })
 
 

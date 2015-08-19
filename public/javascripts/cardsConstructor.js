@@ -146,6 +146,7 @@ var goToPivotal = function(player, owner, allPlayers, amount, location, spaces, 
       myDialog2.appendChild(closeModal2).innerHTML = 'Buy Property ($' + allDeeds[27].price + ')'
 
       myDialog2.showModal();
+      
 
       closeModal.addEventListener('click', function () {
         playerDash(player);

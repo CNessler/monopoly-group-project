@@ -1,19 +1,19 @@
 
 
-  function Deed(name, price, color,  rent, owner, houses, hotels, mortgageValue, boardIndex, houseMult) {
-    this.name = name;
-    this.price = price;
-    this.color = color;
-    this.baseRent = rent;
-    this.rent = rent;
-    this.owner = owner;
-    this.houses = houses;
-    this.hotels = hotels;
-    this.mortgageValue = mortgageValue;
-    this.boardIndex = boardIndex;
-    this.mortgaged = false;
-    this.housePrice = 50 * houseMult;
-  }
+  // function Deed(name, price, color,  rent, owner, houses, hotels, mortgageValue, boardIndex, houseMult) {
+  //   this.name = name;
+  //   this.price = price;
+  //   this.color = color;
+  //   this.baseRent = rent;
+  //   this.rent = rent;
+  //   this.owner = owner;
+  //   this.houses = houses;
+  //   this.hotels = hotels;
+  //   this.mortgageValue = mortgageValue;
+  //   this.boardIndex = boardIndex;
+  //   this.mortgaged = false;
+  //   this.housePrice = 50 * houseMult;
+  // }
 
 
 function Bank() {
@@ -226,20 +226,7 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
             }
           })
         }
-        else if (player.balance < deed.price){
-          myDialog.appendChild(caption).innerHTML = 'You cannot afford this property'
-          myDialog.appendChild(closeModal).innerHTML = 'Sorry bout ya'
-
-          myDialog.showModal();
-
-          closeModal.addEventListener('click', function () {
-            playerDash(player);
-            myDialog.close();
-            myDialog.innerHTML = '';
-            nextPlayer();
-          })
-
-        }
+        else
         else {
           myDialog.appendChild(caption).innerHTML = 'Property Available: ' + deed.name
           myDialog.appendChild(closeModal).innerHTML = 'Do Nothing'

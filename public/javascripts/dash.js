@@ -3,7 +3,7 @@ var utils = [12, 28, 0, 0];
 var rr = [5, 15, 25, 35];
 
 
-playerDash(players[index])
+updatePlayerDash(players[index])
 
 var otherPlayers = document.getElementsByName('dashLink')
 var name = document.getElementById('name')
@@ -13,11 +13,11 @@ for (var i = 0; i < otherPlayers.length; i++) {
     for (var j = 0; j < players.length; j++) {
       if (players[j].name === this.id) {
         name.innerHTML = players[j].name
-        playerDash(players[j])
+        updatePlayerDash(players[j])
       }
     }
   })
 }
 
 clearCont();
-playerDash(players[index])
+updatePlayerDash(players[index])

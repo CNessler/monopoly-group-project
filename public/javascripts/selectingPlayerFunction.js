@@ -1,8 +1,6 @@
-var bank = new Bank(allDeeds);
-
 var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers, chanceDeck) {
 
-  var owner = getOwner(allPlayers);
+  var owner = checkForOwner(allPlayers);
   var deed = checkForDeedAtCurrentLocation(location, bank);
   var allConditionals = {
     locationIsOnTax:
@@ -20,7 +18,7 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
       var closeModal = document.createElement('button');
       var closeModal2 = document.createElement('button');
 
-      if(allConditions.locationIsOnTax) {
+      if(location === 4 || location === 38) {
         if(location ===4){
           var tax = 30;
         }
@@ -45,8 +43,11 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
         })
         }
       }
-      else if(allConditionals.locationIsChanceOrCC){
+      else if(location === 2  || location === 7  || location === 17 ||
+      location === 22 || location === 33 || location === 36){
+        console.log("in CCC");
         if(location === 7 || location === 22 || location === 36) {
+          console.log('IN CHANCE');
           var drawnCard = chanceDeck.drawCard()[0];
           var amount = drawnCard.amount;
           var spaces = 3;
@@ -72,6 +73,7 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
           }
         }
         else {
+          console.log("IN CC");
           var drawnCard = communityChestDeck.drawCard()[0];
           var amount = drawnCard.amount;
           var spaces = 3;
@@ -143,7 +145,8 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
               updatePlayerDash(player);
               myDialog.close();
               myDialog.innerHTML = '';
-              nextP
+              nextPlayer();
+            })
           }
           else {
           myDialog.appendChild(caption).innerHTML = 'Property Available: ' + deed.name
@@ -225,9 +228,9 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
       }
     }
   }
-  else {
-    if(locationIsOnTax || locationIsOnOwnedDeed)
-      checkMaxBalance(player, location)
-    }
-  }
 }
+  // else {
+  //   if(locationIsOnTax || locationIsOnOwnedDeed)
+  //     checkMaxBalance(player, location)
+  //   }
+  // }

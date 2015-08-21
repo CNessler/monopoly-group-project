@@ -13,8 +13,6 @@ function Deed(name, price, color,  rent, owner, houses, hotels, mortgageValue, b
   this.housePrice = 50 * houseMult;
 }
 
-
-
 var allDeeds = [
   sp1  = new Deed('Exit Now'            , 60, '#9A7470' , 2 , "", 0, 0, 30,   1, 1),
   sp3  = new Deed('Merdal Investments'  , 60, '#9A7470' , 4 , "", 0, 0, 30,   3, 1),
@@ -45,5 +43,4 @@ var allDeeds = [
   sp37 = new Deed('Artifact Uprising'   , 350, '#7441A5', 35, "", 0, 0, 175, 37, 4),
   sp39 = new Deed('Pivotal Labs'        , 400, '#7441A5', 50, "", 0, 0, 200, 39, 4)
 ]
-
-module.exports = allDeeds;
+console.log(allDeeds, 'these are the deeds');

@@ -4,5 +4,6 @@ function Bank (allDeeds) {
     this.houses = 32;
     this.hotels = 12;
     this.freeParking = 0;
-  }
-module.exports = Bank
+}
+
+var bank = new Bank(allDeeds);

@@ -20,7 +20,6 @@ function getToken(player) {
      player.tokensrc = tokens[i].url
    }
  }
- console.log(player, "getToken()");
  return player
 }
 
@@ -44,7 +43,6 @@ function getMove(player) {
 // var move = 7;
  var goEl = player.location + move
  if (goEl === 30){
-  //  alert('Head to the elevator');
    player.location = 10;
    player.inJail = true;
  }
@@ -65,7 +63,7 @@ function nextPlayer() {
    index = 0
  }
   window.setTimeout(function () {
-    playerDash(players[index])
+    updatePlayerDash(players[index])
   }, 2500)
   window.setTimeout(function () {
    turn.innerHTML = players[index].name + "'s Turn!";
@@ -100,7 +98,6 @@ rollButton.addEventListener("click", function() {
 
   selectPlayerFunction(player.location, player, bank, dieRoll, players, chanceDeck);
 });
-
 // var sendGameDataBtn = document.getElementById('twilioCall');
 // sendGameDataBtn.addEventListener('click', function() {
 //

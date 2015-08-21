@@ -146,7 +146,7 @@ var goToPivotal = function(player, owner, allPlayers, amount, location, spaces, 
       myDialog2.appendChild(closeModal2).innerHTML = 'Buy Property ($' + allDeeds[27].price + ')'
 
       myDialog2.showModal();
-      
+
 
       closeModal.addEventListener('click', function () {
         playerDash(player);
@@ -202,8 +202,8 @@ Deck.prototype.drawCard = function () {
 
 communityChestArray =
   [
-    new Card("pay150", "cc", "Community Chest: You owe $15", loseMoney, 150),
-    new Card("get50", "cc", "Community Chest: You owe $50", addMoney, 50),
+    new Card("pay150", "cc", "Community Chest: You owe $15", loseMoney, 15),
+    new Card("get50", "cc", "Community Chest: You win $50", addMoney, 50),
     new Card("get150", "cc","Community Chest: You win $150", addMoney, 150),
     new Card("payPerHH", "cc", "Community Chest: Pay $25 per house and $100 per hotel", payPerHouseHotel, 0),
     new Card("payEachPlayer50", "cc", "Community Chest: Pay each player $50", payOtherPlayers, 0),
@@ -214,13 +214,14 @@ communityChestArray =
     new Card("getoutofjail", "cc", "Community Chest: 'Escape from the elevator for FREE!' card", getOutOfJail, 0),
     new Card("gotojail", "cc", "Community Chest: Uh oh! You're stuck in the elevator.", goToJail, 0)
   ],
+
 chanceArray =
   [
     new Card("gotoPivotal", "chance", "Chance: Go to Pivotal Labs", goToPivotal, 0),
     new Card("getoutofjail", "chance", "Chance: 'Escape from the elevator for FREE!' card", getOutOfJail, 0),
     new Card("gotojail", "chance", "Chance: Uh oh! You're stuck in the elevator.", goToJail, 0),
     new Card("pay15", "chance", "Chance: You owe $15", loseMoney, 15),
-    new Card("get50", "chance", "Chance: You win $150", addMoney, 50),
+    new Card("get50", "chance", "Chance: You win $50", addMoney, 50),
     new Card("get150", "chance","Chance: You win $150", addMoney, 150),
     new Card("payPerHH", "chance", "Chance: Pay $25 per house and $100 per hotel", payPerHouseHotel, 0),
     new Card("payEachPlayer50", "chance", "Chance: Pay each player $50", payOtherPlayers, 0),

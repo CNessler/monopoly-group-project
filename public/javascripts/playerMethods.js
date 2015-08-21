@@ -16,7 +16,7 @@ Player.prototype.buyDeed= function (location, bank) {
 Player.prototype.payRent = function(owner, deed, dieRoll, allPlayers) {
   // console.log("payrent runs");
   // console.log(deed.mortgaged, "deed mortagaged");
-  if(deed.mortgaged === false) {
+  if(!deed.mortgaged) {
     // console.log("not mrotgaged");
     var rentDue;
     if(deed.color === "#a19a9a") {
@@ -166,47 +166,11 @@ Player.prototype.pickUpFreeParking = function (bank) {
   bank.freeParking = 0;
 }
 
-// Player.prototype.timeInJail = function () {
-//   console.log("Time in jail happening!");
-//     if(this.jailCounter === 3){
-//       this.inJail = false;
-//       var dieRoll = getMove(this)
-//       var moveTo = document.getElementById('sp' + this.location)
-//       moveTo.style.backgroundImage = "url('" + this.tokensrc + "')";
-//
-//       selectPlayerFunction(this.location, this, bank, dieRoll, players, chanceDeck);
-//     }
-//     if(this.getOutOfJailFree === true) {
-//       this.inJail = false;
-//       this.getOutOfJailFree = false;
-//       var dieRoll = getMove(this)
-//       var moveTo = document.getElementById('sp' + this.location)
-//       moveTo.style.backgroundImage = "url('" + this.tokensrc + "')";
-//
-//       selectPlayerFunction(this.location, this, bank, dieRoll, players, chanceDeck);
-//     }
-//     else {
-//       this.jailCounter ++;
-//       this.location = 10;
-//     }
-// }
-
 Player.prototype.checkBalanceDues = function (owner, expenditure) {
-  // if(this.balance < expenditure){
-    var mortgageAvailable = this.deeds.length - 1;
-    for (var i = 0; i < this.deeds.length; i++) {
-      if(this.deeds[i].mortgaged === true){
-        mortgageAvailable --;
-      }
+  var mortgageAvailable = this.deeds.length - 1;
+  for (var i = 0; i < this.deeds.length; i++) {
+    if(this.deeds[i].mortgaged === true){
+      mortgageAvailable --;
     }
-  //   if(maxMoney < expenditure){
-  //     alert("Bankrupt")
-  //     //figure out how to skip player or remove
-  //   }
-  //   while(this.balance < expenditure && mortgageAvailable > 0){
-  //     alert('need to mortgage')
-  //
-  //   }
-  // }
-
+  }
 }

@@ -1,7 +1,7 @@
 var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers, chanceDeck) {
 
-  var owner = checkForOwner(allPlayers);
-  var deed = checkForDeedAtCurrentLocation(location, bank);
+  var owner = checkForOwner(allPlayers, location);
+  var deed = checkForDeed(location, bank);
   var allConditionals = {
     locationIsOnTax:
       location === 4 || location === 38,
@@ -18,7 +18,7 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
       var closeModal = document.createElement('button');
       var closeModal2 = document.createElement('button');
 
-      if(location === 4 || location === 38) {
+      if(allConditionals.locationIsOnTax) {
         if(location ===4){
           var tax = 30;
         }
@@ -43,11 +43,8 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
         })
         }
       }
-      else if(location === 2  || location === 7  || location === 17 ||
-      location === 22 || location === 33 || location === 36){
-        console.log("in CCC");
+      else if(allConditionals.locationIsOnChanceOrCC){
         if(location === 7 || location === 22 || location === 36) {
-          console.log('IN CHANCE');
           var drawnCard = chanceDeck.drawCard()[0];
           var amount = drawnCard.amount;
           var spaces = 3;
@@ -73,7 +70,6 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
           }
         }
         else {
-          console.log("IN CC");
           var drawnCard = communityChestDeck.drawCard()[0];
           var amount = drawnCard.amount;
           var spaces = 3;

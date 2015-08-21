@@ -63,19 +63,19 @@ function checkMaxBalance(player, boardIndex, expenditure) {
   }
 }
 
-function checkForOwner(allPlayers) {
-  var owner;
-  allPlayers.forEach(function (eachPlayer) {
-    eachPlayer.deeds.forEach(function (checkedDeed) {
-      if(checkedDeed.owner === eachPlayer.name){
-        owner = eachPlayer;
-      }
-    })
-  })
-  return owner;
+function checkForOwner(allPlayers, location) {
+ var owner;
+ allPlayers.forEach(function (eachPlayer) {
+   eachPlayer.deeds.forEach(function (checkedDeed) {
+     if(checkedDeed.boardIndex === location) {
+       owner = eachPlayer;
+     }
+   })
+ })
+ return owner;
 }
 
-function checkForDeedAtCurrentLocation(location, bank) {
+function checkForDeed(location, bank) {
   var deed;
   bank.deeds.forEach(function (checkedDeed) {
     if(checkedDeed.boardIndex === location) {

@@ -56,7 +56,7 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
 
           closeModal.addEventListener('click', function () {
             drawnCard.cardAction(player, owner, allPlayers, amount, location, spaces, bank, allDeeds);
-            playerDash(player);
+            updatePlayerDash(player);
             myDialog.close();
             myDialog.innerHTML = '';
             nextPlayer();

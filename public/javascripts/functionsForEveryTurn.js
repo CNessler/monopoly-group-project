@@ -1,13 +1,16 @@
+
 function checkMaxBalance(player, boardIndex, expenditure) {
 
   if(player.balance < expenditure){
     var maxMoney = player.balance;
     for(var i = 0; i < player.deeds.length; i++) {
-    maxMoney += player.deeds[i].mortgageValue + ((player.deeds[i].hotels * 100) + (player.deeds[i].houses * 50)*0.5)
-  }
+      maxMoney += player.deeds[i].mortgageValue + ((player.deeds[i].hotels * 100) + (player.deeds[i].houses * 50)*0.5)
+    }
 
-  if(maxMoney < expenditure){
-    player = null;
+    if(maxMoney < expenditure){
+      player.active = false;
+      inactives += 1
+    }
   }
 
   else {
@@ -59,7 +62,6 @@ function checkMaxBalance(player, boardIndex, expenditure) {
       myDialog4.close();
       })
     }
-  }
   }
 }
 

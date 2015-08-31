@@ -224,6 +224,9 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
       }
     }
   }
+  else {
+    player.active = false;
+  }
 }
   // else {
   //   if(locationIsOnTax || locationIsOnOwnedDeed)

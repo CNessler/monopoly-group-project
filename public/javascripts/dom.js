@@ -39,29 +39,29 @@ function startGame() {
 
 function getMove(player) {
 
- // var move = Math.floor(Math.random()*10) + 2;
-var move = 7;
- var goEl = player.location + move
- if (goEl === 30){
-   player.location = 10;
-   player.inJail = true;
- }
- else if (player.location + move < 40) {
-   player.location += move;
- } else {
-   player.location = player.location + move - 40;
-   player.balance += 200;
-   bank.balance -= 200;
- }
- return move;
+  var move = Math.floor(Math.random()*10) + 2;
+  // var move = 7;
+   var goEl = player.location + move
+   if (goEl === 30){
+     player.location = 10;
+     player.inJail = true;
+   }
+   else if (player.location + move < 40) {
+     player.location += move;
+   } else {
+     player.location = player.location + move - 40;
+     player.balance += 200;
+     bank.balance -= 200;
+   }
+   return move;
 }
 
 function nextPlayer() {
- if (index <= 2) {
-   index += 1
- } else if (index === 3) {
-   index = 0
- }
+  if (index <= 2) {
+   index += 1;
+  } else if (index === 3) {
+   index = 0;
+  }
   window.setTimeout(function () {
     updatePlayerDash(players[index])
   }, 2500)
@@ -71,33 +71,35 @@ function nextPlayer() {
 }
 
 startGame();
+var player = players[index];
+  rollButton.addEventListener("click", function() {
+    if(player.active === true){
+      console.log(index, "INDEX");
+      // var sentObjectExample = {name: "Akhil", message: "my twilio test"}
+      player = players[index]
+      var current = document.getElementById('sp' + player.location)
+      var dieRoll = getMove(player);
 
-rollButton.addEventListener("click", function() {
+      var existing = current.childNodes;
+      for (var i = 0; i < existing.length; i++) {
+        if (existing[i].id === players[index].name) {
+          existing[i].remove();
+        }
+      }
 
-  var sentObjectExample = {name: "Akhil", message: "my twilio test"}
+      var moveTo = document.getElementById('sp' + player.location)
+      var token = document.createElement('div');
+      token.setAttribute("class", "token");
+      token.setAttribute("id", player.name);
+      token.style.backgroundImage = "url('" + player.tokensrc + "')";
+      moveTo.appendChild(token)
 
-  var player = players[index]
-  var current = document.getElementById('sp' + player.location)
-  var dieRoll = getMove(player);
-
-  var existing = current.childNodes;
-  console.log(existing, "EXISTING BEFORE");
-  for (var i = 0; i < existing.length; i++) {
-    if (existing[i].id === players[index].name) {
-      existing[i].remove();
+      selectPlayerFunction(player.location, player, bank, dieRoll, players, chanceDeck);
     }
-  }
-  // console.log(existing, "EXISTING AFTER");
-
-  var moveTo = document.getElementById('sp' + player.location)
-  var token = document.createElement('div');
-  token.setAttribute("class", "token");
-  token.setAttribute("id", player.name);
-  token.style.backgroundImage = "url('" + player.tokensrc + "')";
-  moveTo.appendChild(token)
-
-  selectPlayerFunction(player.location, player, bank, dieRoll, players, chanceDeck);
-});
+    else {
+      nextPlayer();
+    }
+  });
 // var sendGameDataBtn = document.getElementById('twilioCall');
 // sendGameDataBtn.addEventListener('click', function() {
 //

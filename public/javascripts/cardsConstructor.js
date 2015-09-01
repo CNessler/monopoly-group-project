@@ -98,6 +98,7 @@ var getOutOfJail = function(player, owner, allPlayers, amount, location, spaces,
 }
 
 var goToPivotal = function(player, owner, allPlayers, amount, location, spaces, bank, allDeeds) {
+  redirectToken(39, player);
   var myDialog2 = document.getElementById('myDialog2');
   myDialog2.innerHTML = "";
   var caption = document.createElement('p')

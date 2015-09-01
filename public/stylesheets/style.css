@@ -61,7 +61,8 @@ dialog {
   width: 350px;
   padding: 20px;
   padding-top: 30px;
-  z-index: 20; }
+  z-index: 20;
+  overflow: scroll; }
   dialog button {
     width: 100px;
     padding: 5px;
@@ -320,7 +321,7 @@ p {
   padding-left: 30px; }
 
 #sp17, #sp33, #sp2 {
-  background-image: url("http://www.worldofmonopoly.com/fansite/images/icons/monopoly_icon_chest_col.gif");
+  background-image: url("http://www.cliparthut.com/clip-arts/703/monopoly-community-chest-703695.gif");
   background-position: center; }
 
 #sp17, #sp33 {

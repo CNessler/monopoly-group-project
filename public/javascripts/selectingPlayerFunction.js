@@ -7,7 +7,7 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
       location === 4 || location === 38,
     locationIsOnChanceOrCC:
       location === 2  || location === 7  || location === 17 ||
-      location === 22 || location === 33 || location === 36,
+      location === 22 || location === 33 || location === 36
   }
 
   if(player.balance > 0){
@@ -26,6 +26,7 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
           var tax = 75;
         }
         if(player.balance < tax) {
+          console.log("checking max balance");
           checkMaxBalance(player, location, tax)
         }
         else {
@@ -228,8 +229,3 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
     player.active = false;
   }
 }
-  // else {
-  //   if(locationIsOnTax || locationIsOnOwnedDeed)
-  //     checkMaxBalance(player, location)
-  //   }
-  // }

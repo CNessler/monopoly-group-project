@@ -101,7 +101,7 @@ function nextPlayer() {
       var xhr = new XMLHttpRequest();
       xhr.open('get', '/logout', false);
       xhr.send();
-      window.location.replace('http://localhost:3000');
+      window.location.replace('http://localhost:3000/home');
       myDialog.close();
     });
   }

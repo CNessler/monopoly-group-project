@@ -26,11 +26,34 @@ var sendSMS = function (aMessage, callback) {
   });
 }
 
+router.use('/home', function (req, res, next) {
+  if(req.cookies.active){
+    res.redirect('/game');
+  }
+  else {
+    next();
+  }
+});
+
+router.use('/game', function (req, res, next) {
+  if(!req.cookies.active){
+    res.redirect('/home');
+  }
+  else {
+    next();
+  }
+});
+
 router.get('/', function(req, res, next) {
+  res.redirect('/home')
+});
+
+router.get('/home', function(req, res, next) {
   res.render('index')
 });
 
-router.post('/', function(req, res, next) {
+router.post('/home', function(req, res, next) {
+  res.cookie('active', 'on')
   var name1 = req.body.playername1;
   var name2 = req.body.playername2;
   var name3 = req.body.playername3;
@@ -77,19 +100,18 @@ router.post('/', function(req, res, next) {
 });
 
 router.get('/game', function(req, res, next) {
-  var player1 = req.cookies.player1
-  var token1 = req.cookies.token1
-
+  res.cookie('active', 'on');
   playersCollection.find({})
   .then(function (allPlayers) {
-    res.render('game', {playerName:player1, allPlayers: allPlayers})
+    console.log(allPlayers, "allPlayers");
+    res.render('game', {playerName: allPlayers[0].name, allPlayers: allPlayers})
   })
 });
 
 router.get('/logout', function (req, res, next) {
-  res.clearCookie('name');
+  res.clearCookie('active');
   playersCollection.remove({});
-  res.redirect('/');
+  res.redirect('/home');
 
 })
 

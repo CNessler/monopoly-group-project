@@ -1,7 +1,7 @@
 var Player= function(name, token) {
     this.name = name;
     this.token = token;
-    this.balance = 29;
+    this.balance = 1500;
     this.inJail = false;
     this.getOutOfJailFree = false;
     this.active = true;

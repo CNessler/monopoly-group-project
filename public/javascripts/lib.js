@@ -158,14 +158,13 @@ function getProperty(id) {
           var hb = document.getElementById('houseButton');
           hb.remove();
         }
-        console.log(prop.name, "rent:", prop.rent);
         players[index].balance -= prop.housePrice;
         bank.balance += prop.housePrice;
         caption2.innerHTML = "Houses: " + prop.houses + " - Hotels: " + prop.hotels + msg
       });
     }
   }
-  playerDash(players[index])
+  updatePlayerDash(players[index])
 }
 
 function getOutFree(player) {

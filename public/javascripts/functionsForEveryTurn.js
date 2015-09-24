@@ -8,8 +8,9 @@ function checkMaxBalance(player, boardIndex, expenditure) {
     }
 
     if(maxMoney < expenditure){
+      console.log("gets to maxMoney < expenditure");
       player.active = false;
-      inactives += 1
+      nextPlayer();
     }
   }
 

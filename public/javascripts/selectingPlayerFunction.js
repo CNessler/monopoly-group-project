@@ -1,3 +1,10 @@
+function updateAndClear (player) {
+  updatePlayerDash(player);
+  myDialog.close();
+  myDialog.innerHTML = '';
+  nextPlayer();
+}
+
 var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers, chanceDeck) {
 
   var owner = checkForOwner(allPlayers, location);
@@ -7,7 +14,7 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
       location === 4 || location === 38,
     locationIsOnChanceOrCC:
       location === 2  || location === 7  || location === 17 ||
-      location === 22 || location === 33 || location === 36,
+      location === 22 || location === 33 || location === 36
   }
 
   if(player.balance > 0){
@@ -26,6 +33,7 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
           var tax = 75;
         }
         if(player.balance < tax) {
+          console.log("checking max balance");
           checkMaxBalance(player, location, tax)
         }
         else {
@@ -36,10 +44,7 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
 
         closeModal.addEventListener('click', function () {
           player.payTax(bank);
-          updatePlayerDash(player);
-          myDialog.close();
-          myDialog.innerHTML = '';
-          nextPlayer();
+          updateAndClear(player)
         })
         }
       }
@@ -56,10 +61,7 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
 
           closeModal.addEventListener('click', function () {
             drawnCard.cardAction(player, owner, allPlayers, amount, location, spaces, bank, allDeeds);
-            updatePlayerDash(player);
-            myDialog.close();
-            myDialog.innerHTML = '';
-            nextPlayer();
+            updateAndClear(player)
           })
 
           if (typeof drawnCard[1] === "object") {
@@ -81,10 +83,7 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
 
           closeModal.addEventListener('click', function () {
             drawnCard.cardAction(player, owner, allPlayers, amount, location, spaces, bank, allDeeds);
-            updatePlayerDash(player);
-            myDialog.close();
-            myDialog.innerHTML = '';
-            nextPlayer();
+            updateAndClear(player)
           })
           if (typeof drawnCard[1] === "object") {
             communityChestDeck.counter = 0;
@@ -123,10 +122,7 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
             }
             else {
               player.payRent(owner, deed, dieRoll, allPlayers)
-              updatePlayerDash(player);
-              myDialog.close();
-              myDialog.innerHTML = '';
-              nextPlayer();
+              updateAndClear(player)
             }
           })
         }
@@ -138,10 +134,7 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
             myDialog.showModal();
 
             closeModal.addEventListener('click', function () {
-              updatePlayerDash(player);
-              myDialog.close();
-              myDialog.innerHTML = '';
-              nextPlayer();
+              updateAndClear(player)
             })
           }
           else {
@@ -152,18 +145,12 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
           myDialog.showModal();
 
           closeModal.addEventListener('click', function () {
-            updatePlayerDash(player);
-            myDialog.close();
-            myDialog.innerHTML = '';
-            nextPlayer();
+            updateAndClear(player)
           })
 
           closeModal2.addEventListener('click', function () {
             player.buyDeed(location, bank);
-            updatePlayerDash(player);
-            myDialog.close();
-            myDialog.innerHTML = '';
-            nextPlayer();
+            updateAndClear(player)
           })
           }
         }
@@ -228,8 +215,3 @@ var selectPlayerFunction = function (location, player, bank, dieRoll, allPlayers
     player.active = false;
   }
 }
-  // else {
-  //   if(locationIsOnTax || locationIsOnOwnedDeed)
-  //     checkMaxBalance(player, location)
-  //   }
-  // }

@@ -24,11 +24,9 @@ var sendSMS = function (aMessage, callback) {
   });
 }
 
-//var getAvailableTokens = require('../library/availableTokens.js');
 var library = require('../library/playerConstructor.js')
 var tokens = library.tokens;
 var Player = library.Player;
-// var getAllDeeds = require('../public/javascripts/deedConstructor.js')
 
 router.get('/', function(req, res, next) {
 

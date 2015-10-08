@@ -56,7 +56,6 @@ Player.prototype.payTax = function (bank) {
 }
 
 Player.prototype.buyHouse = function (deed, allDeeds, houses) {
-
   if(deed.mortgaged === false) {
     var monopolyColor = deed.color;
     if (monopolyColor != "black" || monopolyColor != "orange") {

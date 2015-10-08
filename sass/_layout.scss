@@ -1,6 +1,5 @@
 * {
   box-sizing: border-box;
-  background-repeat: no-repeat;
 }
 
 html {
@@ -10,6 +9,7 @@ html {
 
 div {
   background-size: contain;
+  background-repeat: no-repeat;
 }
 
 dialog {
@@ -105,10 +105,15 @@ p {
 
 .dice {
   background-image: url("./images/dice.png");
+  background-repeat: no-repeat;
   height: 100px;
   width: 150px;
   float: right;
   margin: 15px;
+}
+
+.dice:hover {
+  cursor:pointer;
 }
 
 .header {

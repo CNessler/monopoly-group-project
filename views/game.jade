@@ -2,7 +2,6 @@ extends layout
 
 block content
   .nav 
-    //- a#twilioCall BONUS API: Spam Claire!
     a(href="/logout") Logout
   h1#turn  
   .board
@@ -85,7 +84,7 @@ block content
           p Waveland Ventures
           span $140
       .col-center
-        .dice#roll
+        .dice.animated.infinite.pulse#roll
         .center-space#chance Chance
           .questionMark ?
         .center-space#community Community Chest
@@ -200,4 +199,3 @@ block content
   script(src='/javascripts/lib.js')      
   script(src='/javascripts/dash.js') 
   script(src="/javascripts/selectingPlayerFunction.js")
-  //- script(src='../library/playground.js')

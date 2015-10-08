@@ -93,10 +93,10 @@ function nextPlayer() {
   }
   window.setTimeout(function () {
     playerDash(players[index])
-  }, 2500)
+  }, 2000)
   window.setTimeout(function () {
     turn.innerHTML = players[index].name + "'s Turn!";
-  }, 2500)
+  }, 2000)
 }
 
 startGame();
@@ -110,7 +110,6 @@ rollButton.addEventListener("click", function() {
   var dieRoll = getMove(player);
 
   var existing = current.childNodes;
-  console.log(existing, "EXISTING BEFORE");
   for (var i = 0; i < existing.length; i++) {
     if (existing[i].id === players[index].name) {
       existing[i].remove();
@@ -125,16 +124,3 @@ rollButton.addEventListener("click", function() {
 
   selectPlayerFunction(player.location, player, bank, dieRoll, players, chanceDeck);
 });
-
-var sendGameDataBtn = document.getElementById('twilioCall');
-sendGameDataBtn.addEventListener('click', function() {
-
-  var xhr = new XMLHttpRequest();
-  xhr.open('post', "/gamedata", true);
-  xhr.setRequestHeader('Content-type', "application/json");
-
-  var sentObjectExample = {name: "Akhil", message: "HI CLAIRE!!!!"};
-  sentObjectString = JSON.stringify(sentObjectExample);
-
-  xhr.send(sentObjectString);
-})

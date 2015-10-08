@@ -98,8 +98,6 @@ var getOutOfJail = function(player, owner, allPlayers, amount, location, spaces,
 }
 
 var goToPivotal = function(player, owner, allPlayers, amount, location, spaces, bank, allDeeds) {
-  console.log(player.location, "before");
-  console.log(player.location, "");
   if(allDeeds[27].owner != "" && allDeeds[27].owner != player.name) {
       var rentDue = allDeeds[27].rent;
       player.balance -= rentDue;
@@ -131,7 +129,6 @@ var goToPivotal = function(player, owner, allPlayers, amount, location, spaces, 
     closeModal.addEventListener('click', function () {
       playerDash(player);
       myDialog2.close();
-      // playerDash(player);
       myDialog.innerHTML = '';
     })
 

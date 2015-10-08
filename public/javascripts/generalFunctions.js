@@ -25,9 +25,7 @@ function checkBalance(player, boardIndex, expenditure) {
     }
     if(maxMoney < expenditure){
       player = null;
-      console.log(player, "REMOVE TRY");
       alert('YOU ARE BROKE')
-      //remove or skip player from game
     }
     else {
         var myDialog4 = document.getElementById('myDialog4');

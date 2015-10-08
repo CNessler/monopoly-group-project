@@ -100,7 +100,6 @@ router.get('/game', function(req, res, next) {
 
   playersCollection.find({})
   .then(function (allPlayers) {
-    console.log(allPlayers);
     res.render('game', {playerName:player1, allPlayers: allPlayers})
   })
 });
@@ -111,14 +110,5 @@ router.get('/logout', function (req, res, next) {
   res.redirect('/');
 
 })
-
-router.post('/gamedata', function (req, res, next) {
-  newMessage = req.body.message;
-  console.log(newMessage, typeof newMessage, "json message from client side");
-  sendSMS(newMessage);
-  message = req.body;
-  console.log(message, "json message from client side");
-})
-
 
 module.exports = router;

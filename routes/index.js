@@ -92,21 +92,12 @@ router.post('/', function(req, res, next) {
     })
     res.redirect('/game');
   }
-  // res.cookie('player1', name1);
-  // res.cookie('player2', name2);
-  // res.cookie('player3', name3);
-  // res.cookie('player4', name4);
-  // res.cookie('token1', token1);
-  // res.cookie('token2', token2);
-  // res.cookie('token3', token3);
-  // res.cookie('token4', token4);
-
 });
 
 router.get('/game', function(req, res, next) {
   var player1 = req.cookies.player1
   var token1 = req.cookies.token1
-  
+
   playersCollection.find({})
   .then(function (allPlayers) {
     console.log(allPlayers);

@@ -2,12 +2,8 @@ extends layout
 
 block content
   .nav 
-    div#weatherAPI  
-    a#twilioCall BONUS API: Spam Claire!
     a(href="/logout") Logout
-  h1#turn
-
-  
+  h1#turn  
   .board
     .row-top
       .corner
@@ -45,6 +41,7 @@ block content
         .bar#s2
       .space#sp28
         p Keg
+        p $200
       .space#sp29
         .container-top
           p Quick Left
@@ -87,7 +84,7 @@ block content
           p Waveland Ventures
           span $140
       .col-center
-        .dice#roll
+        .dice.animated.infinite.pulse#roll
         .center-space#chance Chance
           .questionMark ?
         .center-space#community Community Chest
@@ -191,13 +188,14 @@ block content
   div(id='playerData' style='visibility: hidden;')
     for player in allPlayers
       p #{player.name};#{player.token}
-  script(src='/javascripts/generalFunctions.js')     
   script(src="/javascripts/deedConstructor.js")
+  script(src="/javascripts/bankConstructor.js")    
   script(src="/javascripts/playerConstructor.js")
   script(src="/javascripts/cardsConstructor.js")
   script(src="/javascripts/playerMethods.js")
-  script(src="/javascripts/selectingPlayerFunction.js")
+  script(src="/javascripts/functionsForEveryTurn.js")
+  script(src="/javascripts/nicheFunctions.js")
   script(src='/javascripts/dom.js')      
   script(src='/javascripts/lib.js')      
   script(src='/javascripts/dash.js') 
-  script(src='../library/playground.js')
+  script(src="/javascripts/selectingPlayerFunction.js")

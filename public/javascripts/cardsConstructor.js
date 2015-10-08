@@ -28,8 +28,8 @@ var payOtherPlayers = function (player, owner, allPlayers, amount, location, spa
 }
 
 var payPerHouseHotel = function (player, owner, allPlayers, amount, location, spaces, bank, allDeeds) {
-  var houses=4;
-  var hotels=1;
+  var houses=0;
+  var hotels=0;
   for (var i = 0; i < player.deeds.length; i++) {
     houses += player.deeds[i].houses
     hotels += player.deeds[i].hotels
@@ -98,9 +98,34 @@ var getOutOfJail = function(player, owner, allPlayers, amount, location, spaces,
 }
 
 var goToPivotal = function(player, owner, allPlayers, amount, location, spaces, bank, allDeeds) {
-  console.log(player.location, "before");
-  console.log(player.location, "");
+  redirectToken(39, player);
+  var myDialog2 = document.getElementById('myDialog2');
+  myDialog2.innerHTML = "";
+  var caption = document.createElement('p')
+  var closeModal = document.createElement('button');
+  var closeModal2 = document.createElement('button');
+  console.log(allDeeds[27], 'deed');
+  console.log(player, 'player');
   if(allDeeds[27].owner != "" && allDeeds[27].owner != player.name) {
+    console.log(player.balance);
+    if(player.balance < allDeeds[27].rent){
+      console.log('poor poor player');
+      myDialog2.appendChild(caption).innerHTML = 'You are broke'
+      myDialog2.appendChild(closeModal).innerHTML = 'Mortgage'
+
+      myDialog2.showModal();
+
+
+      closeModal.addEventListener('click', function () {
+        updatePlayerDash(player);
+        myDialog2.close();
+        // playerDash(player);
+        myDialog.innerHTML = '';
+      })
+
+    }
+    else {
+      console.log('can pay rent');
       var rentDue = allDeeds[27].rent;
       player.balance -= rentDue;
       var pivotalOwner;
@@ -113,32 +138,81 @@ var goToPivotal = function(player, owner, allPlayers, amount, location, spaces, 
         pivotalOwner.balance += rentDue;
       })
     }
-  else {
-    redirectToken(39, player);
-    player.location = 39;
-    var myDialog2 = document.getElementById('myDialog2');
-    myDialog2.innerHTML = "";
-    var caption = document.createElement('p')
-    var closeModal = document.createElement('button');
-    var closeModal2 = document.createElement('button');
+  }
+// else if{
+//   redirectToken(39, player);
+//   player.location = 39;
+//   var myDialog2 = document.getElementById('myDialog2');
+//   myDialog2.innerHTML = "";
+//   var caption = document.createElement('p')
+//   var closeModal = document.createElement('button');
+//   var closeModal2 = document.createElement('button');
+  //
+  // if (player.balance < allDeeds[27].price){
+  //   myDialog.appendChild(caption).innerHTML = 'You cannot afford this property'
+  //   myDialog.appendChild(closeModal).innerHTML = 'Sorry bout ya'
+  //
+  //   myDialog.showModal();
+  //
+  //   closeModal.addEventListener('click', function () {
+  //     playerDash(player);
+  //     myDialog.close();
+  //     myDialog.innerHTML = '';
+  //     nextPlayer();
+  //   })
+  // }
+  else if(allDeeds[27].owner === ""){
+    console.log('can buy property');
+    if(player.balance < allDeeds[27].price){
+      console.log('poor poor player');
+      myDialog2.appendChild(caption).innerHTML = 'You are too poor for Pivotal'
+      myDialog2.appendChild(closeModal).innerHTML = 'Ok'
 
-    myDialog2.appendChild(caption).innerHTML = 'Property Available: ' + allDeeds[27].name
-    myDialog2.appendChild(closeModal).innerHTML = 'Do Nothing'
-    myDialog2.appendChild(closeModal2).innerHTML = 'Buy Property ($' + allDeeds[27].price + ')'
+      myDialog2.showModal();
+
+
+      closeModal.addEventListener('click', function () {
+        updatePlayerDash(player);
+        myDialog2.close();
+        // playerDash(player);
+        myDialog.innerHTML = '';
+      })
+
+    }
+    else {
+      myDialog2.appendChild(caption).innerHTML = 'Property Available: ' + allDeeds[27].name
+      myDialog2.appendChild(closeModal).innerHTML = 'Do Nothing'
+      myDialog2.appendChild(closeModal2).innerHTML = 'Buy Property ($' + allDeeds[27].price + ')'
+
+      myDialog2.showModal();
+
+
+      closeModal.addEventListener('click', function () {
+        updatePlayerDash(player);
+        myDialog2.close();
+        // updatePlayerDash(player);
+        myDialog.innerHTML = '';
+      })
+
+      closeModal2.addEventListener('click', function () {
+        player.buyDeed(39, bank);
+        updatePlayerDash(player);
+        myDialog2.close();
+        myDialog.innerHTML = '';
+      })
+    }
+  }
+  else {
+    console.log('player is owner');
+    myDialog2.appendChild(caption).innerHTML = 'You own this property'
+    myDialog2.appendChild(closeModal).innerHTML = 'Ok'
 
     myDialog2.showModal();
 
     closeModal.addEventListener('click', function () {
-      playerDash(player);
+      updatePlayerDash(player);
       myDialog2.close();
-      // playerDash(player);
-      myDialog.innerHTML = '';
-    })
-
-    closeModal2.addEventListener('click', function () {
-      player.buyDeed(39, bank);
-      playerDash(player);
-      myDialog2.close();
+      // updatePlayerDash(player);
       myDialog.innerHTML = '';
     })
   }
@@ -181,8 +255,8 @@ Deck.prototype.drawCard = function () {
 
 communityChestArray =
   [
-    new Card("pay15", "cc", "Community Chest: You owe $15", loseMoney, 15),
-    new Card("get50", "cc", "Community Chest: You owe $50", addMoney, 50),
+    new Card("pay150", "cc", "Community Chest: You owe $15", loseMoney, 15),
+    new Card("get50", "cc", "Community Chest: You win $50", addMoney, 50),
     new Card("get150", "cc","Community Chest: You win $150", addMoney, 150),
     new Card("payPerHH", "cc", "Community Chest: Pay $25 per house and $100 per hotel", payPerHouseHotel, 0),
     new Card("payEachPlayer50", "cc", "Community Chest: Pay each player $50", payOtherPlayers, 0),
@@ -193,13 +267,14 @@ communityChestArray =
     new Card("getoutofjail", "cc", "Community Chest: 'Escape from the elevator for FREE!' card", getOutOfJail, 0),
     new Card("gotojail", "cc", "Community Chest: Uh oh! You're stuck in the elevator.", goToJail, 0)
   ],
+
 chanceArray =
   [
     new Card("gotoPivotal", "chance", "Chance: Go to Pivotal Labs", goToPivotal, 0),
     new Card("getoutofjail", "chance", "Chance: 'Escape from the elevator for FREE!' card", getOutOfJail, 0),
     new Card("gotojail", "chance", "Chance: Uh oh! You're stuck in the elevator.", goToJail, 0),
     new Card("pay15", "chance", "Chance: You owe $15", loseMoney, 15),
-    new Card("get50", "chance", "Chance: You win $150", addMoney, 50),
+    new Card("get50", "chance", "Chance: You win $50", addMoney, 50),
     new Card("get150", "chance","Chance: You win $150", addMoney, 150),
     new Card("payPerHH", "chance", "Chance: Pay $25 per house and $100 per hotel", payPerHouseHotel, 0),
     new Card("payEachPlayer50", "chance", "Chance: Pay each player $50", payOtherPlayers, 0),

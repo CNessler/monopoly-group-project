@@ -9,18 +9,12 @@ Player.prototype.buyDeed= function (location, bank) {
   this.balance -= deed.price;
   bank.balance += deed.price;
   deed.owner = this.name;
-  // console.log(deed.owner, "Deed Owner METH");
-  // console.log(deed.name,"DEED NAME METH");
 }
 
 Player.prototype.payRent = function(owner, deed, dieRoll, allPlayers) {
-  // console.log("payrent runs");
-  // console.log(deed.mortgaged, "deed mortagaged");
-  if(deed.mortgaged === false) {
-    // console.log("not mrotgaged");
+  if(!deed.mortgaged) {
     var rentDue;
     if(deed.color === "#a19a9a") {
-      // console.log("deed is a railroad");
       var railroadsOwned = 1;
       for (var i = 0; i < owner.deeds.length; i++) {
         if(owner.deeds[i].color === "#a19a9a") {
@@ -30,7 +24,6 @@ Player.prototype.payRent = function(owner, deed, dieRoll, allPlayers) {
       rentDue = 25 * railroadsOwned;
     }
     else if(deed.color === "#FFa500") {
-      // console.log("deed is a util");
       var utilitiesOwned = 1;
       owner.deeds.forEach(function (checkedDeed) {
         if(checkedDeed.color === "#FFa500") {
@@ -45,11 +38,9 @@ Player.prototype.payRent = function(owner, deed, dieRoll, allPlayers) {
       }
     }
     else {
-      // console.log("deed is a regular property");
       rentDue = deed.rent;
     }
     this.balance -= rentDue;
-    // console.log(this.name, this.balance,owner.balance,rentDue);
     owner.balance += rentDue;
   }
 }
@@ -71,7 +62,7 @@ Player.prototype.buyHouse = function (deed, allDeeds, houses) {
     if (monopolyColor != "black" || monopolyColor != "orange") {
       var monopolyCounter = 0;
       allDeeds.forEach(function (eachDeed) {
-        if(eachDeed.color = monopolyColor) {
+        if(eachDeed.color === monopolyColor) {
           monopolyCounter++;
         }
       });
@@ -83,8 +74,8 @@ Player.prototype.buyHouse = function (deed, allDeeds, houses) {
       })
       if(playerMonopolyCounter === monopolyCounter) {
         playerPurchaseCapacity = this.balance - houses*50;
-        if(player.hotels === 0 && playerPurchaseCapacity >= 0) {
-          this.houses += houses;
+        if(deed.hotels === 0 && playerPurchaseCapacity >= 0) {
+          deed.houses += houses;
           this.balance -= houses*50;
 
           var multiplicationFactor = 5;
@@ -94,13 +85,11 @@ Player.prototype.buyHouse = function (deed, allDeeds, houses) {
 
           deed.rent = deed.rent * multiplicationFactor;
         }
-        if (player.hotels > 0) {
-          // console.log('you already have a hotel here')
+        if (deed.hotels > 0) {
         }
         if (playerPurchaseCapacity < 0) {
           for (var i = houses; i >= 0; i--) {
             if(this.balance - (i*50) > 0) {
-              // console.log("you can afford "+ houses + " houses");
             }
             else {
               i--;
@@ -166,47 +155,11 @@ Player.prototype.pickUpFreeParking = function (bank) {
   bank.freeParking = 0;
 }
 
-// Player.prototype.timeInJail = function () {
-//   console.log("Time in jail happening!");
-//     if(this.jailCounter === 3){
-//       this.inJail = false;
-//       var dieRoll = getMove(this)
-//       var moveTo = document.getElementById('sp' + this.location)
-//       moveTo.style.backgroundImage = "url('" + this.tokensrc + "')";
-//
-//       selectPlayerFunction(this.location, this, bank, dieRoll, players, chanceDeck);
-//     }
-//     if(this.getOutOfJailFree === true) {
-//       this.inJail = false;
-//       this.getOutOfJailFree = false;
-//       var dieRoll = getMove(this)
-//       var moveTo = document.getElementById('sp' + this.location)
-//       moveTo.style.backgroundImage = "url('" + this.tokensrc + "')";
-//
-//       selectPlayerFunction(this.location, this, bank, dieRoll, players, chanceDeck);
-//     }
-//     else {
-//       this.jailCounter ++;
-//       this.location = 10;
-//     }
-// }
-
 Player.prototype.checkBalanceDues = function (owner, expenditure) {
-  // if(this.balance < expenditure){
-    var mortgageAvailable = this.deeds.length - 1;
-    for (var i = 0; i < this.deeds.length; i++) {
-      if(this.deeds[i].mortgaged === true){
-        mortgageAvailable --;
-      }
+  var mortgageAvailable = this.deeds.length - 1;
+  for (var i = 0; i < this.deeds.length; i++) {
+    if(this.deeds[i].mortgaged === true){
+      mortgageAvailable --;
     }
-  //   if(maxMoney < expenditure){
-  //     alert("Bankrupt")
-  //     //figure out how to skip player or remove
-  //   }
-  //   while(this.balance < expenditure && mortgageAvailable > 0){
-  //     alert('need to mortgage')
-  //
-  //   }
-  // }
-
+  }
 }

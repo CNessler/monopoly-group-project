@@ -1,33 +1,3 @@
-var weatherXHR = new XMLHttpRequest;
-
-weatherXHR.open('get', 'https://api.wunderground.com/api/4d5eeb69540ad8e6/conditions/q/CO/Denver.json');
-weatherXHR.addEventListener('load', function() {
-  var response = weatherXHR.response;
-  var weatherData = JSON.parse(response);
-  var temperature = weatherData.current_observation.temp_f;
-  var feelsLike = weatherData.current_observation.feelslike_f;
-  var weatherDescription = weatherData.current_observation.weather;
-
-  var good = ''
-  var bad = ''
-  goodWeather = ['sunnny', 'clear', 'cloudy']
-  badWeather = ['rain', 'snow', 'storm']
-  for (var i = 0; i < goodWeather.length; i++) {
-    var weatherContain = weatherDescription.toLowerCase().includes(goodWeather[i])
-    if(weatherContain === true)
-    good = 'Go play outside!'
-  }
-  for (var i = 0; i < badWeather.length; i++) {
-    var weatherContain = weatherDescription.toLowerCase().includes(badWeather[i])
-    if(weatherContain === true)
-    bad = 'Better stay inside and play Monopoly.'
-  }
-  var weatherID = document.getElementById('weatherAPI');
-  weatherID.innerHTML = 'The current forecast for today is ' + weatherDescription + '.  It feels like ' + feelsLike + '\xB0' + '. ' + good + bad;
-})
-
-
-weatherXHR.send(null);
 var rollButton = document.getElementById('roll');
 var index = 0;
 var turn = document.getElementById('turn')
@@ -86,36 +56,71 @@ function getMove(player) {
 }
 
 function nextPlayer() {
-  if (index <= 2) {
-    index += 1
-  } else if (index === 3) {
-    index = 0
+  var inactives = 0;
+  players.forEach(function (player) {
+    if(!player.active) {
+      inactives++;
+    }
+  })
+  if(inactives < players.length - 1) {
+    if (index <= 2) {
+      index += 1;
+    } else if (index === 3) {
+      index = 0;
+    }
+    window.setTimeout(function () {
+      updatePlayerDash(players[index])
+    }, 2500)
+    window.setTimeout(function () {
+      turn.innerHTML = players[index].name + "'s Turn!";
+    }, 2500)
+    if(!players[index].active) {
+      console.log("should not get into this conditional");
+      nextPlayer();
+    }
+    console.log("player moves", players[index]);
   }
-  window.setTimeout(function () {
-    playerDash(players[index])
-  }, 2500)
-  window.setTimeout(function () {
-    turn.innerHTML = players[index].name + "'s Turn!";
-  }, 2500)
+  else {
+    var winner;
+    players.forEach(function (player) {
+      if (player.active) {
+        winner=player;
+      }
+    });
+    var myDialog = document.getElementById('myDialog');
+    var caption = document.createElement('p')
+    var closeModal = document.createElement('button');
+
+    myDialog.appendChild(caption).innerHTML = winner.name + " Wins!";
+    myDialog.appendChild(closeModal).innerHTML = "Start New Game";
+
+    myDialog.showModal();
+
+    closeModal.addEventListener('click', function () {
+      var xhr = new XMLHttpRequest();
+      xhr.open('get', '/logout', false);
+      xhr.send();
+      window.location.replace('http://localhost:3000/home');
+      myDialog.close();
+    });
+  }
 }
 
 startGame();
-
+var player = players[index];
 rollButton.addEventListener("click", function() {
-
-  var sentObjectExample = {name: "Akhil", message: "my twilio test"}
-
-  var player = players[index]
+  console.log(index, "INDEX");
+  player = players[index]
   var current = document.getElementById('sp' + player.location)
   var dieRoll = getMove(player);
 
   var existing = current.childNodes;
-  console.log(existing, "EXISTING BEFORE");
   for (var i = 0; i < existing.length; i++) {
     if (existing[i].id === players[index].name) {
       existing[i].remove();
     }
   }
+
   var moveTo = document.getElementById('sp' + player.location)
   var token = document.createElement('div');
   token.setAttribute("class", "token");
@@ -125,16 +130,3 @@ rollButton.addEventListener("click", function() {
 
   selectPlayerFunction(player.location, player, bank, dieRoll, players, chanceDeck);
 });
-
-var sendGameDataBtn = document.getElementById('twilioCall');
-sendGameDataBtn.addEventListener('click', function() {
-
-  var xhr = new XMLHttpRequest();
-  xhr.open('post', "/gamedata", true);
-  xhr.setRequestHeader('Content-type', "application/json");
-
-  var sentObjectExample = {name: "Akhil", message: "HI CLAIRE!!!!"};
-  sentObjectString = JSON.stringify(sentObjectExample);
-
-  xhr.send(sentObjectString);
-})

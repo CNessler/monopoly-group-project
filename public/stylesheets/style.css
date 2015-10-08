@@ -46,22 +46,23 @@ table {
   border-spacing: 0; }
 
 * {
-  box-sizing: border-box;
-  background-repeat: no-repeat; }
+  box-sizing: border-box; }
 
 html {
   background-image: url("/stylesheets/images/desk.jpg");
   background-size: 100%; }
 
 div {
-  background-size: contain; }
+  background-size: contain;
+  background-repeat: no-repeat; }
 
 dialog {
   height: 200px;
   width: 350px;
   padding: 20px;
   padding-top: 30px;
-  z-index: 20; }
+  z-index: 20;
+  overflow: scroll; }
   dialog button {
     width: 100px;
     padding: 5px;
@@ -133,10 +134,14 @@ p {
 
 .dice {
   background-image: url("./images/dice.png");
+  background-repeat: no-repeat;
   height: 100px;
   width: 150px;
   float: right;
   margin: 15px; }
+
+.dice:hover {
+  cursor: pointer; }
 
 .header {
   margin: 4px; }
